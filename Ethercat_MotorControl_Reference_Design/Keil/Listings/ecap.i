@@ -1,4 +1,4 @@
-#line 1 "..\\..\\..\\Library\\StdDriver\\src\\ecap.c"
+#line 1 "..\\Library\\StdDriver\\src\\ecap.c"
  
 
 
@@ -6,7 +6,7 @@
 
 
  
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
  
 
 
@@ -17,7 +17,7 @@
 
 
 
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
  
 
 
@@ -204,12 +204,12 @@ IRQn_Type;
  
 
  
-#line 197 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 197 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
    
 
 
-#line 1 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
+#line 1 "..\\Library\\CMSIS\\Include\\core_cm4.h"
  
 
 
@@ -509,7 +509,7 @@ typedef unsigned     long long uintmax_t;
 
 
  
-#line 45 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
+#line 45 "..\\Library\\CMSIS\\Include\\core_cm4.h"
 
 
 
@@ -552,43 +552,17 @@ typedef unsigned     long long uintmax_t;
 
 
 
-#line 120 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
+#line 120 "..\\Library\\CMSIS\\Include\\core_cm4.h"
 
 
 
  
-#line 135 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
+#line 135 "..\\Library\\CMSIS\\Include\\core_cm4.h"
 
-#line 209 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
+#line 209 "..\\Library\\CMSIS\\Include\\core_cm4.h"
 
-#line 1 "..\\..\\..\\Library\\CMSIS\\Include\\core_cmInstr.h"
+#line 1 "..\\Library\\CMSIS\\Include\\core_cmInstr.h"
  
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -606,6 +580,32 @@ typedef unsigned     long long uintmax_t;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
  
 
 
@@ -613,7 +613,7 @@ typedef unsigned     long long uintmax_t;
  
 
  
-#line 1 "..\\..\\..\\Library\\CMSIS\\Include\\cmsis_armcc.h"
+#line 1 "..\\Library\\CMSIS\\Include\\cmsis_armcc.h"
  
 
 
@@ -1049,7 +1049,7 @@ __attribute__((section(".revsh_text"))) static __inline __asm int32_t __REVSH(in
 
 
  
-#line 455 "..\\..\\..\\Library\\CMSIS\\Include\\cmsis_armcc.h"
+#line 455 "..\\Library\\CMSIS\\Include\\cmsis_armcc.h"
 
 
 
@@ -1256,7 +1256,7 @@ __attribute__((section(".rrx_text"))) static __inline __asm uint32_t __RRX(uint3
 
 
 
-#line 720 "..\\..\\..\\Library\\CMSIS\\Include\\cmsis_armcc.h"
+#line 720 "..\\Library\\CMSIS\\Include\\cmsis_armcc.h"
 
 
 
@@ -1271,15 +1271,15 @@ __attribute__((section(".rrx_text"))) static __inline __asm uint32_t __RRX(uint3
  
 
 
-#line 54 "..\\..\\..\\Library\\CMSIS\\Include\\core_cmInstr.h"
+#line 54 "..\\Library\\CMSIS\\Include\\core_cmInstr.h"
 
  
-#line 84 "..\\..\\..\\Library\\CMSIS\\Include\\core_cmInstr.h"
+#line 84 "..\\Library\\CMSIS\\Include\\core_cmInstr.h"
 
    
 
-#line 211 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
-#line 1 "..\\..\\..\\Library\\CMSIS\\Include\\core_cmFunc.h"
+#line 211 "..\\Library\\CMSIS\\Include\\core_cm4.h"
+#line 1 "..\\Library\\CMSIS\\Include\\core_cmFunc.h"
  
 
 
@@ -1331,42 +1331,16 @@ __attribute__((section(".rrx_text"))) static __inline __asm uint32_t __RRX(uint3
  
 
  
-#line 54 "..\\..\\..\\Library\\CMSIS\\Include\\core_cmFunc.h"
+#line 54 "..\\Library\\CMSIS\\Include\\core_cmFunc.h"
 
  
-#line 84 "..\\..\\..\\Library\\CMSIS\\Include\\core_cmFunc.h"
-
- 
-
-#line 212 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
-#line 1 "..\\..\\..\\Library\\CMSIS\\Include\\core_cmSimd.h"
- 
-
-
-
+#line 84 "..\\Library\\CMSIS\\Include\\core_cmFunc.h"
 
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#line 212 "..\\Library\\CMSIS\\Include\\core_cm4.h"
+#line 1 "..\\Library\\CMSIS\\Include\\core_cmSimd.h"
+ 
 
 
 
@@ -1388,26 +1362,16 @@ __attribute__((section(".rrx_text"))) static __inline __asm uint32_t __RRX(uint3
 
 
 
- 
 
 
 
- 
-
- 
-#line 58 "..\\..\\..\\Library\\CMSIS\\Include\\core_cmSimd.h"
-
- 
-#line 88 "..\\..\\..\\Library\\CMSIS\\Include\\core_cmSimd.h"
-
- 
 
 
 
 
 
 
-#line 213 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
+ 
 
 
 
@@ -1425,7 +1389,43 @@ __attribute__((section(".rrx_text"))) static __inline __asm uint32_t __RRX(uint3
 
 
  
-#line 256 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
+
+
+
+ 
+
+ 
+#line 58 "..\\Library\\CMSIS\\Include\\core_cmSimd.h"
+
+ 
+#line 88 "..\\Library\\CMSIS\\Include\\core_cmSimd.h"
+
+ 
+
+
+
+
+
+
+#line 213 "..\\Library\\CMSIS\\Include\\core_cm4.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+#line 256 "..\\Library\\CMSIS\\Include\\core_cm4.h"
 
  
 
@@ -1435,7 +1435,7 @@ __attribute__((section(".rrx_text"))) static __inline __asm uint32_t __RRX(uint3
 
 
  
-#line 272 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
+#line 272 "..\\Library\\CMSIS\\Include\\core_cm4.h"
 
  
 
@@ -2697,9 +2697,9 @@ typedef struct
  
 
  
-#line 1541 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
+#line 1541 "..\\Library\\CMSIS\\Include\\core_cm4.h"
 
-#line 1550 "..\\..\\..\\Library\\CMSIS\\Include\\core_cm4.h"
+#line 1550 "..\\Library\\CMSIS\\Include\\core_cm4.h"
 
 
 
@@ -3087,8 +3087,8 @@ static __inline int32_t ITM_CheckChar (void)
 
 
 
-#line 202 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\system_M480.h"
+#line 202 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\system_M480.h"
  
 
 
@@ -3104,14 +3104,14 @@ static __inline int32_t ITM_CheckChar (void)
 
 
 
-#line 17 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\system_M480.h"
+#line 17 "..\\Library\\Device\\Nuvoton\\M480\\Include\\system_M480.h"
 
 
 
 
  
 
-#line 29 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\system_M480.h"
+#line 29 "..\\Library\\Device\\Nuvoton\\M480\\Include\\system_M480.h"
 
 
 
@@ -3150,8 +3150,8 @@ extern void SystemCoreClockUpdate (void);
 
 
  
-#line 203 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 204 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 203 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 204 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
 
 
@@ -3163,7 +3163,7 @@ extern void SystemCoreClockUpdate (void);
  
  
 
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\sys_reg.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\sys_reg.h"
  
 
 
@@ -6824,8 +6824,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 216 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\clk_reg.h"
+#line 216 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\clk_reg.h"
  
 
 
@@ -8515,8 +8515,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 217 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\fmc_reg.h"
+#line 217 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\fmc_reg.h"
  
 
 
@@ -9203,8 +9203,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 218 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\gpio_reg.h"
+#line 218 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\gpio_reg.h"
  
 
 
@@ -10139,8 +10139,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 219 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\pdma_reg.h"
+#line 219 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\pdma_reg.h"
  
 
 
@@ -11025,8 +11025,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 220 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\timer_reg.h"
+#line 220 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\timer_reg.h"
  
 
 
@@ -12119,8 +12119,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 221 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\wdt_reg.h"
+#line 221 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\wdt_reg.h"
  
 
 
@@ -12302,8 +12302,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 222 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\wwdt_reg.h"
+#line 222 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\wwdt_reg.h"
  
 
 
@@ -12451,8 +12451,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 223 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\rtc_reg.h"
+#line 223 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\rtc_reg.h"
  
 
 
@@ -13725,8 +13725,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 224 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\epwm_reg.h"
+#line 224 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\epwm_reg.h"
  
 
 
@@ -17502,8 +17502,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 225 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\bpwm_reg.h"
+#line 225 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\bpwm_reg.h"
  
 
 
@@ -19337,8 +19337,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 226 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\qei_reg.h"
+#line 226 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\qei_reg.h"
  
 
 
@@ -19652,8 +19652,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 227 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\ecap_reg.h"
+#line 227 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\ecap_reg.h"
  
 
 
@@ -20042,8 +20042,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 228 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\uart_reg.h"
+#line 228 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\uart_reg.h"
  
 
 
@@ -21315,8 +21315,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 229 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\emac_reg.h"
+#line 229 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\emac_reg.h"
  
 
 
@@ -23378,8 +23378,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 230 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\sc_reg.h"
+#line 230 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\sc_reg.h"
  
 
 
@@ -24397,8 +24397,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 231 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\i2s_reg.h"
+#line 231 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\i2s_reg.h"
  
 
 
@@ -25104,8 +25104,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 232 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\spi_reg.h"
+#line 232 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\spi_reg.h"
  
 
 
@@ -25904,8 +25904,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 233 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\qspi_reg.h"
+#line 233 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\qspi_reg.h"
  
 
 
@@ -26496,8 +26496,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 234 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\spim_reg.h"
+#line 234 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\spim_reg.h"
  
 
 
@@ -27053,8 +27053,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 235 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\i2c_reg.h"
+#line 235 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\i2c_reg.h"
  
 
 
@@ -27778,8 +27778,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 236 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\uuart_reg.h"
+#line 236 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\uuart_reg.h"
  
 
 
@@ -28457,8 +28457,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 237 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\uspi_reg.h"
+#line 237 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\uspi_reg.h"
  
 
 
@@ -29134,8 +29134,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 238 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\ui2c_reg.h"
+#line 238 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\ui2c_reg.h"
  
 
 
@@ -29717,8 +29717,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 239 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\can_reg.h"
+#line 239 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\can_reg.h"
  
 
 
@@ -30476,8 +30476,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 240 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\sdh_reg.h"
+#line 240 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\sdh_reg.h"
  
 
 
@@ -31018,8 +31018,8 @@ typedef struct
 
 
 
-#line 241 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\ebi_reg.h"
+#line 241 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\ebi_reg.h"
  
 
 
@@ -31447,8 +31447,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 242 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\usbd_reg.h"
+#line 242 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\usbd_reg.h"
  
 
 
@@ -32081,8 +32081,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 243 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\hsusbd_reg.h"
+#line 243 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\hsusbd_reg.h"
  
 
 
@@ -33462,8 +33462,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 244 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\usbh_reg.h"
+#line 244 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\usbh_reg.h"
  
 
 
@@ -34259,8 +34259,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 245 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\hsusbh_reg.h"
+#line 245 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\hsusbh_reg.h"
  
 
 
@@ -34912,8 +34912,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 246 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\otg_reg.h"
+#line 246 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\otg_reg.h"
  
 
 
@@ -35311,8 +35311,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 247 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\hsotg_reg.h"
+#line 247 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\hsotg_reg.h"
  
 
 
@@ -35709,8 +35709,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 248 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\crc_reg.h"
+#line 248 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\crc_reg.h"
  
 
 
@@ -35859,8 +35859,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 249 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\crypto_reg.h"
+#line 249 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\crypto_reg.h"
  
 
 
@@ -38078,8 +38078,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 250 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\trng_reg.h"
+#line 250 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\trng_reg.h"
  
 
 
@@ -38216,8 +38216,8 @@ typedef struct
    
 
 
-#line 251 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\eadc_reg.h"
+#line 251 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\eadc_reg.h"
  
 
 
@@ -39930,8 +39930,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 252 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\dac_reg.h"
+#line 252 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\dac_reg.h"
  
 
 
@@ -40140,8 +40140,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 253 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\acmp_reg.h"
+#line 253 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\acmp_reg.h"
  
 
 
@@ -40380,8 +40380,8 @@ typedef struct
 #pragma no_anon_unions
 
 
-#line 254 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\opa_reg.h"
+#line 254 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\opa_reg.h"
  
 
 
@@ -40649,8 +40649,8 @@ typedef struct
 
 
 
-#line 255 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\ccap_reg.h"
+#line 255 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\Device\\Nuvoton\\M480\\Include\\ccap_reg.h"
  
 
 
@@ -41145,7 +41145,7 @@ typedef struct {
 #pragma no_anon_unions
 
 
-#line 256 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 256 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
 
 
@@ -41160,16 +41160,16 @@ typedef struct {
 
 
  
-#line 296 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 296 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
  
-#line 321 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 321 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
 
  
-#line 349 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 349 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
-#line 357 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 357 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
    
 
@@ -41179,11 +41179,11 @@ typedef struct {
 
  
 
-#line 396 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 396 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
-#line 404 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 404 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
-#line 458 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 458 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
    
 
@@ -41344,7 +41344,7 @@ typedef volatile unsigned long  vu32;
 
 
  
-#line 650 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 650 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
  
 
@@ -41363,7 +41363,7 @@ typedef volatile unsigned long  vu32;
  
  
  
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 1 "..\\Library\\StdDriver\\inc\\sys.h"
  
 
 
@@ -41397,35 +41397,28 @@ typedef volatile unsigned long  vu32;
  
  
  
-#line 45 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 45 "..\\Library\\StdDriver\\inc\\sys.h"
 
-#line 75 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 75 "..\\Library\\StdDriver\\inc\\sys.h"
 
-#line 95 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
-
- 
- 
- 
-#line 109 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
-
+#line 95 "..\\Library\\StdDriver\\inc\\sys.h"
 
  
  
  
-#line 120 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 109 "..\\Library\\StdDriver\\inc\\sys.h"
 
 
  
  
  
-#line 132 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 120 "..\\Library\\StdDriver\\inc\\sys.h"
+
 
  
  
  
-
-
-
+#line 132 "..\\Library\\StdDriver\\inc\\sys.h"
 
  
  
@@ -41434,41 +41427,48 @@ typedef volatile unsigned long  vu32;
 
 
 
+ 
+ 
+ 
+
+
+
+
 
 
  
  
-#line 258 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 258 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 358 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 358 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 483 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 483 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 604 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 604 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 712 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 712 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 779 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 779 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 835 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 835 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 887 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 887 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 973 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 973 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 1049 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 1049 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 1108 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 1108 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 1141 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 1141 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 1191 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 1191 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 1246 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 1246 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 1286 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 1286 "..\\Library\\StdDriver\\inc\\sys.h"
  
-#line 1321 "..\\..\\..\\Library\\StdDriver\\inc\\sys.h"
+#line 1321 "..\\Library\\StdDriver\\inc\\sys.h"
 
    
 
@@ -41779,8 +41779,8 @@ void SYS_SetVRef(uint32_t u32VRefCTL);
 
 
  
-#line 669 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
+#line 669 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\clk.h"
  
 
 
@@ -41810,7 +41810,7 @@ void SYS_SetVRef(uint32_t u32VRefCTL);
  
 
 
-#line 41 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
+#line 41 "..\\Library\\StdDriver\\inc\\clk.h"
 
  
  
@@ -41821,7 +41821,7 @@ void SYS_SetVRef(uint32_t u32VRefCTL);
 
 
 
-#line 57 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
+#line 57 "..\\Library\\StdDriver\\inc\\clk.h"
 
 
 
@@ -41829,41 +41829,7 @@ void SYS_SetVRef(uint32_t u32VRefCTL);
 
 
 
-#line 71 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
-
-
-
-
-#line 101 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
-#line 108 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
-#line 115 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
-#line 122 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
-
-
+#line 71 "..\\Library\\StdDriver\\inc\\clk.h"
 
 
 
@@ -41888,20 +41854,13 @@ void SYS_SetVRef(uint32_t u32VRefCTL);
 
 
 
+#line 101 "..\\Library\\StdDriver\\inc\\clk.h"
 
+#line 108 "..\\Library\\StdDriver\\inc\\clk.h"
 
+#line 115 "..\\Library\\StdDriver\\inc\\clk.h"
 
-
-
-
-
-
-
-
-
-
-
-
+#line 122 "..\\Library\\StdDriver\\inc\\clk.h"
 
 
 
@@ -41963,116 +41922,6 @@ void SYS_SetVRef(uint32_t u32VRefCTL);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
-#line 253 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
- 
- 
- 
-
-
-
-
- 
- 
- 
-
-
-
- 
- 
- 
-
-
-
-
-
- 
- 
- 
-#line 284 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
- 
- 
- 
-#line 298 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
-#line 309 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
- 
- 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
-
- 
-
-#line 351 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
-#line 360 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
-#line 426 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
- 
- 
- 
-#line 436 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
- 
- 
- 
-#line 452 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
- 
- 
- 
-#line 472 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
-
  
  
  
@@ -42106,6 +41955,72 @@ void SYS_SetVRef(uint32_t u32VRefCTL);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+#line 253 "..\\Library\\StdDriver\\inc\\clk.h"
+
+ 
+ 
+ 
+
+
+
+
+ 
+ 
+ 
+
+
+
+ 
+ 
+ 
+
+
+
+
+
+ 
+ 
+ 
+#line 284 "..\\Library\\StdDriver\\inc\\clk.h"
+
+ 
+ 
+ 
+#line 298 "..\\Library\\StdDriver\\inc\\clk.h"
+
+#line 309 "..\\Library\\StdDriver\\inc\\clk.h"
+
  
  
  
@@ -42121,7 +42036,92 @@ void SYS_SetVRef(uint32_t u32VRefCTL);
 
 
 
-#line 533 "..\\..\\..\\Library\\StdDriver\\inc\\clk.h"
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+
+ 
+
+#line 351 "..\\Library\\StdDriver\\inc\\clk.h"
+
+#line 360 "..\\Library\\StdDriver\\inc\\clk.h"
+
+#line 426 "..\\Library\\StdDriver\\inc\\clk.h"
+
+ 
+ 
+ 
+#line 436 "..\\Library\\StdDriver\\inc\\clk.h"
+
+ 
+ 
+ 
+#line 452 "..\\Library\\StdDriver\\inc\\clk.h"
+
+ 
+ 
+ 
+#line 472 "..\\Library\\StdDriver\\inc\\clk.h"
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+#line 533 "..\\Library\\StdDriver\\inc\\clk.h"
 
    
 
@@ -42301,9 +42301,9 @@ uint32_t CLK_GetModuleClockDivider(uint32_t u32ModuleIdx);
 
 
  
-#line 670 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 670 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\acmp.h"
+#line 1 "..\\Library\\StdDriver\\inc\\acmp.h"
  
 
 
@@ -42340,7 +42340,7 @@ uint32_t CLK_GetModuleClockDivider(uint32_t u32ModuleIdx);
  
  
  
-#line 60 "..\\..\\..\\Library\\StdDriver\\inc\\acmp.h"
+#line 60 "..\\Library\\StdDriver\\inc\\acmp.h"
 
  
  
@@ -42696,8 +42696,8 @@ void ACMP_Close(ACMP_T *acmp, uint32_t u32ChNum);
 
 
  
-#line 672 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\dac.h"
+#line 672 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\dac.h"
  
 
 
@@ -42733,7 +42733,7 @@ void ACMP_Close(ACMP_T *acmp, uint32_t u32ChNum);
 
 
 
-#line 48 "..\\..\\..\\Library\\StdDriver\\inc\\dac.h"
+#line 48 "..\\Library\\StdDriver\\inc\\dac.h"
 
 
 
@@ -42955,8 +42955,8 @@ uint32_t DAC_SetDelayTime(DAC_T *dac, uint32_t u32Delay);
 
 
  
-#line 673 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\emac.h"
+#line 673 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\emac.h"
  
 
 
@@ -43154,8 +43154,8 @@ uint32_t EMAC_CheckLinkStatus(void);
 
 
  
-#line 674 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\uart.h"
+#line 674 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\uart.h"
  
 
 
@@ -43189,7 +43189,7 @@ uint32_t EMAC_CheckLinkStatus(void);
  
  
 
-#line 40 "..\\..\\..\\Library\\StdDriver\\inc\\uart.h"
+#line 40 "..\\Library\\StdDriver\\inc\\uart.h"
 
  
  
@@ -43250,7 +43250,7 @@ uint32_t EMAC_CheckLinkStatus(void);
  
  
  
-#line 106 "..\\..\\..\\Library\\StdDriver\\inc\\uart.h"
+#line 106 "..\\Library\\StdDriver\\inc\\uart.h"
 
 
  
@@ -43625,8 +43625,8 @@ uint32_t UART_Write(UART_T* uart, uint8_t pu8TxBuf[], uint32_t u32WriteBytes);
 
 
  
-#line 675 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\usci_spi.h"
+#line 675 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\usci_spi.h"
  
 
 
@@ -43668,10 +43668,10 @@ uint32_t UART_Write(UART_T* uart, uint8_t pu8TxBuf[], uint32_t u32WriteBytes);
 
 
  
-#line 52 "..\\..\\..\\Library\\StdDriver\\inc\\usci_spi.h"
+#line 52 "..\\Library\\StdDriver\\inc\\usci_spi.h"
 
  
-#line 60 "..\\..\\..\\Library\\StdDriver\\inc\\usci_spi.h"
+#line 60 "..\\Library\\StdDriver\\inc\\usci_spi.h"
 
    
 
@@ -43801,7 +43801,7 @@ uint32_t UART_Write(UART_T* uart, uint8_t pu8TxBuf[], uint32_t u32WriteBytes);
 
 
  
-#line 197 "..\\..\\..\\Library\\StdDriver\\inc\\usci_spi.h"
+#line 197 "..\\Library\\StdDriver\\inc\\usci_spi.h"
 
 
 
@@ -44016,8 +44016,8 @@ void USPI_DisableWakeup(USPI_T *uspi);
 
 
  
-#line 676 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\gpio.h"
+#line 676 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\gpio.h"
  
 
 
@@ -44099,7 +44099,7 @@ void USPI_DisableWakeup(USPI_T *uspi);
 
 
 
-#line 98 "..\\..\\..\\Library\\StdDriver\\inc\\gpio.h"
+#line 98 "..\\Library\\StdDriver\\inc\\gpio.h"
 
 
 
@@ -44116,7 +44116,7 @@ void USPI_DisableWakeup(USPI_T *uspi);
 
 
  
-#line 233 "..\\..\\..\\Library\\StdDriver\\inc\\gpio.h"
+#line 233 "..\\Library\\StdDriver\\inc\\gpio.h"
 
 
    
@@ -44381,8 +44381,8 @@ void GPIO_SetPullCtl(GPIO_T *port, uint32_t u32PinMask, uint32_t u32Mode);
 
 
  
-#line 677 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\ccap.h"
+#line 677 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\ccap.h"
  
 
 
@@ -44413,7 +44413,7 @@ void GPIO_SetPullCtl(GPIO_T *port, uint32_t u32PinMask, uint32_t u32Mode);
  
  
  
-#line 40 "..\\..\\..\\Library\\StdDriver\\inc\\ccap.h"
+#line 40 "..\\Library\\StdDriver\\inc\\ccap.h"
 
  
  
@@ -44442,7 +44442,7 @@ void GPIO_SetPullCtl(GPIO_T *port, uint32_t u32PinMask, uint32_t u32Mode);
 
 
 
-#line 74 "..\\..\\..\\Library\\StdDriver\\inc\\ccap.h"
+#line 74 "..\\Library\\StdDriver\\inc\\ccap.h"
 
  
  
@@ -44536,8 +44536,8 @@ void CCAP_DisableLumaYOne(void);
 
 
  
-#line 678 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\ecap.h"
+#line 678 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\ecap.h"
  
 
 
@@ -44573,7 +44573,7 @@ void CCAP_DisableLumaYOne(void);
  
  
  
-#line 42 "..\\..\\..\\Library\\StdDriver\\inc\\ecap.h"
+#line 42 "..\\Library\\StdDriver\\inc\\ecap.h"
 
 
 
@@ -44588,7 +44588,7 @@ void CCAP_DisableLumaYOne(void);
 
 
 
-#line 64 "..\\..\\..\\Library\\StdDriver\\inc\\ecap.h"
+#line 64 "..\\Library\\StdDriver\\inc\\ecap.h"
 
 
 
@@ -44778,7 +44778,7 @@ void CCAP_DisableLumaYOne(void);
 
 
  
-#line 260 "..\\..\\..\\Library\\StdDriver\\inc\\ecap.h"
+#line 260 "..\\Library\\StdDriver\\inc\\ecap.h"
 
 
 
@@ -44977,8 +44977,8 @@ void ECAP_DisableINT(ECAP_T* ecap, uint32_t u32Mask);
 
 
  
-#line 679 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\qei.h"
+#line 679 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\qei.h"
  
 
 
@@ -45018,7 +45018,7 @@ void ECAP_DisableINT(ECAP_T* ecap, uint32_t u32Mask);
  
  
  
-#line 46 "..\\..\\..\\Library\\StdDriver\\inc\\qei.h"
+#line 46 "..\\Library\\StdDriver\\inc\\qei.h"
 
 
 
@@ -45363,8 +45363,8 @@ void QEI_Stop(QEI_T* qei);
 
 
  
-#line 680 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\timer.h"
+#line 680 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\timer.h"
  
 
 
@@ -45395,16 +45395,16 @@ void QEI_Stop(QEI_T* qei);
  
  
  
-#line 37 "..\\..\\..\\Library\\StdDriver\\inc\\timer.h"
+#line 37 "..\\Library\\StdDriver\\inc\\timer.h"
 
 
 
 
 
 
-#line 49 "..\\..\\..\\Library\\StdDriver\\inc\\timer.h"
+#line 49 "..\\Library\\StdDriver\\inc\\timer.h"
 
-#line 56 "..\\..\\..\\Library\\StdDriver\\inc\\timer.h"
+#line 56 "..\\Library\\StdDriver\\inc\\timer.h"
 
    
 
@@ -45857,8 +45857,8 @@ void TIMER_SetTriggerTarget(TIMER_T *timer, uint32_t u32Mask);
 
 
 
-#line 681 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\timer_pwm.h"
+#line 681 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\timer_pwm.h"
  
 
 
@@ -45925,17 +45925,10 @@ void TIMER_SetTriggerTarget(TIMER_T *timer, uint32_t u32Mask);
  
  
  
-#line 74 "..\\..\\..\\Library\\StdDriver\\inc\\timer_pwm.h"
+#line 74 "..\\Library\\StdDriver\\inc\\timer_pwm.h"
 
 
-#line 83 "..\\..\\..\\Library\\StdDriver\\inc\\timer_pwm.h"
-
-
-
-
- 
- 
- 
+#line 83 "..\\Library\\StdDriver\\inc\\timer_pwm.h"
 
 
 
@@ -45943,7 +45936,14 @@ void TIMER_SetTriggerTarget(TIMER_T *timer, uint32_t u32Mask);
  
  
  
-#line 105 "..\\..\\..\\Library\\StdDriver\\inc\\timer_pwm.h"
+
+
+
+
+ 
+ 
+ 
+#line 105 "..\\Library\\StdDriver\\inc\\timer_pwm.h"
 
  
  
@@ -46585,8 +46585,8 @@ void TPWM_SetBrakePinSource(TIMER_T *timer, uint32_t u32BrakePinNum);
 
 
 
-#line 682 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\pdma.h"
+#line 682 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\pdma.h"
  
 
 
@@ -46644,7 +46644,7 @@ void TPWM_SetBrakePinSource(TIMER_T *timer, uint32_t u32BrakePinNum);
 
 
 
-#line 66 "..\\..\\..\\Library\\StdDriver\\inc\\pdma.h"
+#line 66 "..\\Library\\StdDriver\\inc\\pdma.h"
 
  
  
@@ -46655,7 +46655,7 @@ void TPWM_SetBrakePinSource(TIMER_T *timer, uint32_t u32BrakePinNum);
  
  
  
-#line 145 "..\\..\\..\\Library\\StdDriver\\inc\\pdma.h"
+#line 145 "..\\Library\\StdDriver\\inc\\pdma.h"
  
  
  
@@ -46902,8 +46902,8 @@ void PDMA_SetRepeat(PDMA_T * pdma,uint32_t u32Ch, uint32_t u32DestInterval, uint
 
 
  
-#line 683 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\crypto.h"
+#line 683 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\crypto.h"
  
 
 
@@ -46944,16 +46944,16 @@ void PDMA_SetRepeat(PDMA_T * pdma,uint32_t u32Ch, uint32_t u32DestInterval, uint
 
 
 
-#line 49 "..\\..\\..\\Library\\StdDriver\\inc\\crypto.h"
+#line 49 "..\\Library\\StdDriver\\inc\\crypto.h"
 
 
 
 
 
 
-#line 65 "..\\..\\..\\Library\\StdDriver\\inc\\crypto.h"
+#line 65 "..\\Library\\StdDriver\\inc\\crypto.h"
 
-#line 74 "..\\..\\..\\Library\\StdDriver\\inc\\crypto.h"
+#line 74 "..\\Library\\StdDriver\\inc\\crypto.h"
 
 
 
@@ -47258,8 +47258,8 @@ int32_t  ECC_VerifySignature(CRPT_T *crpt, E_ECC_CURVE ecc_curve, char *message,
 
  
 
-#line 684 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\trng.h"
+#line 684 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\trng.h"
  
 
 
@@ -47345,8 +47345,8 @@ int32_t TRNG_GenBignumHex(char cBigNumHex[], int32_t i32Len);
 
  
 
-#line 685 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\fmc.h"
+#line 685 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\fmc.h"
  
 
 
@@ -47379,7 +47379,7 @@ int32_t TRNG_GenBignumHex(char cBigNumHex[], int32_t i32Len);
  
  
  
-#line 51 "..\\..\\..\\Library\\StdDriver\\inc\\fmc.h"
+#line 51 "..\\Library\\StdDriver\\inc\\fmc.h"
 
 
 
@@ -47408,7 +47408,7 @@ int32_t TRNG_GenBignumHex(char cBigNumHex[], int32_t i32Len);
  
  
  
-#line 95 "..\\..\\..\\Library\\StdDriver\\inc\\fmc.h"
+#line 95 "..\\Library\\StdDriver\\inc\\fmc.h"
 
 
 
@@ -47427,7 +47427,7 @@ int32_t TRNG_GenBignumHex(char cBigNumHex[], int32_t i32Len);
  
  
 
-#line 127 "..\\..\\..\\Library\\StdDriver\\inc\\fmc.h"
+#line 127 "..\\Library\\StdDriver\\inc\\fmc.h"
 
    
 
@@ -47603,8 +47603,8 @@ extern int32_t  FMC_CompareSPKey(uint32_t key[3]);
 
 
  
-#line 686 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\spim.h"
+#line 686 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\spim.h"
  
 
 
@@ -47646,7 +47646,7 @@ extern int32_t  FMC_CompareSPKey(uint32_t key[3]);
  
  
  
-#line 50 "..\\..\\..\\Library\\StdDriver\\inc\\spim.h"
+#line 50 "..\\Library\\StdDriver\\inc\\spim.h"
 
 
 
@@ -47654,7 +47654,7 @@ extern int32_t  FMC_CompareSPKey(uint32_t key[3]);
 
 
 
-#line 65 "..\\..\\..\\Library\\StdDriver\\inc\\spim.h"
+#line 65 "..\\Library\\StdDriver\\inc\\spim.h"
 
  
 
@@ -47670,7 +47670,7 @@ typedef enum
 E_MFGID;
 
  
-#line 100 "..\\..\\..\\Library\\StdDriver\\inc\\spim.h"
+#line 100 "..\\Library\\StdDriver\\inc\\spim.h"
 
  
 
@@ -48203,8 +48203,8 @@ void SPIM_SetQuadEnable(int isEn, uint32_t u32NBit);
 
 
  
-#line 687 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\i2c.h"
+#line 687 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\i2c.h"
  
 
 
@@ -48236,7 +48236,7 @@ void SPIM_SetQuadEnable(int isEn, uint32_t u32NBit);
  
  
  
-#line 41 "..\\..\\..\\Library\\StdDriver\\inc\\i2c.h"
+#line 41 "..\\Library\\StdDriver\\inc\\i2c.h"
 
  
  
@@ -48698,8 +48698,8 @@ void I2C_SMBusClockLoTimeout(I2C_T *i2c, uint32_t ms, uint32_t u32Pclk);
 
 
  
-#line 688 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\i2s.h"
+#line 688 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\i2s.h"
  
 
 
@@ -48736,7 +48736,7 @@ void I2C_SMBusClockLoTimeout(I2C_T *i2c, uint32_t ms, uint32_t u32Pclk);
 
 
  
-#line 43 "..\\..\\..\\Library\\StdDriver\\inc\\i2s.h"
+#line 43 "..\\Library\\StdDriver\\inc\\i2s.h"
 
  
 
@@ -48763,9 +48763,9 @@ void I2C_SMBusClockLoTimeout(I2C_T *i2c, uint32_t ms, uint32_t u32Pclk);
 
 
  
-#line 85 "..\\..\\..\\Library\\StdDriver\\inc\\i2s.h"
+#line 85 "..\\Library\\StdDriver\\inc\\i2s.h"
 
-#line 102 "..\\..\\..\\Library\\StdDriver\\inc\\i2s.h"
+#line 102 "..\\Library\\StdDriver\\inc\\i2s.h"
 
  
 
@@ -49017,8 +49017,8 @@ uint32_t I2S_Open(I2S_T *i2s, uint32_t u32MasterSlave, uint32_t u32SampleRate, u
 
  
 
-#line 689 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
+#line 689 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\epwm.h"
  
 
 
@@ -49046,7 +49046,7 @@ uint32_t I2S_Open(I2S_T *i2s, uint32_t u32MasterSlave, uint32_t u32SampleRate, u
 
 
  
-#line 35 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
+#line 35 "..\\Library\\StdDriver\\inc\\epwm.h"
 
  
  
@@ -49080,7 +49080,7 @@ uint32_t I2S_Open(I2S_T *i2s, uint32_t u32MasterSlave, uint32_t u32SampleRate, u
  
  
  
-#line 84 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
+#line 84 "..\\Library\\StdDriver\\inc\\epwm.h"
 
 
 
@@ -49090,24 +49090,9 @@ uint32_t I2S_Open(I2S_T *i2s, uint32_t u32MasterSlave, uint32_t u32SampleRate, u
  
  
  
-#line 102 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
+#line 102 "..\\Library\\StdDriver\\inc\\epwm.h"
 
-#line 112 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
-
-
-
-
- 
- 
- 
-#line 129 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
-
- 
- 
- 
-
-
-
+#line 112 "..\\Library\\StdDriver\\inc\\epwm.h"
 
 
 
@@ -49115,12 +49100,13 @@ uint32_t I2S_Open(I2S_T *i2s, uint32_t u32MasterSlave, uint32_t u32SampleRate, u
  
  
  
-
-
+#line 129 "..\\Library\\StdDriver\\inc\\epwm.h"
 
  
  
  
+
+
 
 
 
@@ -49132,16 +49118,30 @@ uint32_t I2S_Open(I2S_T *i2s, uint32_t u32MasterSlave, uint32_t u32SampleRate, u
 
 
 
+ 
+ 
+ 
+
+
+
+
 
  
  
  
-#line 170 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
+
+
+
 
  
  
  
-#line 182 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
+#line 170 "..\\Library\\StdDriver\\inc\\epwm.h"
+
+ 
+ 
+ 
+#line 182 "..\\Library\\StdDriver\\inc\\epwm.h"
 
  
  
@@ -49221,7 +49221,7 @@ uint32_t I2S_Open(I2S_T *i2s, uint32_t u32MasterSlave, uint32_t u32SampleRate, u
 
 
  
-#line 269 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
+#line 269 "..\\Library\\StdDriver\\inc\\epwm.h"
 
 
 
@@ -49375,7 +49375,7 @@ uint32_t I2S_Open(I2S_T *i2s, uint32_t u32MasterSlave, uint32_t u32SampleRate, u
 
 
  
-#line 430 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
+#line 430 "..\\Library\\StdDriver\\inc\\epwm.h"
 
 
 
@@ -49439,7 +49439,7 @@ uint32_t I2S_Open(I2S_T *i2s, uint32_t u32MasterSlave, uint32_t u32SampleRate, u
 
 
  
-#line 505 "..\\..\\..\\Library\\StdDriver\\inc\\epwm.h"
+#line 505 "..\\Library\\StdDriver\\inc\\epwm.h"
 
 
 
@@ -49558,8 +49558,8 @@ void EPWM_ClearWrapAroundFlag(EPWM_T *epwm, uint32_t u32ChannelNum);
 
 
  
-#line 690 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\eadc.h"
+#line 690 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\eadc.h"
  
 
 
@@ -49604,7 +49604,7 @@ void EPWM_ClearWrapAroundFlag(EPWM_T *epwm, uint32_t u32ChannelNum);
 
 
 
-#line 67 "..\\..\\..\\Library\\StdDriver\\inc\\eadc.h"
+#line 67 "..\\Library\\StdDriver\\inc\\eadc.h"
 
 
 
@@ -49615,7 +49615,7 @@ void EPWM_ClearWrapAroundFlag(EPWM_T *epwm, uint32_t u32ChannelNum);
  
  
  
-#line 83 "..\\..\\..\\Library\\StdDriver\\inc\\eadc.h"
+#line 83 "..\\Library\\StdDriver\\inc\\eadc.h"
 
    
 
@@ -49962,7 +49962,7 @@ void EPWM_ClearWrapAroundFlag(EPWM_T *epwm, uint32_t u32ChannelNum);
 
 
  
-#line 438 "..\\..\\..\\Library\\StdDriver\\inc\\eadc.h"
+#line 438 "..\\Library\\StdDriver\\inc\\eadc.h"
 
 
 
@@ -49979,7 +49979,7 @@ void EPWM_ClearWrapAroundFlag(EPWM_T *epwm, uint32_t u32ChannelNum);
 
 
  
-#line 463 "..\\..\\..\\Library\\StdDriver\\inc\\eadc.h"
+#line 463 "..\\Library\\StdDriver\\inc\\eadc.h"
 
 
 
@@ -49996,7 +49996,7 @@ void EPWM_ClearWrapAroundFlag(EPWM_T *epwm, uint32_t u32ChannelNum);
 
 
  
-#line 488 "..\\..\\..\\Library\\StdDriver\\inc\\eadc.h"
+#line 488 "..\\Library\\StdDriver\\inc\\eadc.h"
 
 
 
@@ -50013,7 +50013,7 @@ void EPWM_ClearWrapAroundFlag(EPWM_T *epwm, uint32_t u32ChannelNum);
 
 
  
-#line 513 "..\\..\\..\\Library\\StdDriver\\inc\\eadc.h"
+#line 513 "..\\Library\\StdDriver\\inc\\eadc.h"
 
 
 
@@ -50115,8 +50115,8 @@ void EADC_SetExtendSampleTime(EADC_T *eadc, uint32_t u32ModuleNum, uint32_t u32E
 
 
  
-#line 691 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\bpwm.h"
+#line 691 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\bpwm.h"
  
 
 
@@ -50144,7 +50144,7 @@ void EADC_SetExtendSampleTime(EADC_T *eadc, uint32_t u32ModuleNum, uint32_t u32E
 
 
  
-#line 35 "..\\..\\..\\Library\\StdDriver\\inc\\bpwm.h"
+#line 35 "..\\Library\\StdDriver\\inc\\bpwm.h"
 
  
  
@@ -50178,7 +50178,7 @@ void EADC_SetExtendSampleTime(EADC_T *eadc, uint32_t u32ModuleNum, uint32_t u32E
  
  
  
-#line 75 "..\\..\\..\\Library\\StdDriver\\inc\\bpwm.h"
+#line 75 "..\\Library\\StdDriver\\inc\\bpwm.h"
 
  
  
@@ -50399,7 +50399,7 @@ void EADC_SetExtendSampleTime(EADC_T *eadc, uint32_t u32ModuleNum, uint32_t u32E
 
 
  
-#line 307 "..\\..\\..\\Library\\StdDriver\\inc\\bpwm.h"
+#line 307 "..\\Library\\StdDriver\\inc\\bpwm.h"
 
 
  
@@ -50454,8 +50454,8 @@ void BPWM_ClearWrapAroundFlag(BPWM_T *bpwm, uint32_t u32ChannelNum);
 
 
  
-#line 692 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\wdt.h"
+#line 692 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\wdt.h"
  
 
 
@@ -50486,7 +50486,7 @@ void BPWM_ClearWrapAroundFlag(BPWM_T *bpwm, uint32_t u32ChannelNum);
  
  
  
-#line 39 "..\\..\\..\\Library\\StdDriver\\inc\\wdt.h"
+#line 39 "..\\Library\\StdDriver\\inc\\wdt.h"
 
  
  
@@ -50664,8 +50664,8 @@ void WDT_Open(uint32_t u32TimeoutInterval, uint32_t u32ResetDelay, uint32_t u32E
 
 
  
-#line 693 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\wwdt.h"
+#line 693 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\wwdt.h"
  
 
 
@@ -50696,7 +50696,7 @@ void WDT_Open(uint32_t u32TimeoutInterval, uint32_t u32ResetDelay, uint32_t u32E
  
  
  
-#line 47 "..\\..\\..\\Library\\StdDriver\\inc\\wwdt.h"
+#line 47 "..\\Library\\StdDriver\\inc\\wwdt.h"
 
  
  
@@ -50802,8 +50802,8 @@ void WWDT_Open(uint32_t u32PreScale, uint32_t u32CmpValue, uint32_t u32EnableInt
 
 
  
-#line 694 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\opa.h"
+#line 694 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\opa.h"
  
 
 
@@ -51012,8 +51012,8 @@ static __inline int32_t OPA_Calibration(OPA_T *opa,
 
 
  
-#line 695 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\crc.h"
+#line 695 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\crc.h"
  
 
 
@@ -51126,8 +51126,8 @@ uint32_t CRC_GetChecksum(void);
 
 
  
-#line 696 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\ebi.h"
+#line 696 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\ebi.h"
  
 
 
@@ -51185,9 +51185,9 @@ uint32_t CRC_GetChecksum(void);
  
  
  
-#line 66 "..\\..\\..\\Library\\StdDriver\\inc\\ebi.h"
+#line 66 "..\\Library\\StdDriver\\inc\\ebi.h"
 
-#line 74 "..\\..\\..\\Library\\StdDriver\\inc\\ebi.h"
+#line 74 "..\\Library\\StdDriver\\inc\\ebi.h"
 
 
 
@@ -51466,8 +51466,8 @@ void EBI_SetBusTiming(uint32_t u32Bank, uint32_t u32TimingConfig, uint32_t u32Mc
 
 
  
-#line 697 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\usci_i2c.h"
+#line 697 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\usci_i2c.h"
  
 
 
@@ -51549,7 +51549,7 @@ enum UI2C_SLAVE_EVENT
  
  
  
-#line 89 "..\\..\\..\\Library\\StdDriver\\inc\\usci_i2c.h"
+#line 89 "..\\Library\\StdDriver\\inc\\usci_i2c.h"
 
    
 
@@ -51793,8 +51793,8 @@ uint32_t UI2C_ReadMultiBytesTwoRegs(UI2C_T *ui2c, uint8_t u8SlaveAddr, uint16_t 
 
 
  
-#line 698 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\scuart.h"
+#line 698 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\scuart.h"
  
 
 
@@ -52061,8 +52061,8 @@ void SCUART_Write(SC_T* sc,uint8_t pu8TxBuf[], uint32_t u32WriteBytes);
 
 
  
-#line 699 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\sc.h"
+#line 699 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\sc.h"
  
 
 
@@ -52090,9 +52090,9 @@ void SCUART_Write(SC_T* sc,uint8_t pu8TxBuf[], uint32_t u32WriteBytes);
 
 
  
-#line 34 "..\\..\\..\\Library\\StdDriver\\inc\\sc.h"
+#line 34 "..\\Library\\StdDriver\\inc\\sc.h"
 
-#line 45 "..\\..\\..\\Library\\StdDriver\\inc\\sc.h"
+#line 45 "..\\Library\\StdDriver\\inc\\sc.h"
 
 
    
@@ -52149,7 +52149,7 @@ void SCUART_Write(SC_T* sc,uint8_t pu8TxBuf[], uint32_t u32WriteBytes);
 
 
  
-#line 109 "..\\..\\..\\Library\\StdDriver\\inc\\sc.h"
+#line 109 "..\\Library\\StdDriver\\inc\\sc.h"
 
 
 
@@ -52159,7 +52159,7 @@ void SCUART_Write(SC_T* sc,uint8_t pu8TxBuf[], uint32_t u32WriteBytes);
 
 
  
-#line 126 "..\\..\\..\\Library\\StdDriver\\inc\\sc.h"
+#line 126 "..\\Library\\StdDriver\\inc\\sc.h"
 
 
 
@@ -52168,7 +52168,7 @@ void SCUART_Write(SC_T* sc,uint8_t pu8TxBuf[], uint32_t u32WriteBytes);
 
 
  
-#line 142 "..\\..\\..\\Library\\StdDriver\\inc\\sc.h"
+#line 142 "..\\Library\\StdDriver\\inc\\sc.h"
 
 
 
@@ -52177,7 +52177,7 @@ void SCUART_Write(SC_T* sc,uint8_t pu8TxBuf[], uint32_t u32WriteBytes);
 
 
  
-#line 158 "..\\..\\..\\Library\\StdDriver\\inc\\sc.h"
+#line 158 "..\\Library\\StdDriver\\inc\\sc.h"
 
 
 
@@ -52288,8 +52288,8 @@ uint32_t SC_GetInterfaceClock(SC_T *sc);
 
 
  
-#line 700 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\spi.h"
+#line 700 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\spi.h"
  
 
 
@@ -52331,20 +52331,10 @@ uint32_t SC_GetInterfaceClock(SC_T *sc);
 
 
  
-#line 52 "..\\..\\..\\Library\\StdDriver\\inc\\spi.h"
+#line 52 "..\\Library\\StdDriver\\inc\\spi.h"
 
  
-#line 62 "..\\..\\..\\Library\\StdDriver\\inc\\spi.h"
-
-
- 
-
-
-
-
-
- 
-
+#line 62 "..\\Library\\StdDriver\\inc\\spi.h"
 
 
  
@@ -52362,6 +52352,16 @@ uint32_t SC_GetInterfaceClock(SC_T *sc);
 
 
 
+
+ 
+
+
+
+ 
+
+
+
+
  
 
 
@@ -52377,7 +52377,7 @@ uint32_t SC_GetInterfaceClock(SC_T *sc);
 
 
  
-#line 111 "..\\..\\..\\Library\\StdDriver\\inc\\spi.h"
+#line 111 "..\\Library\\StdDriver\\inc\\spi.h"
 
    
 
@@ -52862,8 +52862,8 @@ void SPII2S_SetFIFO(SPI_T *i2s, uint32_t u32TxThreshold, uint32_t u32RxThreshold
 
 
  
-#line 701 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\qspi.h"
+#line 701 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\qspi.h"
  
 
 
@@ -52905,10 +52905,10 @@ void SPII2S_SetFIFO(SPI_T *i2s, uint32_t u32TxThreshold, uint32_t u32RxThreshold
 
 
  
-#line 52 "..\\..\\..\\Library\\StdDriver\\inc\\qspi.h"
+#line 52 "..\\Library\\StdDriver\\inc\\qspi.h"
 
  
-#line 62 "..\\..\\..\\Library\\StdDriver\\inc\\qspi.h"
+#line 62 "..\\Library\\StdDriver\\inc\\qspi.h"
 
    
 
@@ -53204,8 +53204,8 @@ uint32_t QSPI_GetStatus(QSPI_T *qspi, uint32_t u32Mask);
 
 
  
-#line 702 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\can.h"
+#line 702 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\can.h"
  
 
 
@@ -53397,8 +53397,8 @@ int32_t CAN_ReadMsgObj(CAN_T *tCAN, uint8_t u8MsgObj, uint8_t u8Release, STR_CAN
 
 
  
-#line 703 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\rtc.h"
+#line 703 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\rtc.h"
  
 
 
@@ -53443,12 +53443,12 @@ int32_t CAN_ReadMsgObj(CAN_T *tCAN, uint8_t u8MsgObj, uint8_t u8Release, STR_CAN
  
  
  
-#line 53 "..\\..\\..\\Library\\StdDriver\\inc\\rtc.h"
+#line 53 "..\\Library\\StdDriver\\inc\\rtc.h"
 
  
  
  
-#line 64 "..\\..\\..\\Library\\StdDriver\\inc\\rtc.h"
+#line 64 "..\\Library\\StdDriver\\inc\\rtc.h"
 
  
  
@@ -53458,7 +53458,7 @@ int32_t CAN_ReadMsgObj(CAN_T *tCAN, uint8_t u8MsgObj, uint8_t u8Release, STR_CAN
 
 
 
-#line 80 "..\\..\\..\\Library\\StdDriver\\inc\\rtc.h"
+#line 80 "..\\Library\\StdDriver\\inc\\rtc.h"
 
 
 
@@ -53471,7 +53471,7 @@ int32_t CAN_ReadMsgObj(CAN_T *tCAN, uint8_t u8MsgObj, uint8_t u8Release, STR_CAN
 
 
 
-#line 100 "..\\..\\..\\Library\\StdDriver\\inc\\rtc.h"
+#line 100 "..\\Library\\StdDriver\\inc\\rtc.h"
 
 
 
@@ -53712,8 +53712,8 @@ void RTC_DynamicTamperConfig(uint32_t u32ChangeRate, uint32_t u32SeedReload, uin
 
 
  
-#line 704 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\usci_uart.h"
+#line 704 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\usci_uart.h"
  
 
 
@@ -53764,7 +53764,7 @@ void RTC_DynamicTamperConfig(uint32_t u32ChangeRate, uint32_t u32SeedReload, uin
  
  
  
-#line 58 "..\\..\\..\\Library\\StdDriver\\inc\\usci_uart.h"
+#line 58 "..\\Library\\StdDriver\\inc\\usci_uart.h"
 
 
    
@@ -54146,8 +54146,8 @@ void UUART_DisableFlowCtrl(UUART_T* uuart);
 
 
  
-#line 705 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\sdh.h"
+#line 705 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\sdh.h"
  
 
 
@@ -55054,7 +55054,7 @@ extern __declspec(__nothrow) void __use_no_semihosting(void);
 
  
 
-#line 9 "..\\..\\..\\Library\\StdDriver\\inc\\sdh.h"
+#line 9 "..\\Library\\StdDriver\\inc\\sdh.h"
 
 
 
@@ -55095,7 +55095,7 @@ extern __declspec(__nothrow) void __use_no_semihosting(void);
 
 
  
-#line 59 "..\\..\\..\\Library\\StdDriver\\inc\\sdh.h"
+#line 59 "..\\Library\\StdDriver\\inc\\sdh.h"
 
 
 
@@ -55238,8 +55238,8 @@ void SDH_Close_Disk(SDH_T *sdh);
 
 
  
-#line 706 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\usbd.h"
+#line 706 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\usbd.h"
  
 
 
@@ -55292,7 +55292,7 @@ extern const S_USBD_INFO_T gsInfo;
 
 
 
-#line 65 "..\\..\\..\\Library\\StdDriver\\inc\\usbd.h"
+#line 65 "..\\Library\\StdDriver\\inc\\usbd.h"
 
  
  
@@ -55301,37 +55301,22 @@ extern const S_USBD_INFO_T gsInfo;
 
 
  
-#line 84 "..\\..\\..\\Library\\StdDriver\\inc\\usbd.h"
+#line 84 "..\\Library\\StdDriver\\inc\\usbd.h"
 
  
-#line 97 "..\\..\\..\\Library\\StdDriver\\inc\\usbd.h"
-
- 
-
-
+#line 97 "..\\Library\\StdDriver\\inc\\usbd.h"
 
  
 
 
 
  
-#line 117 "..\\..\\..\\Library\\StdDriver\\inc\\usbd.h"
-
- 
-
-
-
-
 
 
 
  
+#line 117 "..\\Library\\StdDriver\\inc\\usbd.h"
 
-
- 
-
- 
- 
  
 
 
@@ -55340,6 +55325,14 @@ extern const S_USBD_INFO_T gsInfo;
 
 
 
+ 
+
+
+ 
+
+ 
+ 
+ 
 
 
 
@@ -55347,7 +55340,14 @@ extern const S_USBD_INFO_T gsInfo;
 
 
 
-#line 165 "..\\..\\..\\Library\\StdDriver\\inc\\usbd.h"
+
+
+
+
+
+
+
+#line 165 "..\\Library\\StdDriver\\inc\\usbd.h"
 
 
 
@@ -55876,8 +55876,8 @@ void USBD_LockEpStall(uint32_t u32EpBitmap);
 
 
  
-#line 707 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\hsusbd.h"
+#line 707 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\hsusbd.h"
  
 
 
@@ -55912,7 +55912,7 @@ void USBD_LockEpStall(uint32_t u32EpBitmap);
 
 
 
-#line 48 "..\\..\\..\\Library\\StdDriver\\inc\\hsusbd.h"
+#line 48 "..\\Library\\StdDriver\\inc\\hsusbd.h"
 
  
  
@@ -55922,10 +55922,10 @@ void USBD_LockEpStall(uint32_t u32EpBitmap);
 
 
  
-#line 67 "..\\..\\..\\Library\\StdDriver\\inc\\hsusbd.h"
+#line 67 "..\\Library\\StdDriver\\inc\\hsusbd.h"
 
  
-#line 76 "..\\..\\..\\Library\\StdDriver\\inc\\hsusbd.h"
+#line 76 "..\\Library\\StdDriver\\inc\\hsusbd.h"
 
 
    
@@ -55983,7 +55983,7 @@ extern S_HSUSBD_CMD_T gUsbCmd;
 
  
 
-#line 159 "..\\..\\..\\Library\\StdDriver\\inc\\hsusbd.h"
+#line 159 "..\\Library\\StdDriver\\inc\\hsusbd.h"
 
 
 
@@ -56208,8 +56208,8 @@ void HSUSBD_SetVendorRequest(HSUSBD_VENDOR_REQ pfnVendorReq);
 
 
  
-#line 708 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\otg.h"
+#line 708 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\otg.h"
  
 
 
@@ -56478,8 +56478,8 @@ void HSUSBD_SetVendorRequest(HSUSBD_VENDOR_REQ pfnVendorReq);
 
 
  
-#line 709 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
-#line 1 "..\\..\\..\\Library\\StdDriver\\inc\\hsotg.h"
+#line 709 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 1 "..\\Library\\StdDriver\\inc\\hsotg.h"
  
 
 
@@ -56748,7 +56748,7 @@ void HSUSBD_SetVendorRequest(HSUSBD_VENDOR_REQ pfnVendorReq);
 
 
  
-#line 710 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
+#line 710 "..\\Library\\Device\\Nuvoton\\M480\\Include\\M480.h"
 
 
 
@@ -56757,12 +56757,12 @@ void HSUSBD_SetVendorRequest(HSUSBD_VENDOR_REQ pfnVendorReq);
 
 
 
-#line 12 "..\\..\\..\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
+#line 12 "..\\Library\\Device\\Nuvoton\\M480\\Include\\NuMicro.h"
 
 
 
 
-#line 9 "..\\..\\..\\Library\\StdDriver\\src\\ecap.c"
+#line 9 "..\\Library\\StdDriver\\src\\ecap.c"
 
 
 

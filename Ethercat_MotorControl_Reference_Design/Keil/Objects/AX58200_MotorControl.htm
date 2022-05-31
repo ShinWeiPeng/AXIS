@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\AX58200_MotorControl.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\AX58200_MotorControl.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue May 31 09:42:02 2022
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue May 31 11:24:02 2022
 <BR><P>
 <H3>Maximum Stack Usage =        432 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -91,8 +91,8 @@ Function Pointers
  <LI><a href="#[1f]">GPF_IRQHandler</a> from startup_m480.o(.text) referenced from startup_m480.o(RESET)
  <LI><a href="#[4e]">GPG_IRQHandler</a> from startup_m480.o(.text) referenced from startup_m480.o(RESET)
  <LI><a href="#[5d]">GPH_IRQHandler</a> from startup_m480.o(.text) referenced from startup_m480.o(RESET)
- <LI><a href="#[2]">HardFault_Handler</a> from retarget.o(.emb_text) referenced from startup_m480.o(RESET)
- <LI><a href="#[6b]">Hard_Fault_Handler</a> from retarget.o(i.Hard_Fault_Handler) referenced from retarget.o(.emb_text)
+ <LI><a href="#[2]">HardFault_Handler</a> from asix_retarget.o(.emb_text) referenced from startup_m480.o(RESET)
+ <LI><a href="#[6b]">Hard_Fault_Handler</a> from asix_retarget.o(i.Hard_Fault_Handler) referenced from asix_retarget.o(.emb_text)
  <LI><a href="#[30]">I2C0_IRQHandler</a> from startup_m480.o(.text) referenced from startup_m480.o(RESET)
  <LI><a href="#[31]">I2C1_IRQHandler</a> from startup_m480.o(.text) referenced from startup_m480.o(RESET)
  <LI><a href="#[58]">I2C2_IRQHandler</a> from startup_m480.o(.text) referenced from startup_m480.o(RESET)
@@ -196,7 +196,7 @@ Function Pointers
  <LI><a href="#[8f]">clicmd_TMRxRegisterHelp</a> from clicmd.o(i.clicmd_TMRxRegisterHelp) referenced from clicmd.o(.data)
  <LI><a href="#[8c]">clicmd_UARTxRegister</a> from clicmd.o(i.clicmd_UARTxRegister) referenced from clicmd.o(.data)
  <LI><a href="#[8d]">clicmd_UARTxRegisterHelp</a> from clicmd.o(i.clicmd_UARTxRegisterHelp) referenced from clicmd.o(.data)
- <LI><a href="#[76]">fputc</a> from retarget.o(i.fputc) referenced from printfa.o(i.__0printf)
+ <LI><a href="#[76]">fputc</a> from asix_retarget.o(i.fputc) referenced from printfa.o(i.__0printf)
  <LI><a href="#[6a]">main</a> from main.o(i.main) referenced from entry9a.o(.ARM.Collect$$$$0000000B)
 </UL>
 <P>
@@ -226,7 +226,7 @@ Global Symbols
 
 <P><STRONG><a name="[284]"></a>__rt_final_exit</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, entry11a.o(.ARM.Collect$$$$0000000F))
 
-<P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, retarget.o(.emb_text))
+<P><STRONG><a name="[2]"></a>HardFault_Handler</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, asix_retarget.o(.emb_text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_m480.o(RESET)
 </UL>
 <P><STRONG><a name="[ae]"></a>Reset_Handler</STRONG> (Thumb, 64 bytes, Stack size 0 bytes, startup_m480.o(.text))
@@ -544,6 +544,14 @@ Global Symbols
 <P><STRONG><a name="[13]"></a>WWDT_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_m480.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_m480.o(RESET)
 </UL>
+<P><STRONG><a name="[b1]"></a>__aeabi_uldivmod</STRONG> (Thumb, 98 bytes, Stack size 40 bytes, uldiv.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
+</UL>
+<BR>[Called By]<UL><LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
+<LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+</UL>
+
 <P><STRONG><a name="[215]"></a>rand</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, rand.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[213]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_PatternGenerator
 <LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_PdiMemoryTest
@@ -557,22 +565,22 @@ Global Symbols
 <P><STRONG><a name="[e5]"></a>__aeabi_memcpy</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, memcpya.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[1ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spim_write
 <LI><a href="#[203]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;spim_read
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoRes
+<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read0x10F8
+<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SPI_Write
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_Data
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AX58200_FoeWriteData
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AX58200_FoeWrite
 <LI><a href="#[6f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AX58200_FoeReadData
 <LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AX58200_FoeRead
-<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInfoInd
-<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
-<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ContinueInd
-<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoRes
-<LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read0x10F8
-<LI><a href="#[162]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SPI_Write
 <LI><a href="#[1f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SdoUploadSegmentInd
 <LI><a href="#[1f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SdoDownloadSegmentInd
 <LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_Write
 <LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_Read
 <LI><a href="#[1e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetDesc
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInfoInd
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ContinueInd
 <LI><a href="#[1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_CalcCheckSum
 <LI><a href="#[216]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_PatternInit
 <LI><a href="#[213]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_PatternGenerator
@@ -587,9 +595,9 @@ Global Symbols
 
 <P><STRONG><a name="[285]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memcpya.o(.text), UNUSED)
 
-<P><STRONG><a name="[b2]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<P><STRONG><a name="[b5]"></a>__aeabi_memset</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, memseta.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_memset$wrapper
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 <LI><a href="#[264]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_ClearLine
 </UL>
 
@@ -597,11 +605,11 @@ Global Symbols
 
 <P><STRONG><a name="[287]"></a>__aeabi_memset8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
-<P><STRONG><a name="[b1]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
+<P><STRONG><a name="[b4]"></a>__aeabi_memclr</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, memseta.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
-<BR>[Called By]<UL><LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AX58200_FoeError
-<LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SPI_Read
+<BR>[Called By]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SPI_Read
+<LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AX58200_FoeError
 </UL>
 
 <P><STRONG><a name="[e9]"></a>__aeabi_memclr4</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text))
@@ -622,17 +630,13 @@ Global Symbols
 
 <P><STRONG><a name="[288]"></a>__aeabi_memclr8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, memseta.o(.text), UNUSED)
 
-<P><STRONG><a name="[b3]"></a>_memset$wrapper</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
+<P><STRONG><a name="[b6]"></a>_memset$wrapper</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, memseta.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 </UL>
 
 <P><STRONG><a name="[1c6]"></a>strlen</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, strlen.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[1e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetDesc
 <LI><a href="#[27d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;putS
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegister
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegister
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegister
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SPIxRegister
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_QEIxRegister
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiWrite
@@ -652,6 +656,10 @@ Global Symbols
 <LI><a href="#[26a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_GetCommandHistory
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_ChangePasswd
 <LI><a href="#[12a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_Authenticate
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegister
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegister
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegister
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
 </UL>
 
 <P><STRONG><a name="[229]"></a>strcmp</STRONG> (Thumb, 28 bytes, Stack size 8 bytes, strcmp.o(.text))
@@ -659,13 +667,13 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[273]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getTable
 <LI><a href="#[1cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;esc_doCommand
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiMemoryTest
 <LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_McStack
 <LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_EscRegister
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_CiA402
 <LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_CmdExecute
 <LI><a href="#[263]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_AddCommandHistory
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
 </UL>
 
 <P><STRONG><a name="[219]"></a>memcmp</STRONG> (Thumb, 26 bytes, Stack size 12 bytes, memcmp.o(.text))
@@ -696,21 +704,30 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
 </UL>
 
-<P><STRONG><a name="[b4]"></a>__aeabi_uldivmod</STRONG> (Thumb, 98 bytes, Stack size 40 bytes, uldiv.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
-</UL>
-<BR>[Called By]<UL><LI><a href="#[21f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_core
-<LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
+<P><STRONG><a name="[b3]"></a>__aeabi_llsl</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
 </UL>
 
-<P><STRONG><a name="[28a]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 48 bytes, iusefp.o(.text), UNUSED)
+<P><STRONG><a name="[28a]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)
+
+<P><STRONG><a name="[b2]"></a>__aeabi_llsr</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
+<BR><BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
+</UL>
+
+<P><STRONG><a name="[28b]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
+
+<P><STRONG><a name="[28c]"></a>__I$use$fp</STRONG> (Thumb, 0 bytes, Stack size 48 bytes, iusefp.o(.text), UNUSED)
 
 <P><STRONG><a name="[b7]"></a>__aeabi_dadd</STRONG> (Thumb, 322 bytes, Stack size 48 bytes, dadd.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_lasr
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 <LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
@@ -738,8 +755,8 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[bf]"></a>__aeabi_d2ulz</STRONG> (Thumb, 48 bytes, Stack size 0 bytes, dfixul.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
+<BR><BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[221]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_fp_digits
 </UL>
@@ -754,24 +771,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_main_scatterload
 </UL>
 
-<P><STRONG><a name="[28b]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
-
-<P><STRONG><a name="[b6]"></a>__aeabi_llsl</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
-<LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
-</UL>
-
-<P><STRONG><a name="[28c]"></a>_ll_shift_l</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llshl.o(.text), UNUSED)
-
-<P><STRONG><a name="[b5]"></a>__aeabi_llsr</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_epilogue
-<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2ulz
-</UL>
-
-<P><STRONG><a name="[28d]"></a>_ll_ushift_r</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, llushr.o(.text), UNUSED)
+<P><STRONG><a name="[28d]"></a>__scatterload_rt2</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, init.o(.text), UNUSED)
 
 <P><STRONG><a name="[b8]"></a>__aeabi_lasr</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, llsshr.o(.text), UNUSED)
 <BR><BR>[Called By]<UL><LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
@@ -786,16 +786,16 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[b9]"></a>_double_epilogue</STRONG> (Thumb, 156 bytes, Stack size 32 bytes, depilogue.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
-<LI><a href="#[b6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
-<LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
+<BR><BR>[Calls]<UL><LI><a href="#[ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_double_round
+<LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsr
+<LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_llsl
 </UL>
 <BR>[Called By]<UL><LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
 </UL>
 
 <P><STRONG><a name="[c1]"></a>AL_ControlInd</STRONG> (Thumb, 1252 bytes, Stack size 24 bytes, ecatslv.o(i.AL_ControlInd))
-<BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = AL_ControlInd &rArr; StartInputHandler &rArr; PDO_InputMapping &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = AL_ControlInd &rArr; StartInputHandler &rArr; PDO_InputMapping &rArr; HW_GetALEventRegister_Isr &rArr; ISR_GetInterruptRegister &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_Stop
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_Start
@@ -924,7 +924,7 @@ Global Symbols
 <P><STRONG><a name="[70]"></a>AX58200_FoeError</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, ax58200_foeappl.o(i.AX58200_FoeError))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = AX58200_FoeError
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> ax58200_foeappl.o(i.AX58200_FoeInit)
 </UL>
@@ -1003,8 +1003,8 @@ Global Symbols
 <LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SYS_LockReg
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadFlashHeader
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FirmwareChecksum32
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AX58200_FoeWriteData
 </UL>
@@ -1301,8 +1301,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInfoInd
 <LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 </UL>
 <BR>[Called By]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxReadInd
 </UL>
@@ -1387,35 +1387,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[125]"></a>CONSOLE_PutMessage</STRONG> (Thumb, 44 bytes, Stack size 32 bytes, console.o(i.CONSOLE_PutMessage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = CONSOLE_PutMessage &rArr; console_PutString
 </UL>
-<BR>[Calls]<UL><LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vsprintf
-<LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_PutString
+<BR>[Calls]<UL><LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_PutString
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vsprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_Task
-<LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterUsage
-<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterHelp
-<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterDisplay
-<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegister
-<LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterUsage
-<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterHelp
-<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterDisplay
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegister
-<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SystemRebootHelp
-<LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterUsage
-<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterHelp
-<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterDisplay
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegister
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterUsage
-<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterHelp
-<LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterDisplay
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
-<LI><a href="#[250]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowTestTemporaryStatus
-<LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowTestBuffer
-<LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowPdiMemoryTestParameter
-<LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowPdiMemoryTestLog
-<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
-<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMcDashboard
 <LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowEscWdInfo
 <LI><a href="#[240]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowEscFmmuSmInfo
 <LI><a href="#[23d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowEscFeatures
@@ -1481,10 +1458,33 @@ Global Symbols
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_CiA402
 <LI><a href="#[268]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_HelpMessage
 <LI><a href="#[265]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_CmdExecute
+<LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterUsage
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterHelp
+<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterDisplay
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegister
+<LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterUsage
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterHelp
+<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterDisplay
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegister
+<LI><a href="#[83]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SystemRebootHelp
+<LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterUsage
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterHelp
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterDisplay
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegister
+<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterUsage
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterHelp
+<LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterDisplay
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
+<LI><a href="#[250]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowTestTemporaryStatus
+<LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowTestBuffer
+<LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowPdiMemoryTestParameter
+<LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowPdiMemoryTestLog
+<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
+<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMcDashboard
 </UL>
 
 <P><STRONG><a name="[128]"></a>CONSOLE_Task</STRONG> (Thumb, 564 bytes, Stack size 16 bytes, console.o(i.CONSOLE_Task))
-<BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = CONSOLE_Task &rArr; console_CommandProcess &rArr; console_CmdExecute &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = CONSOLE_Task &rArr; console_CommandProcess &rArr; console_CmdExecute &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[12b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_CommandProcess
@@ -1501,7 +1501,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[12d]"></a>CheckIfEcatError</STRONG> (Thumb, 126 bytes, Stack size 8 bytes, ecatslv.o(i.CheckIfEcatError))
-<BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = CheckIfEcatError &rArr; AL_ControlInd &rArr; StartInputHandler &rArr; PDO_InputMapping &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = CheckIfEcatError &rArr; AL_ControlInd &rArr; StartInputHandler &rArr; PDO_InputMapping &rArr; HW_GetALEventRegister_Isr &rArr; ISR_GetInterruptRegister &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AL_ControlInd
@@ -1600,11 +1600,11 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscWrite
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
 </UL>
-<BR>[Called By]<UL><LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
-<LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_StopMailboxHandler
+<BR>[Called By]<UL><LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_StopMailboxHandler
 <LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxRepeatReq
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StopInputHandler
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AL_ControlInd
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
 </UL>
 
 <P><STRONG><a name="[1b1]"></a>EADC_ConfigSampleModule</STRONG> (Thumb, 44 bytes, Stack size 12 bytes, eadc.o(i.EADC_ConfigSampleModule))
@@ -1620,8 +1620,8 @@ Global Symbols
 <P><STRONG><a name="[136]"></a>ECAT_Application</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, ecatappl.o(i.ECAT_Application))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = ECAT_Application &rArr; HandleCycleTimeMeasurement &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleCycleTimeMeasurement
-<LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;APPL_Application
+<BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;APPL_Application
+<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleCycleTimeMeasurement
 </UL>
 <BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sync0_Isr
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDI_Isr
@@ -1639,13 +1639,13 @@ Global Symbols
 <P><STRONG><a name="[13a]"></a>ECAT_Init</STRONG> (Thumb, 180 bytes, Stack size 8 bytes, ecatslv.o(i.ECAT_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = ECAT_Init &rArr; ResetALEventMask &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_Init
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_Init
 <LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateEEPROMLoadedState
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SetALStatus
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ResetALEventMask
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableSyncManChannel
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainInit
 </UL>
@@ -1754,9 +1754,9 @@ Global Symbols
 
 <P><STRONG><a name="[f8]"></a>FMC_Read</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, fmc.o(i.FMC_Read))
 <BR><BR>[Called By]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FMC_ReadConfig
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_Data
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadFlashHeader
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FirmwareChecksum32
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_Data
 </UL>
 
 <P><STRONG><a name="[14b]"></a>FMC_ReadConfig</STRONG> (Thumb, 38 bytes, Stack size 12 bytes, fmc.o(i.FMC_ReadConfig))
@@ -1823,14 +1823,14 @@ Global Symbols
 <P><STRONG><a name="[14f]"></a>FOE_ServiceInd</STRONG> (Thumb, 698 bytes, Stack size 24 bytes, ecatfoe.o(i.FOE_ServiceInd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = FOE_ServiceInd &rArr; MBX_MailboxSendReq &rArr; MBX_CopyToSendMailbox &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CopyToSendMailbox
+<BR>[Calls]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CopyToSendMailbox
 <LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_Write
 <LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_Read
 <LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_Error
 <LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_Data
 <LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_Busy
 <LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_Ack
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
 <BR>[Called By]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MailboxServiceInd
@@ -1843,7 +1843,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[1c]"></a>GPC_IRQHandler</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, ax58200_hw.o(i.GPC_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = GPC_IRQHandler &rArr; Sync1_Isr &rArr; PDO_InputMapping &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = GPC_IRQHandler &rArr; Sync1_Isr &rArr; PDO_InputMapping &rArr; HW_GetALEventRegister_Isr &rArr; ISR_GetInterruptRegister &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sync1_Isr
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDI_Isr
@@ -1852,7 +1852,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_m480.o(RESET)
 </UL>
 <P><STRONG><a name="[1e]"></a>GPE_IRQHandler</STRONG> (Thumb, 60 bytes, Stack size 8 bytes, ax58200_hw.o(i.GPE_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = GPE_IRQHandler &rArr; Sync0_Isr &rArr; PDO_InputMapping &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = GPE_IRQHandler &rArr; Sync0_Isr &rArr; PDO_InputMapping &rArr; HW_GetALEventRegister_Isr &rArr; ISR_GetInterruptRegister &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sync0_Isr
 <LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GPIO_WritePin
@@ -2003,9 +2003,6 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainInit
 <LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
-<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
-<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
-<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CheckIfEcatError
 <LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_SyncTimeStamp
 <LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ObjInit
 <LI><a href="#[176]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_MiiWaitReady
@@ -2024,6 +2021,9 @@ Global Symbols
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableSyncManChannel
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableSyncManChannel
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CopyToSendMailbox
+<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
+<LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CheckIfEcatError
 <LI><a href="#[23f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowEscWdInfo
 <LI><a href="#[240]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowEscFmmuSmInfo
 <LI><a href="#[23d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowEscFeatures
@@ -2039,10 +2039,10 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[161]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SPI_Read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainInit
-<LI><a href="#[1e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_OutputMapping
-<LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSystemTimeDelay
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDI_Isr
 <LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ISR_GetInterruptRegister
+<LI><a href="#[1e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_OutputMapping
+<LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSystemTimeDelay
 </UL>
 
 <P><STRONG><a name="[100]"></a>HW_EscWrite</STRONG> (Thumb, 32 bytes, Stack size 16 bytes, ax58200_hw.o(i.HW_EscWrite))
@@ -2052,7 +2052,6 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainInit
 <LI><a href="#[166]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_Init
-<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
 <LI><a href="#[170]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_MiiPhyWrite
 <LI><a href="#[16f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_MiiPhyRead
 <LI><a href="#[16e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_MiiPdiAccess
@@ -2064,6 +2063,7 @@ Global Symbols
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableSyncManChannel
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DisableSyncManChannel
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CopyToSendMailbox
+<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiWrite
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiReset
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BSP_PDI_EscWrite
@@ -2094,8 +2094,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetInterruptRegister
 </UL>
-<BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
-<LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainLoop
+<BR>[Called By]<UL><LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainLoop
+<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
 </UL>
 
 <P><STRONG><a name="[164]"></a>HW_GetALEventRegister_Isr</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, ax58200_hw.o(i.HW_GetALEventRegister_Isr))
@@ -2103,9 +2103,9 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[165]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ISR_GetInterruptRegister
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_InputMapping
-<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sync0_Isr
+<BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sync0_Isr
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDI_Isr
+<LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_InputMapping
 </UL>
 
 <P><STRONG><a name="[242]"></a>HW_GetDebugCounter</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, ax58200_hw.o(i.HW_GetDebugCounter))
@@ -2237,25 +2237,25 @@ Global Symbols
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Application
 </UL>
 
-<P><STRONG><a name="[6b]"></a>Hard_Fault_Handler</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, retarget.o(i.Hard_Fault_Handler))
+<P><STRONG><a name="[6b]"></a>Hard_Fault_Handler</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, asix_retarget.o(i.Hard_Fault_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Hard_Fault_Handler &rArr; stackDump &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stackDump
 <LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
-<BR>[Address Reference Count : 1]<UL><LI> retarget.o(.emb_text)
+<BR>[Address Reference Count : 1]<UL><LI> asix_retarget.o(.emb_text)
 </UL>
 <P><STRONG><a name="[142]"></a>MBX_CheckAndCopyMailbox</STRONG> (Thumb, 244 bytes, Stack size 16 bytes, mailbox.o(i.MBX_CheckAndCopyMailbox))
 <BR><BR>[Stack]<UL><LI>Max Depth = 288<LI>Call Chain = MBX_CheckAndCopyMailbox &rArr; MBX_MailboxWriteInd &rArr; MBX_MailboxSendReq &rArr; MBX_CopyToSendMailbox &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
 <LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxWriteInd
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
 <LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
-<BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
-<LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_Main
+<BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_Main
+<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
 </UL>
 
 <P><STRONG><a name="[154]"></a>MBX_CopyToSendMailbox</STRONG> (Thumb, 136 bytes, Stack size 16 bytes, mailbox.o(i.MBX_CopyToSendMailbox))
@@ -2264,10 +2264,10 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscWrite
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
 </UL>
-<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
-<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxRepeatReq
+<BR>[Called By]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxRepeatReq
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxReadInd
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_ServiceInd
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
 </UL>
 
 <P><STRONG><a name="[13b]"></a>MBX_Init</STRONG> (Thumb, 134 bytes, Stack size 8 bytes, mailbox.o(i.MBX_Init))
@@ -2282,10 +2282,10 @@ Global Symbols
 <P><STRONG><a name="[140]"></a>MBX_MailboxReadInd</STRONG> (Thumb, 170 bytes, Stack size 8 bytes, mailbox.o(i.MBX_MailboxReadInd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 312<LI>Call Chain = MBX_MailboxReadInd &rArr; COE_ContinueInd &rArr; SDOS_SdoInfoInd &rArr; MBX_MailboxSendReq &rArr; MBX_CopyToSendMailbox &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ContinueInd
-<LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOutOfMbxQueue
+<BR>[Calls]<UL><LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOutOfMbxQueue
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CopyToSendMailbox
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_ContinueInd
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ContinueInd
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
@@ -2307,21 +2307,21 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutInMbxQueue
 <LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CopyToSendMailbox
 </UL>
-<BR>[Called By]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInfoInd
-<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ContinueInd
-<LI><a href="#[1fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SdoRes
+<BR>[Called By]<UL><LI><a href="#[1fa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SdoRes
 <LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxWriteInd
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_Main
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CheckAndCopyMailbox
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_ServiceInd
 <LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_ContinueInd
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInfoInd
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ContinueInd
 </UL>
 
 <P><STRONG><a name="[187]"></a>MBX_MailboxWriteInd</STRONG> (Thumb, 114 bytes, Stack size 24 bytes, mailbox.o(i.MBX_MailboxWriteInd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 272<LI>Call Chain = MBX_MailboxWriteInd &rArr; MBX_MailboxSendReq &rArr; MBX_CopyToSendMailbox &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
-<LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutInMbxQueue
+<BR>[Calls]<UL><LI><a href="#[189]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PutInMbxQueue
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
 <BR>[Called By]<UL><LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CheckAndCopyMailbox
@@ -2330,10 +2330,10 @@ Global Symbols
 <P><STRONG><a name="[13e]"></a>MBX_Main</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, mailbox.o(i.MBX_Main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 400<LI>Call Chain = MBX_Main &rArr; MailboxServiceInd &rArr; COE_ServiceInd &rArr; SDOS_SdoInd &rArr; SdoRes &rArr; MBX_MailboxSendReq &rArr; MBX_CopyToSendMailbox &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
-<LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MailboxServiceInd
+<BR>[Calls]<UL><LI><a href="#[18a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MailboxServiceInd
 <LI><a href="#[188]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetOutOfMbxQueue
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CheckAndCopyMailbox
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
 </UL>
@@ -2407,8 +2407,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CiA402_TransitionAction
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CiA402_StateMachine
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;APPL_StopOutputHandler
-<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMcDashboard
 <LI><a href="#[226]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowCiA402Dashboard
+<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMcDashboard
 </UL>
 
 <P><STRONG><a name="[18e]"></a>MC_Init</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, mc.o(i.MC_Init))
@@ -2499,9 +2499,9 @@ Global Symbols
 <P><STRONG><a name="[19e]"></a>MH_AdcRegInit</STRONG> (Thumb, 158 bytes, Stack size 24 bytes, mchal_eadc.o(i.MH_AdcRegInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = MH_AdcRegInit &rArr; MH_EadcClkSource &rArr; CLK_SetModuleClock
 </UL>
-<BR>[Calls]<UL><LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetMode
-<LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EADC_Open
+<BR>[Calls]<UL><LI><a href="#[1af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EADC_Open
 <LI><a href="#[1b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EADC_ConfigSampleModule
+<LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetMode
 <LI><a href="#[1ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_SetMFP
 <LI><a href="#[1ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_EadcClkSource
 <LI><a href="#[1b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_BitToNum
@@ -2515,8 +2515,8 @@ Global Symbols
 
 <P><STRONG><a name="[1b3]"></a>MH_ClkTick_1ms</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mchal_misc.o(i.MH_ClkTick_1ms))
 <BR><BR>[Called By]<UL><LI><a href="#[1a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SWP_Run
-<LI><a href="#[1b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_Delay_1ms
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_VCP_Recv
+<LI><a href="#[1b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_Delay_1ms
 </UL>
 
 <P><STRONG><a name="[1a3]"></a>MH_DebugHwInit</STRONG> (Thumb, 126 bytes, Stack size 8 bytes, mchal_gpio.o(i.MH_DebugHwInit))
@@ -2608,10 +2608,10 @@ Global Symbols
 <P><STRONG><a name="[1a1]"></a>MH_QeiRegInit</STRONG> (Thumb, 204 bytes, Stack size 16 bytes, mchal_qei.o(i.MH_QeiRegInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = MH_QeiRegInit &rArr; MH_QeiClkSource &rArr; CLK_EnableModuleClock
 </UL>
-<BR>[Calls]<UL><LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetSlewCtl
+<BR>[Calls]<UL><LI><a href="#[1bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;QEI_Start
+<LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetSlewCtl
 <LI><a href="#[169]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetPullCtl
 <LI><a href="#[167]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_SetMode
-<LI><a href="#[1bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;QEI_Start
 <LI><a href="#[1be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_QeiClkSource
 <LI><a href="#[1ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_SetMFP
 </UL>
@@ -2706,14 +2706,14 @@ Global Symbols
 <P><STRONG><a name="[148]"></a>MI_FocCurrController</STRONG> (Thumb, 202 bytes, Stack size 104 bytes, mc_math.o(i.MI_FocCurrController))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = MI_FocCurrController &rArr; MS_SetPhaseVoltage
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_PiController
-<LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MI_CalcEncAngle
-<LI><a href="#[1d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_SetPhaseVoltage
+<BR>[Calls]<UL><LI><a href="#[1d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_SetPhaseVoltage
 <LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_GetSignedCurr_d
 <LI><a href="#[1d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MI_RevPark
 <LI><a href="#[1d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MI_Park
 <LI><a href="#[1d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MI_Clake
 <LI><a href="#[1d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MI_CalcRotorVector
+<LI><a href="#[1a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_PiController
+<LI><a href="#[18d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MI_CalcEncAngle
 </UL>
 <BR>[Called By]<UL><LI><a href="#[27]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EPWM1P0_IRQHandler
 </UL>
@@ -2865,8 +2865,8 @@ Global Symbols
 <LI><a href="#[197]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_MapPosBlkInit
 <LI><a href="#[199]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_MapAmpBlkInit
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_TaskRun
-<LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MI_FocCurrController
+<BR>[Called By]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MI_FocCurrController
+<LI><a href="#[1a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_TaskRun
 </UL>
 
 <P><STRONG><a name="[1d7]"></a>MS_SetPhaseVoltage</STRONG> (Thumb, 388 bytes, Stack size 40 bytes, svpwm.o(i.MS_SetPhaseVoltage))
@@ -2878,8 +2878,8 @@ Global Symbols
 <P><STRONG><a name="[18a]"></a>MailboxServiceInd</STRONG> (Thumb, 72 bytes, Stack size 16 bytes, mailbox.o(i.MailboxServiceInd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = MailboxServiceInd &rArr; COE_ServiceInd &rArr; SDOS_SdoInd &rArr; SdoRes &rArr; MBX_MailboxSendReq &rArr; MBX_CopyToSendMailbox &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ServiceInd
-<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_ServiceInd
+<BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_ServiceInd
+<LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ServiceInd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_Main
 </UL>
@@ -2887,11 +2887,11 @@ Global Symbols
 <P><STRONG><a name="[1e5]"></a>MainInit</STRONG> (Thumb, 228 bytes, Stack size 24 bytes, ecatappl.o(i.MainInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = MainInit &rArr; ECAT_Init &rArr; ResetALEventMask &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
-<LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ObjInit
+<BR>[Calls]<UL><LI><a href="#[11c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ObjInit
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscWrite
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscReadIsr
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -2899,14 +2899,14 @@ Global Symbols
 <P><STRONG><a name="[1e6]"></a>MainLoop</STRONG> (Thumb, 142 bytes, Stack size 8 bytes, ecatappl.o(i.MainLoop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 424<LI>Call Chain = MainLoop &rArr; ECAT_Main &rArr; MBX_Main &rArr; MailboxServiceInd &rArr; COE_ServiceInd &rArr; SDOS_SdoInd &rArr; SdoRes &rArr; MBX_MailboxSendReq &rArr; MBX_CopyToSendMailbox &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
+<BR>[Calls]<UL><LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_SyncTimeStamp
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_Main
+<LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GetALEventRegister
+<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Main
 <LI><a href="#[12d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CheckIfEcatError
 <LI><a href="#[1e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_OutputMapping
 <LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_InputMapping
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Application
-<LI><a href="#[11f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_SyncTimeStamp
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_Main
-<LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GetALEventRegister
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TMR3_IRQHandler
 </UL>
@@ -2930,11 +2930,11 @@ Global Symbols
 <P><STRONG><a name="[1ed]"></a>OBJ_GetEntryDesc</STRONG> (Thumb, 38 bytes, Stack size 12 bytes, objdef.o(i.OBJ_GetEntryDesc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = OBJ_GetEntryDesc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInfoInd
-<LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_Write
+<BR>[Called By]<UL><LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_Write
 <LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_Read
 <LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetObjectList
 <LI><a href="#[1eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetNoOfObjects
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInfoInd
 </UL>
 
 <P><STRONG><a name="[1f1]"></a>OBJ_GetEntryOffset</STRONG> (Thumb, 262 bytes, Stack size 20 bytes, objdef.o(i.OBJ_GetEntryOffset))
@@ -2999,30 +2999,30 @@ Global Symbols
 <LI><a href="#[1f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CheckSyncTypeValue
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
-<LI><a href="#[1f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SdoDownloadSegmentInd
+<BR>[Called By]<UL><LI><a href="#[1f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SdoDownloadSegmentInd
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
 </UL>
 
 <P><STRONG><a name="[156]"></a>PDI_Isr</STRONG> (Thumb, 232 bytes, Stack size 8 bytes, ecatappl.o(i.PDI_Isr))
 <BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = PDI_Isr &rArr; PDO_OutputMapping &rArr; HandleCycleTimeMeasurement &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_OutputMapping
-<LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_InputMapping
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Application
-<LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_UpdateSyncErrorStatus
+<BR>[Calls]<UL><LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_UpdateSyncErrorStatus
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GetALEventRegister_Isr
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscReadIsr
+<LI><a href="#[1e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_OutputMapping
+<LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_InputMapping
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Application
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPC_IRQHandler
 </UL>
 
 <P><STRONG><a name="[1e8]"></a>PDO_InputMapping</STRONG> (Thumb, 102 bytes, Stack size 16 bytes, ecatappl.o(i.PDO_InputMapping))
-<BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = PDO_InputMapping &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = PDO_InputMapping &rArr; HW_GetALEventRegister_Isr &rArr; ISR_GetInterruptRegister &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSystemTimeDelay
-<LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GetALEventRegister_Isr
+<BR>[Calls]<UL><LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GetALEventRegister_Isr
 <LI><a href="#[163]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscWriteIsr
 <LI><a href="#[1f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;APPL_InputMapping
+<LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSystemTimeDelay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sync1_Isr
 <LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Sync0_Isr
@@ -3034,10 +3034,10 @@ Global Symbols
 <P><STRONG><a name="[1e7]"></a>PDO_OutputMapping</STRONG> (Thumb, 114 bytes, Stack size 8 bytes, ecatappl.o(i.PDO_OutputMapping))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = PDO_OutputMapping &rArr; HandleCycleTimeMeasurement &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleCycleTimeMeasurement
-<LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSystemTimeDelay
-<LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscReadIsr
+<BR>[Calls]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscReadIsr
 <LI><a href="#[1f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;APPL_OutputMapping
+<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HandleCycleTimeMeasurement
+<LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSystemTimeDelay
 </UL>
 <BR>[Called By]<UL><LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDI_Isr
 <LI><a href="#[1e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MainLoop
@@ -3046,8 +3046,8 @@ Global Symbols
 <P><STRONG><a name="[189]"></a>PutInMbxQueue</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, mailbox.o(i.PutInMbxQueue))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = PutInMbxQueue
 </UL>
-<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
-<LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxWriteInd
+<BR>[Called By]<UL><LI><a href="#[187]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxWriteInd
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
 </UL>
 
 <P><STRONG><a name="[1bf]"></a>QEI_Start</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, qei.o(i.QEI_Start))
@@ -3068,9 +3068,9 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscWrite
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
 </UL>
-<BR>[Called By]<UL><LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StopInputHandler
+<BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StopInputHandler
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AL_ControlInd
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
 </UL>
 
 <P><STRONG><a name="[11e]"></a>SDOS_SdoInd</STRONG> (Thumb, 1112 bytes, Stack size 72 bytes, sdoserv.o(i.SDOS_SdoInd))
@@ -3083,9 +3083,9 @@ Global Symbols
 <LI><a href="#[1f0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_Read
 <LI><a href="#[1f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetObjectLength
 <LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetObjectHandle
+<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 <LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;malloc
 <LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ServiceInd
 </UL>
@@ -3093,13 +3093,13 @@ Global Symbols
 <P><STRONG><a name="[117]"></a>SDOS_SdoInfoInd</STRONG> (Thumb, 712 bytes, Stack size 48 bytes, sdoserv.o(i.SDOS_SdoInfoInd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = SDOS_SdoInfoInd &rArr; MBX_MailboxSendReq &rArr; MBX_CopyToSendMailbox &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
-<LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetObjectList
+<BR>[Calls]<UL><LI><a href="#[1ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetObjectList
 <LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetObjectHandle
 <LI><a href="#[1fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetObjDesc
 <LI><a href="#[1eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetNoOfObjects
 <LI><a href="#[1ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetEntryDesc
 <LI><a href="#[1e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_GetDesc
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
 <LI><a href="#[1e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
@@ -3175,12 +3175,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[182]"></a>SPI_Open</STRONG> (Thumb, 692 bytes, Stack size 40 bytes, spi.o(i.SPI_Open))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = SPI_Open &rArr; CLK_GetPCLK1Freq &rArr; SystemCoreClockUpdate &rArr; CLK_GetPLLClockFreq
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = SPI_Open &rArr; CLK_GetHCLKFreq &rArr; SystemCoreClockUpdate &rArr; CLK_GetPLLClockFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPLLClockFreq
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetHCLKFreq
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPCLK1Freq
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPCLK0Freq
-<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetHCLKFreq
 </UL>
 <BR>[Called By]<UL><LI><a href="#[16a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SPI_Init
 </UL>
@@ -3234,8 +3234,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxSendReq
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
-<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoRes
+<BR>[Called By]<UL><LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoRes
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
 </UL>
 
 <P><STRONG><a name="[cf]"></a>SetALEventMask</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, ecatslv.o(i.SetALEventMask))
@@ -3252,18 +3252,18 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscWrite
 </UL>
-<BR>[Called By]<UL><LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
-<LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AL_ControlRes
+<BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AL_ControlRes
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AL_ControlInd
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
 </UL>
 
 <P><STRONG><a name="[cd]"></a>StartInputHandler</STRONG> (Thumb, 1496 bytes, Stack size 56 bytes, ecatslv.o(i.StartInputHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = StartInputHandler &rArr; PDO_InputMapping &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = StartInputHandler &rArr; PDO_InputMapping &rArr; HW_GetALEventRegister_Isr &rArr; ISR_GetInterruptRegister &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_InputMapping
-<LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
+<BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GetSyncMan
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableSyncManChannel
+<LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_InputMapping
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AL_ControlInd
 </UL>
@@ -3288,18 +3288,18 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[158]"></a>Sync0_Isr</STRONG> (Thumb, 258 bytes, Stack size 8 bytes, ecatappl.o(i.Sync0_Isr))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = Sync0_Isr &rArr; PDO_InputMapping &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = Sync0_Isr &rArr; PDO_InputMapping &rArr; HW_GetALEventRegister_Isr &rArr; ISR_GetInterruptRegister &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_InputMapping
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Application
-<LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_UpdateSyncErrorStatus
+<BR>[Calls]<UL><LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_UpdateSyncErrorStatus
 <LI><a href="#[164]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GetALEventRegister_Isr
+<LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_InputMapping
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Application
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPE_IRQHandler
 </UL>
 
 <P><STRONG><a name="[157]"></a>Sync1_Isr</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, ecatappl.o(i.Sync1_Isr))
-<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = Sync1_Isr &rArr; PDO_InputMapping &rArr; GetSystemTimeDelay &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = Sync1_Isr &rArr; PDO_InputMapping &rArr; HW_GetALEventRegister_Isr &rArr; ISR_GetInterruptRegister &rArr; HW_EscReadIsr &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PDO_InputMapping
 </UL>
@@ -3339,10 +3339,10 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_SetHCLK
 <LI><a href="#[20a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysInit
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPCLK1Freq
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPCLK0Freq
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetHCLKFreq
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetCPUFreq
+<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPCLK1Freq
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPCLK0Freq
 </UL>
 
 <P><STRONG><a name="[6c]"></a>SystemInit</STRONG> (Thumb, 130 bytes, Stack size 0 bytes, system_m480.o(i.SystemInit))
@@ -3513,8 +3513,8 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
 </UL>
-<BR>[Called By]<UL><LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AL_ControlInd
+<BR>[Called By]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;AL_ControlInd
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ECAT_Init
 </UL>
 
 <P><STRONG><a name="[21e]"></a>__0printf</STRONG> (Thumb, 22 bytes, Stack size 24 bytes, printfa.o(i.__0printf), UNUSED)
@@ -3526,10 +3526,10 @@ Global Symbols
 <P><STRONG><a name="[f9]"></a>__2printf</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, printfa.o(i.__0printf))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __2printf
 </UL>
-<BR>[Called By]<UL><LI><a href="#[1cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_VCP_Run
-<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Hard_Fault_Handler
+<BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Hard_Fault_Handler
 <LI><a href="#[186]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stackDump
+<LI><a href="#[1cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_VCP_Run
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_StartDownload
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_Data
 <LI><a href="#[195]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TC_Init
@@ -3580,7 +3580,7 @@ Global Symbols
 <LI><a href="#[1c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_VCP_Recv
 </UL>
 
-<P><STRONG><a name="[76]"></a>fputc</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, retarget.o(i.fputc))
+<P><STRONG><a name="[76]"></a>fputc</STRONG> (Thumb, 16 bytes, Stack size 16 bytes, asix_retarget.o(i.fputc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = fputc &rArr; SendChar
 </UL>
 <BR>[Calls]<UL><LI><a href="#[208]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendChar
@@ -3590,8 +3590,7 @@ Global Symbols
 <P><STRONG><a name="[119]"></a>free</STRONG> (Thumb, 76 bytes, Stack size 8 bytes, malloc.o(i.free))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = free
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_Main
+<BR>[Called By]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_Main
 <LI><a href="#[1f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SdoUploadSegmentInd
 <LI><a href="#[1f8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SdoDownloadSegmentInd
 <LI><a href="#[18b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SODS_ClearPendingResponse
@@ -3601,6 +3600,7 @@ Global Symbols
 <LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_MailboxReadInd
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CheckAndCopyMailbox
 <LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FOE_ServiceInd
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
 </UL>
 
 <P><STRONG><a name="[6a]"></a>main</STRONG> (Thumb, 164 bytes, Stack size 8 bytes, main.o(i.main))
@@ -3625,17 +3625,17 @@ Global Symbols
 <P><STRONG><a name="[116]"></a>malloc</STRONG> (Thumb, 92 bytes, Stack size 20 bytes, malloc.o(i.malloc))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = malloc
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
-<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ContinueInd
-<LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_StartMailboxHandler
+<BR>[Called By]<UL><LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_StartMailboxHandler
 <LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MBX_CheckAndCopyMailbox
+<LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COE_ContinueInd
 </UL>
 
 <P><STRONG><a name="[e1]"></a>printd</STRONG> (Thumb, 50 bytes, Stack size 32 bytes, printd.o(i.printd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vsprintf
-<LI><a href="#[278]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printd_PutString
+<BR>[Calls]<UL><LI><a href="#[278]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printd_PutString
+<LI><a href="#[126]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vsprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CIA402HM_Run
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_UART_ClkSource
@@ -3667,7 +3667,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_m480.o(RESET)
 </UL>
-<P><STRONG><a name="[208]"></a>SendChar</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, retarget.o(i.SendChar))
+<P><STRONG><a name="[208]"></a>SendChar</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, asix_retarget.o(i.SendChar))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SendChar
 </UL>
 <BR>[Calls]<UL><LI><a href="#[209]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendChar_ToUART
@@ -3675,11 +3675,11 @@ Local Symbols
 <BR>[Called By]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fputc
 </UL>
 
-<P><STRONG><a name="[209]"></a>SendChar_ToUART</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, retarget.o(i.SendChar_ToUART))
+<P><STRONG><a name="[209]"></a>SendChar_ToUART</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, asix_retarget.o(i.SendChar_ToUART))
 <BR><BR>[Called By]<UL><LI><a href="#[208]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SendChar
 </UL>
 
-<P><STRONG><a name="[186]"></a>stackDump</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, retarget.o(i.stackDump))
+<P><STRONG><a name="[186]"></a>stackDump</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, asix_retarget.o(i.stackDump))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = stackDump &rArr; __2printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
@@ -3816,7 +3816,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[183]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_SPI_TransmitReceive
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
+<LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscReadIsr
 <LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
@@ -3907,26 +3907,26 @@ Local Symbols
 
 <P><STRONG><a name="[f3]"></a>SYS_LockReg</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, bootmode.o(i.SYS_LockReg))
 <BR><BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_JumpToLdrom
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_StartDownload
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_Data
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadFlashHeader
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FirmwareChecksum32
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_StartDownload
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_Data
 </UL>
 
 <P><STRONG><a name="[f1]"></a>SYS_UnlockReg</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, bootmode.o(i.SYS_UnlockReg))
 <BR><BR>[Called By]<UL><LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_JumpToLdrom
-<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_StartDownload
-<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_Data
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ReadFlashHeader
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FirmwareChecksum32
+<LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_StartDownload
+<LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;BL_Data
 </UL>
 
 <P><STRONG><a name="[1f8]"></a>SdoDownloadSegmentInd</STRONG> (Thumb, 596 bytes, Stack size 32 bytes, sdoserv.o(i.SdoDownloadSegmentInd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 140<LI>Call Chain = SdoDownloadSegmentInd &rArr; OBJ_Write &rArr; OBJ_GetEntryOffset
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OBJ_Write
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
 </UL>
@@ -3934,8 +3934,8 @@ Local Symbols
 <P><STRONG><a name="[1f9]"></a>SdoUploadSegmentInd</STRONG> (Thumb, 388 bytes, Stack size 24 bytes, sdoserv.o(i.SdoUploadSegmentInd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = SdoUploadSegmentInd &rArr; free
 </UL>
-<BR>[Calls]<UL><LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
-<LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<BR>[Calls]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;free
 </UL>
 <BR>[Called By]<UL><LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SDOS_SdoInd
 </UL>
@@ -3969,8 +3969,8 @@ Local Symbols
 <P><STRONG><a name="[1d9]"></a>MS_ReadFlashRom</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, flash.o(i.MS_ReadFlashRom))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = MS_ReadFlashRom
 </UL>
-<BR>[Called By]<UL><LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_GetFlashParamsAreaData
-<LI><a href="#[1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_CalcCheckSum
+<BR>[Called By]<UL><LI><a href="#[1d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_CalcCheckSum
+<LI><a href="#[19c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MS_GetFlashParamsAreaData
 </UL>
 
 <P><STRONG><a name="[1db]"></a>MS_Swap</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, flash.o(i.MS_Swap))
@@ -4155,14 +4155,14 @@ Local Symbols
 <P><STRONG><a name="[1c7]"></a>MH_VCP_Recv</STRONG> (Thumb, 632 bytes, Stack size 32 bytes, mchal_husb.o(i.MH_VCP_Recv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = MH_VCP_Recv &rArr; esc_doCommand &rArr; putD &rArr; putH
 </UL>
-<BR>[Calls]<UL><LI><a href="#[1b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_Delay_1ms
-<LI><a href="#[1b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_ClkTick_1ms
-<LI><a href="#[1cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;esc_doCommand
+<BR>[Calls]<UL><LI><a href="#[1cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;esc_doCommand
 <LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_VCP_Xmit
 <LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_VCP_StrToInt
 <LI><a href="#[1c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_VCP_PutStr
 <LI><a href="#[1c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_VCP_PutChar
 <LI><a href="#[1c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_VCP_ParseCommandLine
+<LI><a href="#[1b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_Delay_1ms
+<LI><a href="#[1b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_ClkTick_1ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MH_VCP_Run
 </UL>
@@ -4196,7 +4196,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[ac]"></a>clicmd_CiA402</STRONG> (Thumb, 520 bytes, Stack size 48 bytes, clicmd.o(i.clicmd_CiA402))
-<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = clicmd_CiA402 &rArr; clicmd_ShowCiA402Dashboard &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = clicmd_CiA402 &rArr; clicmd_ShowCiA402Dashboard &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[22d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CIA402_EmulationControl
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_FaultReset
@@ -4214,7 +4214,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[ad]"></a>clicmd_CiA402Help</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_CiA402Help))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_CiA402Help &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_CiA402Help &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4223,7 +4223,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[228]"></a>clicmd_CiA402Usage</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_CiA402Usage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_CiA402Usage &rArr; clicmd_CiA402Help &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_CiA402Usage &rArr; clicmd_CiA402Help &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_CiA402Help
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4232,7 +4232,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[86]"></a>clicmd_ClkRegister</STRONG> (Thumb, 122 bytes, Stack size 32 bytes, clicmd.o(i.clicmd_ClkRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = clicmd_ClkRegister &rArr; clicmd_ClkRegisterUsage &rArr; clicmd_ClkRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = clicmd_ClkRegister &rArr; clicmd_ClkRegisterUsage &rArr; clicmd_ClkRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[22e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ClkRegisterUsage
@@ -4243,25 +4243,25 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[22f]"></a>clicmd_ClkRegisterDisplay</STRONG> (Thumb, 1896 bytes, Stack size 16 bytes, clicmd.o(i.clicmd_ClkRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_ClkRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_ClkRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[20c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetHXTFreq
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPLLClockFreq
 <LI><a href="#[231]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPMUWKSrc
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPCLK1Freq
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPCLK0Freq
 <LI><a href="#[232]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetModuleClockSource
 <LI><a href="#[233]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetModuleClockDivider
 <LI><a href="#[230]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetLXTFreq
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetHCLKFreq
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetCPUFreq
+<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPCLK1Freq
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CLK_GetPCLK0Freq
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
 <BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ClkRegister
 </UL>
 
 <P><STRONG><a name="[87]"></a>clicmd_ClkRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_ClkRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_ClkRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_ClkRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4270,7 +4270,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[22e]"></a>clicmd_ClkRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_ClkRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_ClkRegisterUsage &rArr; clicmd_ClkRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_ClkRegisterUsage &rArr; clicmd_ClkRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ClkRegisterHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4302,7 +4302,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[9a]"></a>clicmd_ECAPxRegister</STRONG> (Thumb, 192 bytes, Stack size 40 bytes, clicmd.o(i.clicmd_ECAPxRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_ECAPxRegister &rArr; clicmd_ECAPxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_ECAPxRegister &rArr; clicmd_ECAPxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Char
@@ -4314,7 +4314,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[237]"></a>clicmd_ECAPxRegisterDisplay</STRONG> (Thumb, 136 bytes, Stack size 24 bytes, clicmd.o(i.clicmd_ECAPxRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_ECAPxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_ECAPxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4322,7 +4322,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[9b]"></a>clicmd_ECAPxRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_ECAPxRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_ECAPxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_ECAPxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4331,7 +4331,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[236]"></a>clicmd_ECAPxRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_ECAPxRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_ECAPxRegisterUsage &rArr; clicmd_ECAPxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_ECAPxRegisterUsage &rArr; clicmd_ECAPxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ECAPxRegisterHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4340,7 +4340,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[9c]"></a>clicmd_EPWMxRegister</STRONG> (Thumb, 192 bytes, Stack size 40 bytes, clicmd.o(i.clicmd_EPWMxRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = clicmd_EPWMxRegister &rArr; clicmd_EPWMxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = clicmd_EPWMxRegister &rArr; clicmd_EPWMxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Char
@@ -4352,7 +4352,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[239]"></a>clicmd_EPWMxRegisterDisplay</STRONG> (Thumb, 2232 bytes, Stack size 40 bytes, clicmd.o(i.clicmd_EPWMxRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = clicmd_EPWMxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = clicmd_EPWMxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4360,7 +4360,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[9d]"></a>clicmd_EPWMxRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_EPWMxRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_EPWMxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_EPWMxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4369,7 +4369,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[238]"></a>clicmd_EPWMxRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_EPWMxRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_EPWMxRegisterUsage &rArr; clicmd_EPWMxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_EPWMxRegisterUsage &rArr; clicmd_EPWMxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_EPWMxRegisterHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4378,7 +4378,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[96]"></a>clicmd_EadcRegister</STRONG> (Thumb, 118 bytes, Stack size 32 bytes, clicmd.o(i.clicmd_EadcRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = clicmd_EadcRegister &rArr; clicmd_EadcRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = clicmd_EadcRegister &rArr; clicmd_EadcRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[23a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_EadcRegisterUsage
@@ -4389,7 +4389,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[23b]"></a>clicmd_EadcRegisterDisplay</STRONG> (Thumb, 410 bytes, Stack size 24 bytes, clicmd.o(i.clicmd_EadcRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_EadcRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_EadcRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4397,7 +4397,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[97]"></a>clicmd_EadcRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_EadcRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_EadcRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_EadcRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4406,7 +4406,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[23a]"></a>clicmd_EadcRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_EadcRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_EadcRegisterUsage &rArr; clicmd_EadcRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_EadcRegisterUsage &rArr; clicmd_EadcRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_EadcRegisterHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4430,7 +4430,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[a5]"></a>clicmd_EscRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_EscRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_EscRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_EscRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4439,7 +4439,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[23c]"></a>clicmd_EscRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_EscRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_EscRegisterUsage &rArr; clicmd_EscRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_EscRegisterUsage &rArr; clicmd_EscRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_EscRegisterHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4448,7 +4448,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[a8]"></a>clicmd_EscStack</STRONG> (Thumb, 94 bytes, Stack size 24 bytes, clicmd.o(i.clicmd_EscStack))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_EscStack &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_EscStack &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[242]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GetDebugCounter
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4456,14 +4456,14 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[a9]"></a>clicmd_EscStackHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_EscStackHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_EscStackHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_EscStackHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[88]"></a>clicmd_FmcRegister</STRONG> (Thumb, 116 bytes, Stack size 32 bytes, clicmd.o(i.clicmd_FmcRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = clicmd_FmcRegister &rArr; clicmd_FmcRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = clicmd_FmcRegister &rArr; clicmd_FmcRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[243]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_FmcRegisterUsage
@@ -4474,7 +4474,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[244]"></a>clicmd_FmcRegisterDisplay</STRONG> (Thumb, 1854 bytes, Stack size 48 bytes, clicmd.o(i.clicmd_FmcRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = clicmd_FmcRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = clicmd_FmcRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FMC_ReadConfig
 <LI><a href="#[247]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FMC_GetBootSource
@@ -4486,7 +4486,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[89]"></a>clicmd_FmcRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_FmcRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_FmcRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_FmcRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4495,7 +4495,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[243]"></a>clicmd_FmcRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_FmcRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_FmcRegisterUsage &rArr; clicmd_FmcRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_FmcRegisterUsage &rArr; clicmd_FmcRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_FmcRegisterHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4504,7 +4504,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[92]"></a>clicmd_GPIOxRegister</STRONG> (Thumb, 312 bytes, Stack size 40 bytes, clicmd.o(i.clicmd_GPIOxRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_GPIOxRegister &rArr; clicmd_GPIOxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_GPIOxRegister &rArr; clicmd_GPIOxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[248]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_GPIOxRegisterUsage
@@ -4515,7 +4515,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[249]"></a>clicmd_GPIOxRegisterDisplay</STRONG> (Thumb, 194 bytes, Stack size 24 bytes, clicmd.o(i.clicmd_GPIOxRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_GPIOxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_GPIOxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4523,7 +4523,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[93]"></a>clicmd_GPIOxRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_GPIOxRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_GPIOxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_GPIOxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4532,7 +4532,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[248]"></a>clicmd_GPIOxRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_GPIOxRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_GPIOxRegisterUsage &rArr; clicmd_GPIOxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_GPIOxRegisterUsage &rArr; clicmd_GPIOxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_GPIOxRegisterHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4543,25 +4543,21 @@ Local Symbols
 <P><STRONG><a name="[235]"></a>clicmd_HexText2Char</STRONG> (Thumb, 120 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_HexText2Char))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = clicmd_HexText2Char
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegister
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegister
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SPIxRegister
+<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SPIxRegister
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_QEIxRegister
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiWrite
 <LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiMemoryTest
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_EPWMxRegister
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ECAPxRegister
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegister
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegister
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
 </UL>
 
 <P><STRONG><a name="[22a]"></a>clicmd_HexText2Long</STRONG> (Thumb, 118 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_HexText2Long))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = clicmd_HexText2Long
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegister
-<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegister
-<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegister
-<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SPIxRegister
+<BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SPIxRegister
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_QEIxRegister
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiWrite
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiRead
@@ -4575,10 +4571,14 @@ Local Symbols
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ECAPxRegister
 <LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ClkRegister
 <LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_CiA402
+<LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegister
+<LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegister
+<LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegister
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
 </UL>
 
 <P><STRONG><a name="[aa]"></a>clicmd_McStack</STRONG> (Thumb, 1150 bytes, Stack size 56 bytes, clicmd.o(i.clicmd_McStack))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = clicmd_McStack &rArr; clicmd_ShowMcDashboard &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = clicmd_McStack &rArr; clicmd_ShowMcDashboard &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_StartHoming
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_ClearActualPosition
@@ -4586,7 +4586,6 @@ Local Symbols
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_StopMotor
 <LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_StartMotor
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_FaultReset
-<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMcDashboard
 <LI><a href="#[24b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_McStackUsage
 <LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[234]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_DecText2SignLong
@@ -4596,11 +4595,12 @@ Local Symbols
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[227]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printdCtrl
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[24a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMcDashboard
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[ab]"></a>clicmd_McStackHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_McStackHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_McStackHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_McStackHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4609,7 +4609,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[24b]"></a>clicmd_McStackUsage</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_McStackUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_McStackUsage &rArr; clicmd_McStackHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_McStackUsage &rArr; clicmd_McStackHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_McStackHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4618,7 +4618,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[94]"></a>clicmd_NvicRegister</STRONG> (Thumb, 122 bytes, Stack size 32 bytes, clicmd.o(i.clicmd_NvicRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = clicmd_NvicRegister &rArr; clicmd_NvicRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = clicmd_NvicRegister &rArr; clicmd_NvicRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[24c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_NvicRegisterUsage
 <LI><a href="#[24d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_NvicRegisterDisplay
@@ -4629,7 +4629,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[24d]"></a>clicmd_NvicRegisterDisplay</STRONG> (Thumb, 212 bytes, Stack size 24 bytes, clicmd.o(i.clicmd_NvicRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_NvicRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_NvicRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4637,7 +4637,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[95]"></a>clicmd_NvicRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_NvicRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_NvicRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_NvicRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4646,7 +4646,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[24c]"></a>clicmd_NvicRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_NvicRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_NvicRegisterUsage &rArr; clicmd_NvicRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_NvicRegisterUsage &rArr; clicmd_NvicRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_NvicRegisterHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4657,11 +4657,7 @@ Local Symbols
 <P><STRONG><a name="[a2]"></a>clicmd_PdiMemoryTest</STRONG> (Thumb, 1200 bytes, Stack size 40 bytes, clicmd.o(i.clicmd_PdiMemoryTest))
 <BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = clicmd_PdiMemoryTest &rArr; TEST_PdiMemoryTest &rArr; BSP_PDI_EscRead &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[250]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowTestTemporaryStatus
-<LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowTestBuffer
-<LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowPdiMemoryTestParameter
-<LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowPdiMemoryTestLog
-<LI><a href="#[251]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiMemoryTestUsage
+<BR>[Calls]<UL><LI><a href="#[251]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiMemoryTestUsage
 <LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Char
 <LI><a href="#[22b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_DecText2Long
@@ -4670,11 +4666,15 @@ Local Symbols
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[217]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_PdiMemoryTest
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[250]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowTestTemporaryStatus
+<LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowTestBuffer
+<LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowPdiMemoryTestParameter
+<LI><a href="#[24e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowPdiMemoryTestLog
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[a3]"></a>clicmd_PdiMemoryTestHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_PdiMemoryTestHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_PdiMemoryTestHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_PdiMemoryTestHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4683,7 +4683,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[251]"></a>clicmd_PdiMemoryTestUsage</STRONG> (Thumb, 1474 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_PdiMemoryTestUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_PdiMemoryTestUsage &rArr; clicmd_PdiMemoryTestHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_PdiMemoryTestUsage &rArr; clicmd_PdiMemoryTestHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiMemoryTestHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4695,17 +4695,17 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = clicmd_PdiRead &rArr; HW_EscRead &rArr; HW_SPI_Read &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[de]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscRead
-<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
 <LI><a href="#[253]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiReadUsage
 <LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[1c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[9f]"></a>clicmd_PdiReadHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_PdiReadHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_PdiReadHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_PdiReadHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4714,7 +4714,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[253]"></a>clicmd_PdiReadUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_PdiReadUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_PdiReadUsage &rArr; clicmd_PdiReadHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_PdiReadUsage &rArr; clicmd_PdiReadHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiReadHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4730,7 +4730,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[a7]"></a>clicmd_PdiResetHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_PdiResetHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_PdiResetHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_PdiResetHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4740,17 +4740,17 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 240<LI>Call Chain = clicmd_PdiWrite &rArr; HW_EscWrite &rArr; HW_SPI_Write &rArr; HW_SPI_TransmitReceive &rArr; HW_SPI_WaitFlagStateUntilTimeout &rArr; printd &rArr; vsprintf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_EscWrite
-<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
 <LI><a href="#[255]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiWriteUsage
 <LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Char
 <LI><a href="#[1c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[a1]"></a>clicmd_PdiWriteHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_PdiWriteHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_PdiWriteHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_PdiWriteHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4759,7 +4759,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[255]"></a>clicmd_PdiWriteUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_PdiWriteUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_PdiWriteUsage &rArr; clicmd_PdiWriteHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_PdiWriteUsage &rArr; clicmd_PdiWriteHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiWriteHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4768,7 +4768,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[98]"></a>clicmd_QEIxRegister</STRONG> (Thumb, 192 bytes, Stack size 40 bytes, clicmd.o(i.clicmd_QEIxRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_QEIxRegister &rArr; clicmd_QEIxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_QEIxRegister &rArr; clicmd_QEIxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[256]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_QEIxRegisterUsage
 <LI><a href="#[257]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_QEIxRegisterDisplay
@@ -4780,7 +4780,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[257]"></a>clicmd_QEIxRegisterDisplay</STRONG> (Thumb, 122 bytes, Stack size 24 bytes, clicmd.o(i.clicmd_QEIxRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_QEIxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_QEIxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4788,7 +4788,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[99]"></a>clicmd_QEIxRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_QEIxRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_QEIxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_QEIxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4797,7 +4797,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[256]"></a>clicmd_QEIxRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_QEIxRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_QEIxRegisterUsage &rArr; clicmd_QEIxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_QEIxRegisterUsage &rArr; clicmd_QEIxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_QEIxRegisterHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4806,7 +4806,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[90]"></a>clicmd_SPIxRegister</STRONG> (Thumb, 208 bytes, Stack size 40 bytes, clicmd.o(i.clicmd_SPIxRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_SPIxRegister &rArr; clicmd_SPIxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_SPIxRegister &rArr; clicmd_SPIxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[258]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SPIxRegisterUsage
 <LI><a href="#[259]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SPIxRegisterDisplay
@@ -4818,7 +4818,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[259]"></a>clicmd_SPIxRegisterDisplay</STRONG> (Thumb, 178 bytes, Stack size 24 bytes, clicmd.o(i.clicmd_SPIxRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_SPIxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_SPIxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4826,7 +4826,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[91]"></a>clicmd_SPIxRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_SPIxRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_SPIxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_SPIxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4835,7 +4835,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[258]"></a>clicmd_SPIxRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_SPIxRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_SPIxRegisterUsage &rArr; clicmd_SPIxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_SPIxRegisterUsage &rArr; clicmd_SPIxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SPIxRegisterHelp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4844,7 +4844,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[226]"></a>clicmd_ShowCiA402Dashboard</STRONG> (Thumb, 432 bytes, Stack size 64 bytes, clicmd.o(i.clicmd_ShowCiA402Dashboard))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_ShowCiA402Dashboard &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_ShowCiA402Dashboard &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[242]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_GetDebugCounter
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_GetState
@@ -4899,7 +4899,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[24a]"></a>clicmd_ShowMcDashboard</STRONG> (Thumb, 208 bytes, Stack size 32 bytes, clicmd.o(i.clicmd_ShowMcDashboard))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = clicmd_ShowMcDashboard &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = clicmd_ShowMcDashboard &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_GetState
 <LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MC_GetFaultStatus
@@ -4909,19 +4909,19 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[254]"></a>clicmd_ShowMemoryInHex8b</STRONG> (Thumb, 72 bytes, Stack size 24 bytes, clicmd.o(i.clicmd_ShowMemoryInHex8b))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_ShowMemoryInHex8b &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_ShowMemoryInHex8b &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
-<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
+<BR>[Called By]<UL><LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiWrite
+<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiRead
+<LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
 <LI><a href="#[24f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowTestBuffer
 <LI><a href="#[252]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowPdiMemoryTestParameter
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiWrite
-<LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiRead
 </UL>
 
 <P><STRONG><a name="[24e]"></a>clicmd_ShowPdiMemoryTestLog</STRONG> (Thumb, 114 bytes, Stack size 64 bytes, clicmd.o(i.clicmd_ShowPdiMemoryTestLog))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_ShowPdiMemoryTestLog &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_ShowPdiMemoryTestLog &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[25a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TEST_GetTime
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -4930,25 +4930,25 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[252]"></a>clicmd_ShowPdiMemoryTestParameter</STRONG> (Thumb, 102 bytes, Stack size 40 bytes, clicmd.o(i.clicmd_ShowPdiMemoryTestParameter))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_ShowPdiMemoryTestParameter &rArr; clicmd_ShowMemoryInHex8b &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_ShowPdiMemoryTestParameter &rArr; clicmd_ShowMemoryInHex8b &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
-<BR>[Calls]<UL><LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
-<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiMemoryTest
 </UL>
 
 <P><STRONG><a name="[24f]"></a>clicmd_ShowTestBuffer</STRONG> (Thumb, 94 bytes, Stack size 16 bytes, clicmd.o(i.clicmd_ShowTestBuffer))
-<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = clicmd_ShowTestBuffer &rArr; clicmd_ShowMemoryInHex8b &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = clicmd_ShowTestBuffer &rArr; clicmd_ShowMemoryInHex8b &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
-<BR>[Calls]<UL><LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
-<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_PdiMemoryTest
 </UL>
 
 <P><STRONG><a name="[250]"></a>clicmd_ShowTestTemporaryStatus</STRONG> (Thumb, 84 bytes, Stack size 16 bytes, clicmd.o(i.clicmd_ShowTestTemporaryStatus))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_ShowTestTemporaryStatus &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_ShowTestTemporaryStatus &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4961,19 +4961,19 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[204]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIM_IO_Write
 <LI><a href="#[201]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIM_IO_Read
 <LI><a href="#[1fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPIM_EraseBlock
-<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterUsage
-<LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterDisplay
-<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
 <LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Char
 <LI><a href="#[229]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 <LI><a href="#[1c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[25b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterUsage
+<LI><a href="#[25c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterDisplay
+<LI><a href="#[254]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_ShowMemoryInHex8b
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[25c]"></a>clicmd_SpimRegisterDisplay</STRONG> (Thumb, 302 bytes, Stack size 16 bytes, clicmd.o(i.clicmd_SpimRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_SpimRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_SpimRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4981,7 +4981,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[8b]"></a>clicmd_SpimRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_SpimRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_SpimRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_SpimRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -4990,27 +4990,27 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[25b]"></a>clicmd_SpimRegisterUsage</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_SpimRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_SpimRegisterUsage &rArr; clicmd_SpimRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_SpimRegisterUsage &rArr; clicmd_SpimRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterHelp
-<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegisterHelp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SpimRegister
 </UL>
 
 <P><STRONG><a name="[84]"></a>clicmd_SysRegister</STRONG> (Thumb, 120 bytes, Stack size 32 bytes, clicmd.o(i.clicmd_SysRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = clicmd_SysRegister &rArr; clicmd_SysRegisterUsage &rArr; clicmd_SysRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = clicmd_SysRegister &rArr; clicmd_SysRegisterUsage &rArr; clicmd_SysRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
-<BR>[Calls]<UL><LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterUsage
-<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterDisplay
-<LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
+<BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[1c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[25d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterUsage
+<LI><a href="#[25e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterDisplay
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[25e]"></a>clicmd_SysRegisterDisplay</STRONG> (Thumb, 1906 bytes, Stack size 16 bytes, clicmd.o(i.clicmd_SysRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_SysRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_SysRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -5018,7 +5018,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[85]"></a>clicmd_SysRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_SysRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_SysRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_SysRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -5027,10 +5027,10 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[25d]"></a>clicmd_SysRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_SysRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_SysRegisterUsage &rArr; clicmd_SysRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_SysRegisterUsage &rArr; clicmd_SysRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
-<BR>[Calls]<UL><LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterHelp
-<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[85]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegisterHelp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_SysRegister
 </UL>
@@ -5039,7 +5039,7 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[83]"></a>clicmd_SystemRebootHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_SystemRebootHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_SystemRebootHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_SystemRebootHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -5048,12 +5048,12 @@ Local Symbols
 <P><STRONG><a name="[8e]"></a>clicmd_TMRxRegister</STRONG> (Thumb, 208 bytes, Stack size 40 bytes, clicmd.o(i.clicmd_TMRxRegister))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = clicmd_TMRxRegister &rArr; clicmd_TMRxRegisterDisplay &rArr; TIMER_GetModuleClock &rArr; CLK_GetPCLK1Freq &rArr; SystemCoreClockUpdate &rArr; CLK_GetPLLClockFreq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterUsage
-<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterDisplay
-<LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
+<BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Char
 <LI><a href="#[1c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[25f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterUsage
+<LI><a href="#[260]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterDisplay
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
@@ -5067,7 +5067,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[8f]"></a>clicmd_TMRxRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_TMRxRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_TMRxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_TMRxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -5076,28 +5076,28 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[25f]"></a>clicmd_TMRxRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_TMRxRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_TMRxRegisterUsage &rArr; clicmd_TMRxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_TMRxRegisterUsage &rArr; clicmd_TMRxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterHelp
-<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[8f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegisterHelp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_TMRxRegister
 </UL>
 
 <P><STRONG><a name="[8c]"></a>clicmd_UARTxRegister</STRONG> (Thumb, 214 bytes, Stack size 40 bytes, clicmd.o(i.clicmd_UARTxRegister))
-<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_UARTxRegister &rArr; clicmd_UARTxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = clicmd_UARTxRegister &rArr; clicmd_UARTxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
-<BR>[Calls]<UL><LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterUsage
-<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterDisplay
-<LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
+<BR>[Calls]<UL><LI><a href="#[22a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Long
 <LI><a href="#[235]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_HexText2Char
 <LI><a href="#[1c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strlen
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[261]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterUsage
+<LI><a href="#[262]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterDisplay
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[262]"></a>clicmd_UARTxRegisterDisplay</STRONG> (Thumb, 290 bytes, Stack size 24 bytes, clicmd.o(i.clicmd_UARTxRegisterDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_UARTxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = clicmd_UARTxRegisterDisplay &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -5105,7 +5105,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[8d]"></a>clicmd_UARTxRegisterHelp</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_UARTxRegisterHelp))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_UARTxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = clicmd_UARTxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -5114,10 +5114,10 @@ Local Symbols
 <BR>[Address Reference Count : 1]<UL><LI> clicmd.o(.data)
 </UL>
 <P><STRONG><a name="[261]"></a>clicmd_UARTxRegisterUsage</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, clicmd.o(i.clicmd_UARTxRegisterUsage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_UARTxRegisterUsage &rArr; clicmd_UARTxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = clicmd_UARTxRegisterUsage &rArr; clicmd_UARTxRegisterHelp &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
-<BR>[Calls]<UL><LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterHelp
-<LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
+<LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegisterHelp
 </UL>
 <BR>[Called By]<UL><LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;clicmd_UARTxRegister
 </UL>
@@ -5153,14 +5153,14 @@ Local Symbols
 <P><STRONG><a name="[264]"></a>console_ClearLine</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, console.o(i.console_ClearLine))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = console_ClearLine &rArr; console_PutString
 </UL>
-<BR>[Calls]<UL><LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
+<BR>[Calls]<UL><LI><a href="#[b5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memset
 <LI><a href="#[127]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_PutString
 </UL>
 <BR>[Called By]<UL><LI><a href="#[129]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_CollectCommand
 </UL>
 
 <P><STRONG><a name="[265]"></a>console_CmdExecute</STRONG> (Thumb, 138 bytes, Stack size 32 bytes, console.o(i.console_CmdExecute))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = console_CmdExecute &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = console_CmdExecute &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[229]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcmp
 <LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
@@ -5180,7 +5180,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[12b]"></a>console_CommandProcess</STRONG> (Thumb, 66 bytes, Stack size 144 bytes, console.o(i.console_CommandProcess))
-<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = console_CommandProcess &rArr; console_CmdExecute &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = console_CommandProcess &rArr; console_CmdExecute &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[267]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strncmp
 <LI><a href="#[269]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;console_ParseLine
@@ -5209,7 +5209,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[268]"></a>console_HelpMessage</STRONG> (Thumb, 72 bytes, Stack size 24 bytes, console.o(i.console_HelpMessage))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = console_HelpMessage &rArr; CONSOLE_PutMessage &rArr; vsprintf
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = console_HelpMessage &rArr; CONSOLE_PutMessage &rArr; console_PutString
 </UL>
 <BR>[Calls]<UL><LI><a href="#[125]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONSOLE_PutMessage
 </UL>
@@ -5248,7 +5248,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[221]"></a>_fp_digits</STRONG> (Thumb, 366 bytes, Stack size 64 bytes, printfa.o(i._fp_digits), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<BR><BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[be]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
@@ -5259,7 +5259,7 @@ Local Symbols
 </UL>
 
 <P><STRONG><a name="[21f]"></a>_printf_core</STRONG> (Thumb, 1744 bytes, Stack size 136 bytes, printfa.o(i._printf_core), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
+<BR><BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uldivmod
 <LI><a href="#[225]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
 <LI><a href="#[223]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_pre_padding
 <LI><a href="#[224]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_post_padding

@@ -109,8 +109,9 @@ void MH_EpwmSetOutMode(EPWM_T *epwm, uint32_t ch_mask, uint32_t mode)
  */
 int32_t MH_EpwmRegInit(MH_EpwmRegConfig_t *pHandle)
 {
-    uint32_t epwm_ch = BIT(pHandle->EpwmChU) | BIT(pHandle->EpwmChV) | BIT(pHandle->EpwmChW);
-	/* Enable EPWM module clock */
+    uint32_t epwm_ch_mask = BIT(pHandle->EpwmChU) | BIT(pHandle->EpwmChV) | BIT(pHandle->EpwmChW);
+
+    /* Enable EPWM module clock */
 	MH_EpwmClkSource(pHandle->pInst, MC_ENABLE);
 
 	/* EPWM pin configuration */
@@ -138,7 +139,7 @@ int32_t MH_EpwmRegInit(MH_EpwmRegConfig_t *pHandle)
     MH_EPWMSetCntType(pHandle->pInst, pHandle->EpwmChW, EPWM_UP_DOWN_COUNTER);
     MH_EpwmSetCntMode(pHandle->pInst, pHandle->EpwmChW, MH_EPWM_CNT_MODE_AUTO_RELOAD);
 
-    MH_EpwmSetOutMode(pHandle->pInst, epwm_ch, MH_EPWM_OUTPUT_MODE_INDEPENDENT);
+    MH_EpwmSetOutMode(pHandle->pInst, epwm_ch_mask, MH_EPWM_OUTPUT_MODE_INDEPENDENT);
 
 	/* ZPCTLn=01:EPWM zero point output Low. */
 	//pHandle->pInst->WGCTL0 = 0x00000111;
@@ -146,7 +147,7 @@ int32_t MH_EpwmRegInit(MH_EpwmRegConfig_t *pHandle)
 	/* CMPDCTLn=01:EPWM compare down point output Low.
 	   CMPUCTLn=10:EPWM compare up point output High. */
 	//pHandle->pInst->WGCTL1 = 0x01110222;
-    EPWM_SET_OUTPUT_LEVEL(pHandle->pInst, epwm_ch,
+    EPWM_SET_OUTPUT_LEVEL(pHandle->pInst, epwm_ch_mask,
                             EPWM_OUTPUT_LOW,
                             EPWM_OUTPUT_HIGH,
                             EPWM_OUTPUT_NOTHING,
@@ -186,15 +187,15 @@ int32_t MH_EpwmRegInit(MH_EpwmRegConfig_t *pHandle)
 
 	/* Set EPWM Counter Enable Register Ch0,Ch2,Ch4*/
 	//pHandle->pInst->CNTEN = 0x00000015;
-	EPWM_Start(pHandle->pInst, epwm_ch);
+	EPWM_Start(pHandle->pInst, epwm_ch_mask);
 
 	/* Set EPWM Output Enable Register Ch0,Ch2,Ch4*/
 	//pHandle->pInst->POEN = 0x00000015;
-	EPWM_EnableOutput(pHandle->pInst, epwm_ch);
+	EPWM_EnableOutput(pHandle->pInst, epwm_ch_mask);
 
 	/* Set EPWM Synchronous Start Control Register */
 	//pHandle->pInst->SSCTL = 0x00000115;
-	EPWM_ENABLE_TIMER_SYNC(pHandle->pInst, epwm_ch, EPWM_SSCTL_SSRC_EPWM1);
+	EPWM_ENABLE_TIMER_SYNC(pHandle->pInst, epwm_ch_mask, EPWM_SSCTL_SSRC_EPWM1);
 
 	/* Set EPWM Synchronous Start Trigger Register */
 	//pHandle->pInst->SSTRG = 1;
@@ -211,6 +212,7 @@ int32_t MH_EpwmRegInit(MH_EpwmRegConfig_t *pHandle)
 	/* Set Priority High */
 	NVIC_SetPriority(pHandle->IrqType, NVIC_EncodePriority(MC_INT_PRIORITY_GROUP, pHandle->PreemptPrio, pHandle->SubPrio));
 	NVIC_EnableIRQ(pHandle->IrqType);
+
 	return MCSTS_OK;
 } /* End of MH_EpwmRegInit() */
 
