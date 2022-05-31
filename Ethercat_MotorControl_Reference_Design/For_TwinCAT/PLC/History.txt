@@ -1,0 +1,16 @@
+//========================================================================
+// AX58200 MotorControl PLC File Revision History
+// File Name: AX58200_MotorControl_vX_X_X.tpzip
+//
+// This document describes the major changes, additions and bug fixes made 
+// to the AX58200_MotorControl_vX_X_X.tpzip.
+//========================================================================
+===========================
+Version 1.1.0  (2021-10-08)
+===========================
+1. Supported CSP/Homing demonstration.
+
+===========================
+Version 1.0.0  (2020-03-14)
+===========================
+1. First release for AX58200 motor control reference design.

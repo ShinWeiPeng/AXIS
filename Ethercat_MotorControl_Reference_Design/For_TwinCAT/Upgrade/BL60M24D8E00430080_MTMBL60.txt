@@ -1,0 +1,125 @@
+# 
+# Title: Servo Parameter Configuration File
+# Firmware Version/Date: 0/0
+# Date Time: 2021-10-04 10:11:34 AM
+# 
+
+
+# SDO Parameter Block
+sdo1000=0x00000000
+sdo6502=0x00000000
+sdo1018=0x00000000
+
+
+# DAS Parameter Block
+
+
+# PDO Parameter Block
+pdoPOS=0
+pdoVEL=0
+pdoTRQ=0
+pdoMXC=1000
+
+
+# Command Parameter Block
+
+
+# Segment Parameter Block
+segMAX=1000
+segACC=10
+segDEC=10
+
+
+# Force Assistant Parameter Block
+
+
+# Position Control Loop Parameter Block
+posMXE=500
+posMXI=10000
+posMXO=1000
+posKP=50
+posKI=30
+posDIV=1
+
+
+# Speed Control Loop Parameter Block
+spdMXE=300
+spdMXI=10000
+spdMXO=1000
+spdKP=800
+spdKI=1200
+spdFLT=16
+
+
+# Current Control Loop Parameter Block
+ampMXE=300
+ampMXI=10000
+ampMXO=1000
+ampKP=80
+ampKI=1000
+ampFLT=100
+
+
+# EtherCAT Parameter Block
+
+
+# Hardware I/O Parameter Block
+iopMOD=3
+
+
+# SVPWM Parameter Block
+pwmINV=0
+
+
+# Vector Control Parameter Block
+uvwRDY=0
+uvwDEG0=179
+
+
+# ADC Parameter Block
+adcK=610
+adcSTD=4
+adcDLY=1
+
+
+# Angle Parameter Block
+angABS0=0
+angIDX0=0
+angREL0=0
+angABS=10000
+angREL=10000
+angPOLE=4
+angGEAR=1
+angINV=0x00000003
+angKN=1
+angKD=1
+
+
+# Incremental Encoder Parameter Block
+abzENB=1
+abzFLT=2
+abzINV=0
+
+
+# Hall Sensor Parameter Block
+halENB=0
+
+
+# BiSS-C abolute encoder Parameter Block
+bisENB=0
+bisBITS=0
+bisMASK=0x00000000
+
+
+# Debug Parameter Block
+
+
+# System Parameter Block
+
+
+# LED Parameter Block
+
+
+# System Extendtion Parameter Block
+romVERS=21000100
+romDATE=20210729

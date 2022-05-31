@@ -1,0 +1,16 @@
+//======================================================================
+// AX58200 MotorControl Firmware Revision History
+//
+// This document describes the major changes, additions and bug fixes made 
+// to the AX58200 MotorControl Firmware between released versions. 
+/=======================================================================
+===========================
+Version 2.0.0  (2021-10-08)
+===========================
+1. Changed control algorithm from six-steps to FOC.
+2. Supported position control and encoder alignment.
+
+===========================
+Version 1.0.0  (2020-03-14)
+===========================
+1. First release

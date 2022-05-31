@@ -1,0 +1,13 @@
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\bin\armproc.dll" 
+
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\..\..\..\Nuvoton Tools\Nu-Link_IAR\Nu-Link_IAR.dll" 
+
+"C:\Users\Medusa\Desktop\AX58200_Workspace\AX58200_MotorControl_Firmware_v2.0.0_Source\SampleCode\Ethercat_MotorControl_Reference_Design\IAR\Release\Exe\MotorControl.out" 
+
+--plugin "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\bin\armbat.dll" 
+
+--flash_loader "C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.2\arm\config\flashloader\Nuvoton\M481_APROM.board" 
+
+
+
+

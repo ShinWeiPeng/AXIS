@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<SscToolConfiguration SSCVersion="5.12" VendorID="#x00000b95" VendorName="ASIX Electronics Corporation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Configurations>
+		<Configuration Name="ASIX AX58200 | Motor Control" Version="1.0.0.0" Info="Shall be set if the Slave code executes on an AX58200 device (CPU: ARM Cortex-M4). The application should run on an AX58200 evaluation board
+from ASIX Electronics and requires the SDK for building the project. This file is included in the ASIX AX58200 SDK (http://www.asix.com.tw/). Please contact ASIX Electronics Corporation for any further information." Patch="ApplyAsixChange.patch">
+			<Setting CodeDefine="MCI_HW" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="TIESC_HW" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="EL9800_HW" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="FC1100_HW" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="AL_EVENT_ENABLED" Value="1"></Setting>
+			<Setting CodeDefine="DC_SUPPORTED" Value="1"></Setting>
+			<Setting CodeDefine="_PIC18" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="_PIC24" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="EL9800_APPLICATION" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="TEST_APPLICATION" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="SAMPLE_APPLICATION" Value="0"></Setting>
+			<Setting CodeDefine="SAMPLE_APPLICATION_INTERFACE" Value="0"></Setting>
+			<Setting CodeDefine="ESC_16BIT_ACCESS" Value="0"></Setting>
+			<Setting CodeDefine="ESC_32BIT_ACCESS" Value="0"></Setting>
+			<Setting CodeDefine="MBX_16BIT_ACCESS" Value="1"></Setting>
+			<Setting CodeDefine="BIG_ENDIAN_16BIT" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="BIG_ENDIAN_FORMAT" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="CONTROLLER_32BIT" Value="1">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="CONTROLLER_16BIT" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="OBJ_DWORD_ALIGN" Value="1"></Setting>
+			<Setting CodeDefine="OBJ_WORD_ALIGN" Value="0"></Setting>
+			<Setting CodeDefine="MAILBOX_QUEUE" Value="1"></Setting>
+			<Setting CodeDefine="AOE_SUPPORTED" Value="0"></Setting>
+			<Setting CodeDefine="COE_SUPPORTED" Value="1"></Setting>
+			<Setting CodeDefine="COMPLETE_ACCESS_SUPPORTED" Value="1"></Setting>
+			<Setting CodeDefine="SEGMENTED_SDO_SUPPORTED" Value="1"></Setting>
+			<Setting CodeDefine="BACKUP_PARAMETER_SUPPORTED" Value="0"></Setting>
+			<Setting CodeDefine="SDO_RES_INTERFACE" Value="1"></Setting>
+			<Setting CodeDefine="DIAGNOSIS_SUPPORTED" Value="0"></Setting>
+			<Setting CodeDefine="USE_SINGLE_PDO_MAPPING_ENTRY_DESCR" Value="0"></Setting>
+			<Setting CodeDefine="EMERGENCY_SUPPORTED" Value="0"></Setting>
+			<Setting CodeDefine="EOE_SUPPORTED" Value="0"></Setting>
+			<Setting CodeDefine="FOE_SUPPORTED" Value="1"></Setting>
+			<Setting CodeDefine="BOOTSTRAPMODE_SUPPORTED" Value="1"></Setting>
+			<Setting CodeDefine="EXPLICIT_DEVICE_ID" Value="0"></Setting>
+			<Setting CodeDefine="VOE_SUPPORTED" Value="0"></Setting>
+			<Setting CodeDefine="SOE_SUPPORTED" Value="0"></Setting>
+			<Setting CodeDefine="ESC_SM_WD_SUPPORTED" Value="1"></Setting>
+			<Setting CodeDefine="OP_PD_REQUIRED" Value="0"></Setting>
+			<Setting CodeDefine="UC_SET_ECAT_LED" Value="0"></Setting>
+			<Setting CodeDefine="ESC_SUPPORT_ECAT_LED" Value="0"></Setting>
+			<Setting CodeDefine="ECAT_TIMER_INT" Value="1"></Setting>
+            <Setting CodeDefine="MIN_PD_CYCLE_TIME" Value="0x00030D40"></Setting>
+			<Setting CodeDefine="EXT_DEBUGER_INTERFACE" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="CiA402_DEVICE" Value="1"></Setting>
+			<Setting CodeDefine="STATIC_OBJECT_DIC" Value="0">
+				<Flags Visible="False"></Flags>
+			</Setting>
+			<Setting CodeDefine="ESC_EEPROM_ACCESS_SUPPORT" Value="1"></Setting>
+			<Setting CodeDefine="ESC_EEPROM_EMULATION" Value="0"></Setting>
+			<Setting CodeDefine="USE_DEFAULT_MAIN" Value="0"></Setting>
+			<Setting CodeDefine="ESC_CONFIG_DATA" Value="050e03440a00000000001a000000"></Setting>
+			<Setting CodeDefine="HW_ACCESS_FILE" Value="#include &quot;AX58200_Hw.h&quot;"></Setting>
+			<Setting CodeDefine="STRUCT_PACKED_END" Value=""></Setting>
+			<Setting CodeDefine="MBX_STRUCT_PACKED_END" Value=""></Setting>
+			<Setting CodeDefine="MAKE_HUGE_PTR" Value=""></Setting>
+			<Setting CodeDefine="APPLICATION_FILE" Value=""></Setting>
+            <Setting CodeDefine="VENDOR_ID" Value="0x00000b95"></Setting>
+            <Setting CodeDefine="VENDOR_NAME" Value="ASIX Electronics Corporation"></Setting>
+            <Setting CodeDefine="VENDOR_IMAGE" Value="424D360300000000000036000000280000001000000010000000010018000000000000030000C40E0000C40E00000000000000000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7A1B067A1B067A1B067A1B067A1B067A1B067A1B067A1B067A1B067A1B06FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7A1B067A1B06CFB3AECFB3AECFB3AECFB3AECFB3AECFB3AECFB3AECFB3AE7A1B067A1B06FFFFFFFFFFFFFFFFFF7A1B06CFB3AE7A1B067A1B067A1B06CFB3AEFFFFFFFFFFFFCFB3AE7A1B067A1B067A1B06CFB3AE7A1B06FFFFFF7A1B06CFB3AECFB3AECFB3AE7A1B067A1B067A1B06FFFFFFFFFFFF7A1B067A1B067A1B06CFB3AECFB3AECFB3AE7A1B067A1B06FFFFFFCFB3AEFFFFFF7A1B067A1B067A1B067A1B067A1B067A1B067A1B067A1B06FFFFFFCFB3AEFFFFFF7A1B067A1B06CFB3AECFB3AECFB3AE7A1B067A1B067A1B067A1B067A1B067A1B067A1B067A1B06CFB3AECFB3AECFB3AE7A1B067A1B06FFFFFFCFB3AEFFFFFFCFB3AE7A1B067A1B067A1B067A1B067A1B067A1B06CFB3AEFFFFFFCFB3AEFFFFFF7A1B067A1B06CFB3AECFB3AECFB3AECFB3AE7A1B067A1B067A1B067A1B067A1B067A1B06CFB3AECFB3AECFB3AECFB3AE7A1B067A1B06FFFFFFCFB3AEFFFFFFCFB3AEFFFFFF7A1B067A1B067A1B067A1B06FFFFFFCFB3AEFFFFFFCFB3AEFFFFFF7A1B06FFFFFF7A1B06CFB3AECFB3AECFB3AECFB3AE7A1B067A1B067A1B067A1B06CFB3AECFB3AECFB3AECFB3AE7A1B06FFFFFFFFFFFFFFFFFF7A1B06FFFFFFCFB3AEFFFFFF7A1B067A1B067A1B067A1B06FFFFFFCFB3AEFFFFFF7A1B06FFFFFFFFFFFFFFFFFFFFFFFF7A1B067A1B06CFB3AECFB3AECFB3AE7A1B067A1B06CFB3AECFB3AECFB3AE7A1B067A1B06FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7A1B06FFFFFFCFB3AE7A1B067A1B06CFB3AEFFFFFF7A1B06FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7A1B067A1B067A1B067A1B067A1B067A1B06FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"></Setting>
+            <Setting CodeDefine="GROUP_IMAGE" Value="424DD6020000000000003600000028000000100000000E0000000100180000000000A0020000120B0000120B00000000000000000000FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF0000FFFF00FFFF00FFFF00FF0000FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF0000FFFF00FFFF00FF0000FF0000FF0000FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF0000FF0000FF0000FFFF00FFFF00FF0000FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF0000FFFF00FFFF00FFFF00FF0000FFFF00FF008000008000008000008000008000008000008000008000404040404040404040404040404040404040404040404040008000007FFF007FFF00800000800000800000800000800040404000800000800000800000800000800000800040404000800000800000800000800000800000800000800000800040404000800000800000800000800000800000800040404000800000800000800000800000800000800000800000800040404000800000800000800000800000800000800040404000800000800000800000800000800000800000800000800040404040404040404040404040404040404040404040404000800000800000800000800000800000800000800000800000800000800000800000800000800000800000800000800000800000FFFF00800000FFFF00800000800000FFFF00800000FFFF00800000800000800000FFFF00800000FFFF00800000800000800000800000800000800000800000800000800000800000800000800000800000800000800000800000800000800000FFFF00800000FFFF00800000800000FFFF00800000FFFF00800000800000800000FFFF00800000FFFF008000008000008000008000008000008000008000008000008000008000008000008000008000008000008000008000008000"></Setting>
+			<Setting CodeDefine="DEVICE_IMAGE" Value=""></Setting>
+            <Setting CodeDefine="GROUP_NAME" Value="AX58200_EVB"></Setting>
+			<Setting CodeDefine="PRODUCT_CODE" Value="0x80000300"></Setting>
+			<Setting CodeDefine="REVISION_NUMBER" Value="0x00312000"></Setting>
+			<Setting CodeDefine="DEVICE_NAME" Value="AX58200_MotorControl"></Setting>
+			<Setting CodeDefine="DEVICE_HW_VERSION" Value="2.0.0"></Setting>
+            <Setting CodeDefine="DEVICE_SW_VERSION" Value="2.0.0"></Setting>
+			<File Name="AX58200_Hw.c" Type="source" Path="files\">
+				<Flags HwFile="true"></Flags>This file is included in the ASIX AX58200 BSP</File>
+			<File Name="AX58200_Hw.h" Type="header" Path="files\">
+				<Flags HwFile="true"></Flags>This file is included in the ASIX AX58200 BSP</File>
+            <File Name="AX58200_MotorControl.c" Type="source" Path="files\">
+				<Flags ApplFile="true"></Flags>This file is included in the ASIX AX58200 BSP</File>
+            <File Name="AX58200_MotorControl.h" Type="header" Path="files\">
+				<Flags ApplFile="true"></Flags>This file is included in the ASIX AX58200 BSP</File>
+			<File Name="AX58200_FoeAppl.c" Type="source" Path="files\">
+				<Flags HwFile="true"></Flags>This file is included in the ASIX AX58200 BSP</File>
+			<File Name="AX58200_FoeAppl.h" Type="header" Path="files\">
+				<Flags HwFile="true"></Flags>This file is included in the ASIX AX58200 BSP</File>
+		</Configuration>
+	</Configurations>
+</SscToolConfiguration>

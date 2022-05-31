@@ -1,0 +1,1 @@
+%1\FileInfoAdder.exe %1\Debug\Exe\MotorControl.bin %1..\For_TwinCAT\Upgrade\AX58200_MotorControl.efw
