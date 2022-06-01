@@ -1,9 +1,0 @@
-.\objects\ecatcoe.o: ..\For_SSC_Tool\Src\ecatcoe.c
-.\objects\ecatcoe.o: ..\For_SSC_Tool\Src\ecat_def.h
-.\objects\ecatcoe.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\ecatcoe.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\ecatcoe.o: ..\For_SSC_Tool\Src\sdoserv.h
-.\objects\ecatcoe.o: ..\For_SSC_Tool\Src\ecatcoe.h
-.\objects\ecatcoe.o: ..\For_SSC_Tool\Src\mailbox.h
-.\objects\ecatcoe.o: ..\For_SSC_Tool\Src\ecatcoe.h
-.\objects\ecatcoe.o: ..\For_SSC_Tool\Src\mailbox.h
