@@ -171,11 +171,16 @@ void MI_Park(MCMATH_AB_PHASE_T *pPhaseAB)
  * Note:
  * ----------------------------------------------------------------------------
  */
+#define MC_LAMBDA 0.00811523
+#define MC_KE 0.03975637
+#define MC_LQ 0.0000047304
+#define MC_LD 0.0000046008
 MCMATH_AB_PHASE_T MI_RevPark(void)
 {
 	MCMATH_DQ_PHASE_T phase_dq;
 	MCMATH_AB_PHASE_T phase_ab;
 	static int d_sum = 0, q_sum = 0;
+	int wr, decouple_q, decouple_d;
 
 	phase_ab.Alpha = 0;
 	phase_ab.Beta = 0;
@@ -195,10 +200,15 @@ MCMATH_AB_PHASE_T MI_RevPark(void)
 		pwmDEG = uvwDEG + ((iopSPD * uvwKO) / 4096);
 	}
 
+	wr = iopANG * angPOLE / angREL * 2 * 3.14159 * 20000 / 1000;
+
 	/* Do filtering on axis-D/Q */
-	phase_dq.Direct = d_sum / pwmFLT;
+	decouple_d = ampCMD * MC_LQ * wr;
+	phase_dq.Direct = d_sum / pwmFLT - decouple_d;
 	d_sum += (iopVD - phase_dq.Direct);
-	phase_dq.Quadrature = q_sum / pwmFLT;
+
+	decouple_q = wr * MC_LAMBDA;
+	phase_dq.Quadrature = q_sum / pwmFLT + decouple_q;
 	q_sum += (iopVQ - phase_dq.Quadrature);
 
 	/* Calculate mapped value on axis-A/B */
