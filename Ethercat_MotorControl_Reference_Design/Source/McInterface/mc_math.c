@@ -173,8 +173,8 @@ void MI_Park(MCMATH_AB_PHASE_T *pPhaseAB)
  */
 #define MC_LAMBDA 0.00811523
 #define MC_KE 0.03975637
-#define MC_LQ 0.0000047304
-#define MC_LD 0.0000046008
+#define MC_LQ 0.0047304
+#define MC_LD 0.0046008
 MCMATH_AB_PHASE_T MI_RevPark(void)
 {
 	MCMATH_DQ_PHASE_T phase_dq;
@@ -200,7 +200,7 @@ MCMATH_AB_PHASE_T MI_RevPark(void)
 		pwmDEG = uvwDEG + ((iopSPD * uvwKO) / 4096);
 	}
 
-	wr = iopANG * angPOLE / angREL * 2 * 3.14159 * 20000 / 1000;
+	wr = iopANG * 0.1 * 0.01 * 4 * angPOLE / angREL * 2 * 3.14159 * 20000 / 1000;
 
 	/* Do filtering on axis-D/Q */
 	decouple_d = ampCMD * MC_LQ * wr;
