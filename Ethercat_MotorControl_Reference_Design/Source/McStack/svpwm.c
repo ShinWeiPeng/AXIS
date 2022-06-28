@@ -30,6 +30,8 @@
 
 /* INCLUDE FILE DECLARATIONS */
 #include "svpwm.h"
+#include "typedef.h"
+#include "math.h"
 
 /* NAMING CONSTANT DECLARATIONS */
 
@@ -70,6 +72,26 @@ void MS_MapPwmBlkInit(void)
 	pwmBRK = 0;
 } /* End of MS_MapPwmBlkInit() */
 
+typedef struct
+{
+    float Nx;
+    float Ny;
+}_MsSvpwm6StepVector;
+
+typedef struct
+{
+    int32_t Max;
+    int32_t Medium;
+    int32_t Min;
+}_MsSvpwm6StepDuty;
+
+void MS_GetSvpwmDuty(_MsSvpwm6StepVector *v, _MsSvpwm6StepDuty *duty)
+{
+    duty->Max = (int32_t)(PWM_DUTY_MAX * (1 - v->Nx - v->Ny)) >> 1;
+    duty->Medium = duty->Max - v->Nx;
+    duty->Min = duty->Medium - v->Ny;
+}
+
 /*
  * ----------------------------------------------------------------------------
  * Function Name: MS_SetPhaseVoltage()
@@ -82,36 +104,52 @@ void MS_MapPwmBlkInit(void)
 void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab)
 {
 	int32_t x, y, z, u, v, w, inv;
+	f32 u_prime[3];
+	_MsSvpwm6StepVector vector;
+	_MsSvpwm6StepDuty duty;
 
 	/* Convert DQ vector to UVW vector */ /* 1774=sqrt(3)*1024 */
 	x = Vab.Beta;
 	y = (Vab.Beta + Vab.Alpha * 1774 / 1024) >> 1;
 	z = (Vab.Beta - Vab.Alpha * 1774 / 1024) >> 1;
 
+	u_prime[0] = x * 0.001 * 1774 / 24 / 1024;
+	u_prime[1] = -z * 0.001 * 1774 / 24 / 1024;
+	u_prime[2] = -y * 0.001 * 1774 / 24 / 1024;
+
 	if (y < 0)
 	{
 		/* sector#5 */
 		if (z< 0)
 		{
-			u=(1000+y-z)>>1;
-			v=u+z;
-			w=u-y;
+		    vector.Nx = u_prime[2];
+		    vector.Ny = u_prime[1];
+		    MS_GetSvpwmDuty(&vector, &duty);
+		    u = duty.Medium;
+		    v = duty.Min;
+		    w = duty.Max;
 			pHandle->Sector = 5;
 		}
 		/* sector#4 */
 		else if (x<=0)
 		{
-			u=(1000+x-z)>>1;
-			v=u+z;
-			w=v-x;
+            vector.Nx = -u_prime[0];
+            vector.Ny = -u_prime[1];
+            MS_GetSvpwmDuty(&vector, &duty);
+            u = duty.Min;
+            v = duty.Medium;
+            w = duty.Max;
 			pHandle->Sector = 4;
 		}
 		/* sector#3 */
 		else
 		{
-			u=(1000+y-x)>>1;
-			w=u-y;
-			v=w+x;
+            vector.Nx = u_prime[0];
+            vector.Ny = u_prime[2];
+            MS_GetSvpwmDuty(&vector, &duty);
+            u = duty.Min;
+            v = duty.Max;
+            w = duty.Medium;
 			pHandle->Sector = 3;
 		}
 	}
@@ -120,25 +158,34 @@ void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab)
 		/* sector#2 */
 		if (z>=0)
 		{
-			u=(1000+y-z)>>1;
-			v=u+z;
-			w=u-y;
+            vector.Nx = -u_prime[1];
+            vector.Ny = -u_prime[2];
+            MS_GetSvpwmDuty(&vector, &duty);
+            u = duty.Medium;
+            v = duty.Max;
+            w = duty.Min;
 			pHandle->Sector = 2;
 		}
 		/* sector#1 */
 		else if (x> 0)
 		{
-			u=(1000+x-z)>>1;
-			v=u+z;
-			w=v-x;
+            vector.Nx = u_prime[1];
+            vector.Ny = u_prime[0];
+            MS_GetSvpwmDuty(&vector, &duty);
+            u = duty.Max;
+            v = duty.Medium;
+            w = duty.Min;
 			pHandle->Sector = 1;
 		}
 		/* sector#6 */
 		else
 		{
-			u=(1000+y-x)>>1;
-			w=u-y;
-			v=w+x;
+            vector.Nx = -u_prime[2];
+            vector.Ny = -u_prime[0];
+            MS_GetSvpwmDuty(&vector, &duty);
+            u = duty.Max;
+            v = duty.Min;
+            w = duty.Medium;
 			pHandle->Sector = 6;
 		}
 	}
@@ -152,9 +199,9 @@ void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab)
 	}
 
 	/* PwmU、PwmV、PwmW+/-1000*/
-	pwmU = (u * 2) - 1000;
-	pwmV = (v * 2) - 1000;
-	pwmW = (w * 2) - 1000;
+	pwmU = u;
+	pwmV = v;
+	pwmW = w;
 
 	/* Set three phase pwm voltage */
 	MH_SET_PWMU_DUTY(pHandle->EpwmRegister.pInst, (pwmMAX - pwmU));
