@@ -74,8 +74,8 @@ void MS_MapPwmBlkInit(void)
 
 typedef struct
 {
-    float Nx;
-    float Ny;
+    int32_t Nx;
+    int32_t Ny;
 }_MsSvpwm6StepVector;
 
 typedef struct
@@ -87,9 +87,51 @@ typedef struct
 
 void MS_GetSvpwmDuty(_MsSvpwm6StepVector *v, _MsSvpwm6StepDuty *duty)
 {
-    duty->Max = (int32_t)(PWM_DUTY_MAX * (1 - v->Nx - v->Ny)) >> 1;
-    duty->Medium = duty->Max - v->Nx;
-    duty->Min = duty->Medium - v->Ny;
+    duty->Min = ((float)PWM_DUTY_MAX * ((float)(1000 - v->Nx - v->Ny) / 1000)) / 2;
+    duty->Medium = duty->Max + v->Nx;
+    duty->Max = duty->Medium + v->Ny;
+}
+
+typedef enum
+{
+    MSSA_SECTION0,
+    MSSA_SECTION1,
+    MSSA_SECTION2,
+    MSSA_SECTION3,
+    MSSA_SECTION4,
+    MSSA_SECTION5,
+    MSSA_SECTION6,
+    MSSA_SECTION7
+}_MsSvpwm6StepArea;
+
+_MsSvpwm6StepArea MS_GetSvpwmArea(int32_t u, int32_t v, int32_t w)
+{
+    uint8_t n = 0;
+    _MsSvpwm6StepArea area;
+
+    if(u > 0)
+        BIT_SET(n, 0);
+
+    if(v > 0)
+        BIT_SET(n, 1);
+
+    if(w > 0)
+        BIT_SET(n, 2);
+
+    if(n == 3)
+        area = MSSA_SECTION1;
+    else if(n == 1)
+        area = MSSA_SECTION2;
+    else if(n == 5)
+        area = MSSA_SECTION3;
+    else if(n == 4)
+        area = MSSA_SECTION4;
+    else if(n == 6)
+        area = MSSA_SECTION5;
+    else
+        area = MSSA_SECTION6;
+
+    return area;
 }
 
 /*
@@ -101,93 +143,87 @@ void MS_GetSvpwmDuty(_MsSvpwm6StepVector *v, _MsSvpwm6StepDuty *duty)
  * Note:
  * ----------------------------------------------------------------------------
  */
+#define VOLTAGE_BUS 24
 void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab)
 {
 	int32_t x, y, z, u, v, w, inv;
-	f32 u_prime[3];
+	int32_t u_prime[3];
 	_MsSvpwm6StepVector vector;
 	_MsSvpwm6StepDuty duty;
+	_MsSvpwm6StepArea area;
 
 	/* Convert DQ vector to UVW vector */ /* 1774=sqrt(3)*1024 */
 	x = Vab.Beta;
-	y = (Vab.Beta + Vab.Alpha * 1774 / 1024) >> 1;
-	z = (Vab.Beta - Vab.Alpha * 1774 / 1024) >> 1;
+	z = (-Vab.Beta - Vab.Alpha * 1774 / 1024) >> 1;
+	y = (-Vab.Beta + Vab.Alpha * 1774 / 1024) >> 1;
 
-	u_prime[0] = x * 0.001 * 1774 / 24 / 1024;
-	u_prime[1] = -z * 0.001 * 1774 / 24 / 1024;
-	u_prime[2] = -y * 0.001 * 1774 / 24 / 1024;
+	u_prime[0] = x * 1774 / VOLTAGE_BUS / 1024;
+	u_prime[1] = y * 1774 / VOLTAGE_BUS / 1024;
+	u_prime[2] = z  * 1774 / VOLTAGE_BUS / 1024;
 
-	if (y < 0)
+	area = MS_GetSvpwmArea(x, y, z);
+	switch(area)
 	{
-		/* sector#5 */
-		if (z< 0)
-		{
-		    vector.Nx = u_prime[2];
-		    vector.Ny = u_prime[1];
-		    MS_GetSvpwmDuty(&vector, &duty);
-		    u = duty.Medium;
-		    v = duty.Min;
-		    w = duty.Max;
-			pHandle->Sector = 5;
-		}
-		/* sector#4 */
-		else if (x<=0)
-		{
-            vector.Nx = -u_prime[0];
-            vector.Ny = -u_prime[1];
-            MS_GetSvpwmDuty(&vector, &duty);
-            u = duty.Min;
-            v = duty.Medium;
-            w = duty.Max;
-			pHandle->Sector = 4;
-		}
-		/* sector#3 */
-		else
-		{
-            vector.Nx = u_prime[0];
-            vector.Ny = u_prime[2];
-            MS_GetSvpwmDuty(&vector, &duty);
-            u = duty.Min;
-            v = duty.Max;
-            w = duty.Medium;
-			pHandle->Sector = 3;
-		}
-	}
-	else
-	{
-		/* sector#2 */
-		if (z>=0)
-		{
-            vector.Nx = -u_prime[1];
-            vector.Ny = -u_prime[2];
-            MS_GetSvpwmDuty(&vector, &duty);
-            u = duty.Medium;
-            v = duty.Max;
-            w = duty.Min;
-			pHandle->Sector = 2;
-		}
-		/* sector#1 */
-		else if (x> 0)
-		{
-            vector.Nx = u_prime[1];
-            vector.Ny = u_prime[0];
-            MS_GetSvpwmDuty(&vector, &duty);
-            u = duty.Max;
-            v = duty.Medium;
-            w = duty.Min;
-			pHandle->Sector = 1;
-		}
-		/* sector#6 */
-		else
-		{
-            vector.Nx = -u_prime[2];
-            vector.Ny = -u_prime[0];
-            MS_GetSvpwmDuty(&vector, &duty);
-            u = duty.Max;
-            v = duty.Min;
-            w = duty.Medium;
-			pHandle->Sector = 6;
-		}
+	case MSSA_SECTION1:
+        vector.Nx = u_prime[1];
+        vector.Ny = u_prime[0];
+        MS_GetSvpwmDuty(&vector, &duty);
+        u = duty.Max;
+        v = duty.Medium;
+        w = duty.Min;
+        pHandle->Sector = 1;
+	    break;
+
+    case MSSA_SECTION2:
+        vector.Nx = -u_prime[1];
+        vector.Ny = -u_prime[2];
+        MS_GetSvpwmDuty(&vector, &duty);
+        u = duty.Medium;
+        v = duty.Max;
+        w = duty.Min;
+        pHandle->Sector = 2;
+        break;
+
+    case MSSA_SECTION3:
+        vector.Nx = u_prime[0];
+        vector.Ny = u_prime[2];
+        MS_GetSvpwmDuty(&vector, &duty);
+        u = duty.Min;
+        v = duty.Max;
+        w = duty.Medium;
+        pHandle->Sector = 3;
+        break;
+
+    case MSSA_SECTION4:
+        vector.Nx = -u_prime[0];
+        vector.Ny = -u_prime[1];
+        MS_GetSvpwmDuty(&vector, &duty);
+        u = duty.Min;
+        v = duty.Medium;
+        w = duty.Max;
+        pHandle->Sector = 4;
+        break;
+
+    case MSSA_SECTION5:
+        vector.Nx = u_prime[2];
+        vector.Ny = u_prime[1];
+        MS_GetSvpwmDuty(&vector, &duty);
+        u = duty.Medium;
+        v = duty.Min;
+        w = duty.Max;
+        pHandle->Sector = 5;
+        break;
+
+    case MSSA_SECTION6:
+    default:
+        vector.Nx = -u_prime[2];
+        vector.Ny = -u_prime[0];
+        MS_GetSvpwmDuty(&vector, &duty);
+        u = duty.Max;
+        v = duty.Min;
+        w = duty.Medium;
+        pHandle->Sector = 6;
+        break;
 	}
 
 	/* when inverse vw change */
@@ -204,9 +240,9 @@ void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab)
 	pwmW = w;
 
 	/* Set three phase pwm voltage */
-	MH_SET_PWMU_DUTY(pHandle->EpwmRegister.pInst, (pwmMAX - pwmU));
-	MH_SET_PWMV_DUTY(pHandle->EpwmRegister.pInst, (pwmMAX - pwmV));
-	MH_SET_PWMW_DUTY(pHandle->EpwmRegister.pInst, (pwmMAX - pwmW));
+	MH_SET_PWMU_DUTY(pHandle->EpwmRegister.pInst, (pwmU));
+	MH_SET_PWMV_DUTY(pHandle->EpwmRegister.pInst, (pwmV));
+	MH_SET_PWMW_DUTY(pHandle->EpwmRegister.pInst, (pwmW));
 } /* End of MS_SetPhaseVoltage() */
 
 /* End of svpwm.c */

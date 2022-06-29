@@ -171,10 +171,11 @@ void MI_Park(MCMATH_AB_PHASE_T *pPhaseAB)
  * Note:
  * ----------------------------------------------------------------------------
  */
-#define MC_LAMBDA 0.00811523
-#define MC_KE 0.03975637
-#define MC_LQ 0.0047304
-#define MC_LD 0.0046008
+#define MOTOR_POLE_PAIR     4
+#define MC_KE               0.03975637
+#define MC_LQ               0.0047304
+#define MC_LD               0.0046008
+#define MC_LAMBDA           sqrt(2/3) * MC_KE / MOTOR_POLE_PAIR
 MCMATH_AB_PHASE_T MI_RevPark(void)
 {
 	MCMATH_DQ_PHASE_T phase_dq;
