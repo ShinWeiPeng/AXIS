@@ -1,12 +1,6 @@
 #ifndef TYPEDEF_H
 #define TYPEDEF_H
 //------------------------------------------------------------
-typedef unsigned char   UCHAR;                   //!< 8 bits unsigned
-typedef unsigned short  USHORT;                 //!< 16 bits unsigned
-typedef unsigned int    UINT;                     //!< 32 bits unsigned
-typedef unsigned long   ULONG;
-
-
 typedef unsigned long long  u64;
 typedef signed long long    s64;
 typedef float               f32;
