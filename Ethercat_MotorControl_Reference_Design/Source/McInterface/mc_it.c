@@ -89,6 +89,8 @@ void PWM_IRQHandler(void)
 	//EPWMx->INTSTS0 = 0x01;
 	EPWM_ClearZeroIntFlag(pHandle->pInst, PwmParamsM1.PwmInfo.EpwmRegister.EpwmChU);
 
+	EPWM_TRIGGER_SYNC_START(pHandle->pInst);
+
 	/* Get current feedback */
 	MS_GetCurr_d(&CurrentParamsM1.CurrInfo);
 	MS_GetBusVoltage_d(&BusVoltageParamsM1.VbusInfo);

@@ -185,10 +185,23 @@ int32_t MH_EpwmRegInit(MH_EpwmRegConfig_t *pHandle)
     EPWM_SetClockSource(pHandle->pInst, pHandle->EpwmChV, EPWM_CLKSRC_EPWM_CLK);
     EPWM_SetClockSource(pHandle->pInst, pHandle->EpwmChW, EPWM_CLKSRC_EPWM_CLK);
 
+    EPWM_ConfigSyncPhase(pHandle->pInst, pHandle->EpwmChU,
+                            EPWM_SYNC_OUT_FROM_COUNT_TO_ZERO,
+                            EPWM_PHS_DIR_INCREMENT, 0);
+    EPWM_ConfigSyncPhase(pHandle->pInst, pHandle->EpwmChV,
+                            EPWM_SYNC_OUT_FROM_COUNT_TO_ZERO,
+                            EPWM_PHS_DIR_INCREMENT, 0);
+    EPWM_ConfigSyncPhase(pHandle->pInst, pHandle->EpwmChW,
+                            EPWM_SYNC_OUT_FROM_COUNT_TO_ZERO,
+                            EPWM_PHS_DIR_INCREMENT, 0);
+    EPWM_EnableSyncPhase(pHandle->pInst, BIT(pHandle->EpwmChV) | BIT(pHandle->EpwmChW));
+
 	/* Set EPWM Counter Enable Register Ch0,Ch2,Ch4*/
 	//pHandle->pInst->CNTEN = 0x00000015;
 	EPWM_Start(pHandle->pInst, epwm_ch_mask);
 
+	EPWM_TRIGGER_SYNC(pHandle->pInst, pHandle->EpwmChU);
+	EPWM_TRIGGER_SYNC(pHandle->pInst, pHandle->EpwmChV);
 	/* Set EPWM Output Enable Register Ch0,Ch2,Ch4*/
 	//pHandle->pInst->POEN = 0x00000015;
 	EPWM_EnableOutput(pHandle->pInst, epwm_ch_mask);
