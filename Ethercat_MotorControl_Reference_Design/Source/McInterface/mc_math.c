@@ -128,7 +128,7 @@ MCMATH_AB_PHASE_T MI_Clake(void)
 	phase_ab.Alpha = u;
 
 	/* 591 = (1/sqrt(3))* 1024 */
-	phase_ab.Beta = ((u + v + v) * 591) >> 10;
+	phase_ab.Beta = ((-u - v - v) * 591) >> 10;
 	return phase_ab;
 } /* End of MI_Clake() */
 

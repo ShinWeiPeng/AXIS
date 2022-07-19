@@ -50,7 +50,7 @@
 
 /* NAMING CONSTANT DECLARATIONS */
 	/* Debug or evaluation requirement */
-#define AX58200_DEBUG_ENABLE        1
+#define AX58200_DEBUG_ENABLE        0
 
 #if (AX58200_DEBUG_ENABLE)
 #include "printd.h"
