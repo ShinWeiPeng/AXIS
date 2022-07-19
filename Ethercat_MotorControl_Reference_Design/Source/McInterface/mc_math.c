@@ -116,6 +116,9 @@ MCMATH_AB_PHASE_T MI_Clake(void)
 {
 	MCMATH_AB_PHASE_T phase_ab;
 	int u, v;
+	static uint16_t i = 0, count_1ms = 0;
+
+	count_1ms++;
 
 	u = adcIU;
 	v = adcIV;
@@ -129,6 +132,25 @@ MCMATH_AB_PHASE_T MI_Clake(void)
 
 	/* 591 = (1/sqrt(3))* 1024 */
 	phase_ab.Beta = ((u + v + v) * 591) >> 10;
+
+	/*
+    if(g_MsSvpwmDbgMessage.record == TRUE)
+
+    {
+        if(count_1ms >= g_MsSvpwmDbgMessage.SamplingTimeMiliSec)
+        {
+            g_MsSvpwmDbgMessage.Buf1[i] = u;
+            g_MsSvpwmDbgMessage.Buf2[i] = v;
+            g_MsSvpwmDbgMessage.Buf3[i] = phase_ab.Alpha;
+            g_MsSvpwmDbgMessage.Buf4[i] = phase_ab.Beta;
+            i++;
+            count_1ms = 0;
+        }
+
+        if(i >= MS_SVPWM_DBG_BUF_MAX)
+            g_MsSvpwmDbgMessage.record = FALSE;
+    }
+    */
 	return phase_ab;
 } /* End of MI_Clake() */
 

@@ -2,14 +2,14 @@
  ******************************************************************************
  * Software License Agreement
  *     Copyright (c) 2021 ASIX Electronics Corporation   All rights reserved.
- * (1) This software is owned by ASIX Electronics Corporation and is protected 
+ * (1) This software is owned by ASIX Electronics Corporation and is protected
  *     under all applicable laws, including copyright laws.
- * (2) This software is provided by ASIX Electronics Corporation, including 
+ * (2) This software is provided by ASIX Electronics Corporation, including
  *     modifications and/or derivative works of this software, are only authorized
- *     for use on ASIX products. 
+ *     for use on ASIX products.
  * (3) Redistribution and use of this software without specific written permission
- *     is void and will automatically terminate your rights under this license. 
- * (4) Redistribution of source code or in binary form must retain/reproduce the 
+ *     is void and will automatically terminate your rights under this license.
+ * (4) Redistribution of source code or in binary form must retain/reproduce the
  *     copyright notice above and the following disclaimer in the documentation or other
  *     materials provided with the distribution.
  *
@@ -44,7 +44,7 @@
 #if (MC_DBGPIN)
 #define DBG_TriggerOutput(x)            MCMISC_TOGGLE_GPIO_PIN(MC_DBG_PORT3, MC_DBG_PIN3)
 #else
-#define DBG_TriggerOutput(x) 
+#define DBG_TriggerOutput(x)
 #endif
 
 	/* Default value */
@@ -66,22 +66,22 @@
 typedef enum{
 	TEST_IDLE = 0,
 	TEST_ROUND_START,
-	TEST_BUSY,	
+	TEST_BUSY,
 	TEST_RUN,
 	TEST_RUN_WAIT,
 	TEST_CHANGE_CONDITION,
 	TEST_ROUND_DONE,
 	TEST_EXIT,
-	TEST_ERROR,	
+	TEST_ERROR,
 	TEST_DONE,
 } TEST_STATE;
 
 typedef enum{
 	TEST_PATTERN_FIXED = 0,
 	TEST_PATTERN_INCREMENT,
-	TEST_PATTERN_DECREMENT,	
+	TEST_PATTERN_DECREMENT,
 	TEST_PATTERN_RANDOM,
-	TEST_MAX_PATTERN_TYPE,	
+	TEST_MAX_PATTERN_TYPE,
 } TEST_PATTERN_TYPE;
 
 typedef enum
@@ -89,35 +89,35 @@ typedef enum
 	TEST_SPI_DATA_SIZE_AUTO = 0,
 	TEST_SPI_1BYTE_DATA     = 1,
 	TEST_SPI_2BYTE_DATA     = 2,
-	TEST_SPI_4BYTE_DATA     = 4,	
+	TEST_SPI_4BYTE_DATA     = 4,
 } TEST_SPI_DATA_SIZE_TYPE;
 
 typedef enum
 {
-	TEST_SPI_ADDR_SIZE_AUTO = 0,	
+	TEST_SPI_ADDR_SIZE_AUTO = 0,
 	TEST_SPI_2BYTE_ADDR     = 2,
 	TEST_SPI_3BYTE_ADDR     = 3,
 } TEST_SPI_ADDR_SIZE_TYPE;
 
 typedef struct{
   TEST_SPI_DATA_SIZE_TYPE  DataSizeInWrite;
-  TEST_SPI_DATA_SIZE_TYPE  DataSizeInRead;	
-  TEST_SPI_ADDR_SIZE_TYPE  AddrSize;		
+  TEST_SPI_DATA_SIZE_TYPE  DataSizeInRead;
+  TEST_SPI_ADDR_SIZE_TYPE  AddrSize;
 } TEST_SPIS_PARAMETER;
 
 typedef struct{
 	uint32_t	LoopCount;
 	uint32_t	LogUpdateTime;
 	uint8_t   DashboardEnabled;
-	
+
 	/* PDI memory test parameters */
 	uint32_t  StartAddress;
-	uint32_t  EndAddress;	
+	uint32_t  EndAddress;
 	uint32_t  PatternType;
 	uint32_t  Range;
-	uint8_t   InitData[TEST_INIT_DATA_BUF_SIZE];	
+	uint8_t   InitData[TEST_INIT_DATA_BUF_SIZE];
 	uint32_t	InitDataLen;
-	
+
 	TEST_SPIS_PARAMETER	Spis;
 } TEST_PARAMETER;
 
@@ -127,9 +127,9 @@ typedef struct{
 	uint32_t Hour;
 	uint32_t Day;
 	uint32_t RunFlag;
-	uint32_t TickCnt;	
-	
-	uint32_t DownCounter[TEST_MAX_DOWN_COUNT];	
+	uint32_t TickCnt;
+
+	uint32_t DownCounter[TEST_MAX_DOWN_COUNT];
 } TEST_TIME;
 
 typedef struct{
@@ -137,51 +137,51 @@ typedef struct{
 	uint32_t OkCnt;
 	uint32_t ErrorCnt;
 	uint8_t  *pErrMsg;
-	
+
 } TEST_RECORD;
 
 typedef struct{
 	uint32_t DataSizeInWrite;
-	uint32_t DataSizeInRead;	
+	uint32_t DataSizeInRead;
 	uint32_t AddrSizeInWrite;
 	uint32_t AddrSizeInRead;
 } TEST_SPIS_TEMP;
 
 typedef struct{
 	uint32_t  Type;
-	uint8_t 	Data[TEST_INIT_DATA_BUF_SIZE];	
-	uint32_t	DataLen;	
-	uint32_t	Seed;		
+	uint8_t 	Data[TEST_INIT_DATA_BUF_SIZE];
+	uint32_t	DataLen;
+	uint32_t	Seed;
 } TEST_PATTERN_TEMP;
 
 typedef struct{
 	/* General use */
-	uint32_t	CtrlFlags;	
-	uint8_t  	HostInterfaceErrorStatus;	
+	uint32_t	CtrlFlags;
+	uint8_t  	HostInterfaceErrorStatus;
 	uint32_t	RandomCaseCounter[TEST_MAX_RANDOM_COUNT];
-	
-	/* Memory test */	
+
+	/* Memory test */
 	uint8_t	  TxBuf[TEST_TX_BUF_SIZE];
-	uint32_t	TxLen;	
+	uint32_t	TxLen;
 	uint8_t	  RxBuf[TEST_RX_BUF_SIZE];
 	uint32_t	RxLen;
 	uint32_t	RemainLen;
 	uint32_t	AddrOffset;
 	TEST_PATTERN_TEMP Pattern;
-	
-	/* SPI Slave test */	
+
+	/* SPI Slave test */
 	TEST_SPIS_TEMP Spis;
-	
+
 } TEST_TEMP;
 
 typedef struct{
 	void           *pDbgObj;
-	uint32_t				State;	
+	uint32_t				State;
 	uint32_t				Terminated;
 	TEST_RECORD			Record;
 	TEST_PARAMETER	Parameter;
-	TEST_TEMP				Temp;	
-	
+	TEST_TEMP				Temp;
+
 } TEST_CONTROL;
 
 /* GLOBAL VARIABLES */

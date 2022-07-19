@@ -53,10 +53,22 @@ typedef struct
 	uint8_t Sector;                    /**< the space vector sector number */
 } MS_Epwm_Handle_t;
 
+#define MS_SVPWM_DBG_BUF_MAX 5000
+typedef struct
+{
+    int32_t Buf1[MS_SVPWM_DBG_BUF_MAX];
+    int32_t Buf2[MS_SVPWM_DBG_BUF_MAX];
+    int32_t Buf3[MS_SVPWM_DBG_BUF_MAX];
+    uint8_t Buf4[MS_SVPWM_DBG_BUF_MAX];
+    uint8_t SamplingTimeMiliSec;
+    uint8_t record;
+    uint8_t DelaySecond;
+}_MsSvpwmDbg;
+
 /* MACRO DECLARATIONS */
 
 /* GLOBAL VARIABLES */
-
+extern _MsSvpwmDbg g_MsSvpwmDbgMessage;
 /* EXPORTED SUBPROGRAM SPECIFICATIONS */
 void MS_MapPwmBlkInit(void);
 void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab);

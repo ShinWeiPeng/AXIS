@@ -2,14 +2,14 @@
  ******************************************************************************
  * Software License Agreement
  *     Copyright (c) 2021 ASIX Electronics Corporation   All rights reserved.
- * (1) This software is owned by ASIX Electronics Corporation and is protected 
+ * (1) This software is owned by ASIX Electronics Corporation and is protected
  *     under all applicable laws, including copyright laws.
- * (2) This software is provided by ASIX Electronics Corporation, including 
+ * (2) This software is provided by ASIX Electronics Corporation, including
  *     modifications and/or derivative works of this software, are only authorized
- *     for use on ASIX products. 
+ *     for use on ASIX products.
  * (3) Redistribution and use of this software without specific written permission
- *     is void and will automatically terminate your rights under this license. 
- * (4) Redistribution of source code or in binary form must retain/reproduce the 
+ *     is void and will automatically terminate your rights under this license.
+ * (4) Redistribution of source code or in binary form must retain/reproduce the
  *     copyright notice above and the following disclaimer in the documentation or other
  *     materials provided with the distribution.
  *
@@ -88,7 +88,7 @@ UALEVENT		EscALEvent;
 /* LOCAL SUBPROGRAM DECLARATIONS */
 static INT32 HW_SPI_Init(void);
 static INT32 HW_SPI_DeInit(void);
-static void HW_SPI_Read(HW_SPI_OBJECT* pSpiObj, UINT8 *pBuf, UINT16 Addr, UINT16 ByteLen);
+static void HW_SPI_Read(HW_SPI_OBJECT* pSpiObj, UINT8 *pBuf, UINT32 Addr, UINT16 ByteLen);
 static void HW_SPI_Write(HW_SPI_OBJECT* pSpiObj, UINT8 *pData, UINT16 Addr, UINT16 ByteLen);
 static INT32 HW_CheckVendorProductID(void);
 
@@ -106,7 +106,7 @@ INT32 HW_MultiFuncPins(GPIO_T* Instance, UINT32 Pins, UINT8 MultiFuncValue)
 {
 	UINT32	i, bitMask=0x1ul, funcMask=0xful, mfunc=(MultiFuncValue & 0xful);
 	UINT32	*pGPx_MFPL=0, *pGPx_MFPH=0;;
-	
+
 	if (Instance == PA)
 	{
 		pGPx_MFPL = (UINT32*)&SYS->GPA_MFPL;
@@ -120,40 +120,40 @@ INT32 HW_MultiFuncPins(GPIO_T* Instance, UINT32 Pins, UINT8 MultiFuncValue)
 	else if (Instance == PC)
 	{
 		pGPx_MFPL = (UINT32*)&SYS->GPC_MFPL;
-		pGPx_MFPH = (UINT32*)&SYS->GPC_MFPH;	
-	}	
+		pGPx_MFPH = (UINT32*)&SYS->GPC_MFPH;
+	}
 	else if (Instance == PD)
 	{
 		pGPx_MFPL = (UINT32*)&SYS->GPD_MFPL;
-		pGPx_MFPH = (UINT32*)&SYS->GPD_MFPH;		
-	}	
+		pGPx_MFPH = (UINT32*)&SYS->GPD_MFPH;
+	}
 	else if (Instance == PE)
 	{
 		pGPx_MFPL = (UINT32*)&SYS->GPE_MFPL;
-		pGPx_MFPH = (UINT32*)&SYS->GPE_MFPH;		
-	}	
+		pGPx_MFPH = (UINT32*)&SYS->GPE_MFPH;
+	}
 	else if (Instance == PF)
 	{
 		pGPx_MFPL = (UINT32*)&SYS->GPF_MFPL;
-		pGPx_MFPH = (UINT32*)&SYS->GPF_MFPH;	
-	}	
+		pGPx_MFPH = (UINT32*)&SYS->GPF_MFPH;
+	}
 	else if (Instance == PG)
 	{
 		pGPx_MFPL = (UINT32*)&SYS->GPG_MFPL;
-		pGPx_MFPH = (UINT32*)&SYS->GPG_MFPH;		
-	}	
+		pGPx_MFPH = (UINT32*)&SYS->GPG_MFPH;
+	}
 	else if (Instance == PH)
 	{
 		pGPx_MFPL = (UINT32*)&SYS->GPH_MFPL;
-		pGPx_MFPH = (UINT32*)&SYS->GPH_MFPH;		
-	}	
+		pGPx_MFPH = (UINT32*)&SYS->GPH_MFPH;
+	}
 	else
 	{
 		/* Unsupported port number */
 		DBG_PRINT("Unsupported port.(0x%lx)\r\n", (UINT32)Instance);
 		return -1;
 	}
-	
+
 	for (i=0; i<GPIO_PIN_MAX; i++)
 	{
 		if (Pins & bitMask)
@@ -164,7 +164,7 @@ INT32 HW_MultiFuncPins(GPIO_T* Instance, UINT32 Pins, UINT8 MultiFuncValue)
 				(*pGPx_MFPL) &= ~funcMask;
 
 				/* Config multi-function in MFPL reg. */
-				(*pGPx_MFPL) |= mfunc;					
+				(*pGPx_MFPL) |= mfunc;
 			}
 			else
 			{
@@ -172,7 +172,7 @@ INT32 HW_MultiFuncPins(GPIO_T* Instance, UINT32 Pins, UINT8 MultiFuncValue)
 				(*pGPx_MFPH) &= ~funcMask;
 
 				/* Config multi-function in MFPH reg. */
-				(*pGPx_MFPH) |= mfunc;		
+				(*pGPx_MFPH) |= mfunc;
 			}
 		}
 		bitMask <<= 1;
@@ -186,9 +186,9 @@ INT32 HW_MultiFuncPins(GPIO_T* Instance, UINT32 Pins, UINT8 MultiFuncValue)
 			funcMask <<= 4;
 			mfunc <<= 4;
 		}
-	}	
+	}
 	return 0;
-	
+
 } /* End of HW_MultiFuncPins() */
 
 /*
@@ -210,7 +210,7 @@ void HW_GPIO_WritePin(GPIO_T* Instance, UINT32 Pin, UINT8 NewState)
 	{
 		Instance->DOUT &= (~Pin);
 	}
-	
+
 } /* End of HW_GPIO_WritePin() */
 
 /*
@@ -225,7 +225,7 @@ void HW_GPIO_WritePin(GPIO_T* Instance, UINT32 Pin, UINT8 NewState)
 void HW_GPIO_TogglePin(GPIO_T* Instance, UINT32 Pin)
 {
 	Instance->DOUT ^= Pin;
-	
+
 } /* End of HW_GPIO_WritePin() */
 
 /*
@@ -240,7 +240,7 @@ void HW_GPIO_TogglePin(GPIO_T* Instance, UINT32 Pin)
 UINT8 HW_GPIO_ReadPin(GPIO_T* Instance, UINT32 Pin)
 {
 	return ((Instance->PIN & Pin) ? 1 : 0);
-	
+
 } /* End of HW_GPIO_ReadPin() */
 
 /*
@@ -259,55 +259,55 @@ void HW_TMR_ClkSource(TIMER_T* Instance, UINT32 NewState)
 		if (NewState == ENABLE)
 		{
 			CLK_EnableModuleClock(TMR0_MODULE);
-			CLK_SetModuleClock(TMR0_MODULE, CLK_CLKSEL1_TMR0SEL_HXT, 0);			
+			CLK_SetModuleClock(TMR0_MODULE, CLK_CLKSEL1_TMR0SEL_HXT, 0);
 		}
 		else
 		{
 			CLK_DisableModuleClock(TMR0_MODULE);
-		}		
+		}
 	}
 	else if (Instance == TIMER1)
 	{
 		if (NewState == ENABLE)
 		{
 			CLK_EnableModuleClock(TMR1_MODULE);
-			CLK_SetModuleClock(TMR1_MODULE, CLK_CLKSEL1_TMR1SEL_HXT, 0);			
+			CLK_SetModuleClock(TMR1_MODULE, CLK_CLKSEL1_TMR1SEL_HXT, 0);
 		}
 		else
 		{
 			CLK_DisableModuleClock(TMR1_MODULE);
-		}		
+		}
 	}
 	else if (Instance == TIMER2)
 	{
 		if (NewState == ENABLE)
 		{
 			CLK_EnableModuleClock(TMR2_MODULE);
-			CLK_SetModuleClock(TMR2_MODULE, CLK_CLKSEL1_TMR2SEL_HXT, 0);			
+			CLK_SetModuleClock(TMR2_MODULE, CLK_CLKSEL1_TMR2SEL_HXT, 0);
 		}
 		else
 		{
 			CLK_DisableModuleClock(TMR2_MODULE);
-		}		
+		}
 	}
 	else if (Instance == TIMER3)
 	{
 		if (NewState == ENABLE)
 		{
 			CLK_EnableModuleClock(TMR3_MODULE);
-			CLK_SetModuleClock(TMR3_MODULE, CLK_CLKSEL1_TMR3SEL_HXT, 0);			
+			CLK_SetModuleClock(TMR3_MODULE, CLK_CLKSEL1_TMR3SEL_HXT, 0);
 		}
 		else
 		{
 			CLK_DisableModuleClock(TMR3_MODULE);
-		}		
+		}
 	}
 	else
 	{
 		DBG_PRINT("Unsupported TIMER clock source.(0x%lx)\r\n", (UINT32)Instance);
 		return;
 	}
-	
+
 } /* End of HW_TIM_ClkSource() */
 
 /*
@@ -325,56 +325,56 @@ void HW_SPI_ClkSource(SPI_T* Instance, UINT8 NewState)
 	{
 		if (NewState == ENABLE)
 		{
-			CLK_EnableModuleClock(SPI0_MODULE);			
+			CLK_EnableModuleClock(SPI0_MODULE);
 			CLK_SetModuleClock(SPI0_MODULE, CLK_CLKSEL2_SPI0SEL_PCLK1, MODULE_NoMsk);
 		}
 		else
 		{
 			CLK_DisableModuleClock(SPI0_MODULE);
-		}		
+		}
 	}
 	else if (Instance == SPI1)
 	{
 		if (NewState == ENABLE)
 		{
-			CLK_EnableModuleClock(SPI1_MODULE);			
+			CLK_EnableModuleClock(SPI1_MODULE);
 			CLK_SetModuleClock(SPI1_MODULE, CLK_CLKSEL2_SPI1SEL_PCLK0, MODULE_NoMsk);
 		}
 		else
 		{
 			CLK_DisableModuleClock(SPI1_MODULE);
-		}		
+		}
 	}
 	else if (Instance == SPI2)
 	{
 		if (NewState == ENABLE)
 		{
-			CLK_EnableModuleClock(SPI2_MODULE);			
+			CLK_EnableModuleClock(SPI2_MODULE);
 			CLK_SetModuleClock(SPI2_MODULE, CLK_CLKSEL2_SPI2SEL_PCLK1, MODULE_NoMsk);
 		}
 		else
 		{
 			CLK_DisableModuleClock(SPI2_MODULE);
-		}		
+		}
 	}
 	else if (Instance == SPI3)
 	{
 		if (NewState == ENABLE)
 		{
-			CLK_EnableModuleClock(SPI3_MODULE);			
+			CLK_EnableModuleClock(SPI3_MODULE);
 			CLK_SetModuleClock(SPI3_MODULE, CLK_CLKSEL2_SPI3SEL_PCLK0, MODULE_NoMsk);
 		}
 		else
 		{
 			CLK_DisableModuleClock(SPI3_MODULE);
 		}
-	}	
+	}
 	else
 	{
 		DBG_PRINT("Unsupported SPI clock source.(0x%lx)\r\n", (UINT32)Instance);
 		return;
 	}
-	
+
 } /* End of HW_SPI_ClkSource() */
 
 /*
@@ -392,80 +392,80 @@ void HW_UART_ClkSource(UART_T* Instance, UINT8 NewState)
 	{
 		if (NewState == ENABLE)
 		{
-			CLK_EnableModuleClock(UART0_MODULE);			
+			CLK_EnableModuleClock(UART0_MODULE);
 			CLK_SetModuleClock(UART0_MODULE, CLK_CLKSEL1_UART0SEL_PLL, CLK_CLKDIV0_UART0(1));
 		}
 		else
 		{
 			CLK_DisableModuleClock(UART0_MODULE);
-		}		
+		}
 	}
 	else if (Instance == UART1)
 	{
 		if (NewState == ENABLE)
 		{
-			CLK_EnableModuleClock(UART1_MODULE);			
+			CLK_EnableModuleClock(UART1_MODULE);
 			CLK_SetModuleClock(UART1_MODULE, CLK_CLKSEL1_UART1SEL_PLL, CLK_CLKDIV0_UART1(1));
 		}
 		else
 		{
 			CLK_DisableModuleClock(UART1_MODULE);
-		}		
+		}
 	}
 	else if (Instance == UART2)
 	{
 		if (NewState == ENABLE)
 		{
-			CLK_EnableModuleClock(UART2_MODULE);			
+			CLK_EnableModuleClock(UART2_MODULE);
 			CLK_SetModuleClock(UART2_MODULE, CLK_CLKSEL3_UART2SEL_PLL, CLK_CLKDIV4_UART2(1));
 		}
 		else
 		{
 			CLK_DisableModuleClock(UART2_MODULE);
-		}		
+		}
 	}
 	else if (Instance == UART3)
 	{
 		if (NewState == ENABLE)
 		{
-			CLK_EnableModuleClock(UART3_MODULE);			
+			CLK_EnableModuleClock(UART3_MODULE);
 			CLK_SetModuleClock(UART3_MODULE, CLK_CLKSEL3_UART3SEL_PLL, CLK_CLKDIV4_UART3(1));
 		}
 		else
 		{
 			CLK_DisableModuleClock(UART3_MODULE);
-		}		
+		}
 	}
 	else if (Instance == UART4)
 	{
 		if (NewState == ENABLE)
 		{
-			CLK_EnableModuleClock(UART4_MODULE);			
+			CLK_EnableModuleClock(UART4_MODULE);
 			CLK_SetModuleClock(UART4_MODULE, CLK_CLKSEL3_UART4SEL_PLL, CLK_CLKDIV4_UART3(1));
 		}
 		else
 		{
 			CLK_DisableModuleClock(UART4_MODULE);
-		}		
+		}
 	}
 	else if (Instance == UART5)
 	{
 		if (NewState == ENABLE)
 		{
-			CLK_EnableModuleClock(UART5_MODULE);			
+			CLK_EnableModuleClock(UART5_MODULE);
 			CLK_SetModuleClock(UART5_MODULE, CLK_CLKSEL3_UART5SEL_PLL, CLK_CLKDIV4_UART5(1));
 		}
 		else
 		{
 			CLK_DisableModuleClock(UART5_MODULE);
-		}		
+		}
 	}
 	else
 	{
 		DBG_PRINT("Unsupported UART/USART clock source.(0x%lx)\r\n", (UINT32)Instance);
 		return;
 	}
-	
+
 } /* End of HW_UART_ClkSource() */
 
 /*
@@ -485,12 +485,12 @@ UINT32 HW_GPIO_PinToIntrNum(UINT32 Pin)
 		{
 		case BIT_0: return 0;
 		case BIT_1: return 1;
-		case BIT_2: return 2;		
-		case BIT_3: return 3;				
-		case BIT_4: return 4;						
-		case BIT_5: return 5;						
-		case BIT_6: return 6;		
-		case BIT_7: return 7;				
+		case BIT_2: return 2;
+		case BIT_3: return 3;
+		case BIT_4: return 4;
+		case BIT_5: return 5;
+		case BIT_6: return 6;
+		case BIT_7: return 7;
 		}
 	}
 	else if (Pin & 0x0000ff00)
@@ -506,9 +506,9 @@ UINT32 HW_GPIO_PinToIntrNum(UINT32 Pin)
 		case BIT_14: return 14;
 		case BIT_15: return 15;
 		}
-	}	
+	}
 	else if (Pin & 0x00ff0000)
-	{	
+	{
 		switch(Pin)
 		{
 		case BIT_16: return 16;
@@ -522,7 +522,7 @@ UINT32 HW_GPIO_PinToIntrNum(UINT32 Pin)
 		}
 	}
 	else
-	{	
+	{
 		switch(Pin)
 		{
 		case BIT_24: return 24;
@@ -536,7 +536,7 @@ UINT32 HW_GPIO_PinToIntrNum(UINT32 Pin)
 		}
 	}
 	return 0;
-	
+
 } /* End of HW_GPIO_PinToIntrNum() */
 
 /*
@@ -554,45 +554,45 @@ static INT32 HW_SPI_Init(void)
 	HW_SPI_ClkSource(HW_SPI_ESC_INSTANCE, ENABLE);
 
 	/* SPI ESC CS GPIO pin configuration  */
-	HW_MultiFuncPins(HW_SPI_ESC_CS_PORT, HW_SPI_ESC_CS_PIN, 0);		
+	HW_MultiFuncPins(HW_SPI_ESC_CS_PORT, HW_SPI_ESC_CS_PIN, 0);
 	GPIO_SetMode(HW_SPI_ESC_CS_PORT, HW_SPI_ESC_CS_PIN, GPIO_MODE_OUTPUT);
 	GPIO_SetSlewCtl(HW_SPI_ESC_CS_PORT, HW_SPI_ESC_CS_PIN, GPIO_SLEWCTL_FAST);
 	GPIO_SetPullCtl(HW_SPI_ESC_CS_PORT, HW_SPI_ESC_CS_PIN, GPIO_PUSEL_PULL_UP);
-	
+
 	/* SPI CLK GPIO pin configuration  */
-	HW_MultiFuncPins(HW_SPI_ESC_SCLK_PORT, HW_SPI_ESC_SCLK_PIN, HW_SPI_ESC_MULTI_FUNC);	
+	HW_MultiFuncPins(HW_SPI_ESC_SCLK_PORT, HW_SPI_ESC_SCLK_PIN, HW_SPI_ESC_MULTI_FUNC);
 	GPIO_SetSlewCtl(HW_SPI_ESC_SCLK_PORT, HW_SPI_ESC_SCLK_PIN, GPIO_SLEWCTL_FAST);
 	GPIO_SetPullCtl(HW_SPI_ESC_SCLK_PORT, HW_SPI_ESC_SCLK_PIN, GPIO_PUSEL_PULL_UP);
-	
-	/* Enable clock pin schmitt trigger */	
+
+	/* Enable clock pin schmitt trigger */
 	HW_SPI_ESC_SCLK_PORT->SMTEN |= HW_SPI_ESC_SCLK_PIN;
-	
+
 	/* SPI MISO GPIO pin configuration  */
 	HW_MultiFuncPins(HW_SPI_ESC_MISO_PORT, HW_SPI_ESC_MISO_PIN, HW_SPI_ESC_MULTI_FUNC);
 	GPIO_SetSlewCtl(HW_SPI_ESC_MISO_PORT, HW_SPI_ESC_MISO_PIN, GPIO_SLEWCTL_FAST);
 	GPIO_SetPullCtl(HW_SPI_ESC_MISO_PORT, HW_SPI_ESC_MISO_PIN, GPIO_PUSEL_DISABLE);
 
 	/* SPI MOSI GPIO pin configuration  */
-	HW_MultiFuncPins(HW_SPI_ESC_MOSI_PORT, HW_SPI_ESC_MOSI_PIN, HW_SPI_ESC_MULTI_FUNC);	
+	HW_MultiFuncPins(HW_SPI_ESC_MOSI_PORT, HW_SPI_ESC_MOSI_PIN, HW_SPI_ESC_MULTI_FUNC);
 	GPIO_SetSlewCtl(HW_SPI_ESC_MOSI_PORT, HW_SPI_ESC_MOSI_PIN, GPIO_SLEWCTL_FAST);
 	GPIO_SetPullCtl(HW_SPI_ESC_MOSI_PORT, HW_SPI_ESC_MOSI_PIN, GPIO_PUSEL_PULL_UP);
 
 	/* Using software controlled slave selection */
 	SPI_DisableAutoSS(HW_SPI_ESC_INSTANCE);
-	
+
 	/* Clear Rx/Tx FIFO */
 	SPI_ClearRxFIFO(HW_SPI_ESC_INSTANCE);
 	SPI_ClearTxFIFO(HW_SPI_ESC_INSTANCE);
 	SPI_SetFIFO(HW_SPI_ESC_INSTANCE, 0, 0);
 
 	/* Enable SPI PDI */
-	SPI_Open(HW_SPI_ESC_INSTANCE, SPI_MASTER, SPI_MODE_3, 8, HW_SPI_ESC_BAUDRATE);	
-	
+	SPI_Open(HW_SPI_ESC_INSTANCE, SPI_MASTER, SPI_MODE_3, 8, HW_SPI_ESC_BAUDRATE);
+
 	/* Initialize CS pin(s) as idle state */
 	HW_GPIO_WritePin(HW_SPI_ESC_CS_PORT, HW_SPI_ESC_CS_PIN, 1);
-	
+
 	return 0;
-	
+
 } /* End of HW_SPI_Init() */
 
 /*
@@ -610,7 +610,7 @@ static INT32 HW_SPI_DeInit(void)
 	SPI_Close(HW_SPI_ESC_INSTANCE);
 
 	return 0;
-	
+
 } /* End of HW_SPI_DeInit() */
 
 /*
@@ -625,12 +625,12 @@ static INT32 HW_SPI_DeInit(void)
 static INT32 HW_SPI_WaitFlagStateUntilTimeout(HW_SPI_OBJECT* pSpiObj, UINT32 Flag, UINT32 State, UINT32 Timeout, UINT32 Tickstart)
 {
 	SPI_T* pInst = pSpiObj->pInst;
-	
+
 	while((((pInst->STATUS & Flag) == (Flag)) ? 1 : 0) != State)
 	{
 		if(HW_CheckTimeout(Tickstart, Timeout))
 		{
-			SPI_DisableInt(pInst, SPI_FIFO_TXTH_INT_MASK|SPI_FIFO_RXTH_INT_MASK|SPI_SLVBE_INT_MASK);				
+			SPI_DisableInt(pInst, SPI_FIFO_TXTH_INT_MASK|SPI_FIFO_RXTH_INT_MASK|SPI_SLVBE_INT_MASK);
 			SPI_DISABLE(pInst);
 			DBG_PRINT("SPI wait flag timeout!\r\n");
 			return -1;
@@ -638,7 +638,7 @@ static INT32 HW_SPI_WaitFlagStateUntilTimeout(HW_SPI_OBJECT* pSpiObj, UINT32 Fla
 	}
 
 	return 0;
-	
+
 } /* End of HW_SPI_WaitFlagStateUntilTimeout() */
 
 /*
@@ -658,10 +658,10 @@ static INT32 HW_SPI_TransmitReceive(HW_SPI_OBJECT* pSpiObj, UINT8 *pTxData, UINT
 
 	/* Init tickstart for timeout management*/
 	tickstart = HW_GetTimer();
-		  
+
 	TxXferCount = Size;
 	RxXferCount = Size;
-	
+
 	/* Check if the SPI is already enabled */
 	if ((pInst->CTL & SPI_CTL_SPIEN_Msk) == 0)
 	{
@@ -679,7 +679,7 @@ static INT32 HW_SPI_TransmitReceive(HW_SPI_OBJECT* pSpiObj, UINT8 *pTxData, UINT
 		pTxData += sizeof(uint8_t);
 		TxXferCount--;
 	}
-	
+
 	while((TxXferCount > 0U) || (RxXferCount > 0U))
 	{
 		/* check TXE flag */
@@ -707,11 +707,11 @@ static INT32 HW_SPI_TransmitReceive(HW_SPI_OBJECT* pSpiObj, UINT8 *pTxData, UINT
 	/* Wait until TXE flag */
 	if(HW_SPI_WaitFlagStateUntilTimeout(pSpiObj, SPI_STATUS_TXEMPTY_Msk, 1, Timeout, tickstart) < 0)
 	{
-		DBG_PRINT("SPI wait TXE timeout!\r\n");		
+		DBG_PRINT("SPI wait TXE timeout!\r\n");
 		errorcode = -3;
 		goto HW_SPI_XferError;
 	}
-  
+
 	/* Check Busy flag */
 	if(HW_SPI_WaitFlagStateUntilTimeout(pSpiObj, SPI_STATUS_BUSY_Msk, 0, Timeout, tickstart) < 0)
 	{
@@ -721,13 +721,13 @@ static INT32 HW_SPI_TransmitReceive(HW_SPI_OBJECT* pSpiObj, UINT8 *pTxData, UINT
 	}
 
 	/* Clear overrun flag in 2 Lines communication mode because received is not read */
-	pInst->STATUS = SPI_STATUS_RXOVIF_Msk; 
+	pInst->STATUS = SPI_STATUS_RXOVIF_Msk;
 	pInst->STATUS = SPI_STATUS_RXTOIF_Msk;
 
 HW_SPI_XferError:
-	/* CS = high */	
+	/* CS = high */
 	pSpiObj->pCsPort->DOUT |= pSpiObj->CsPin;
-	
+
 	return errorcode;
 
 } /* End of HW_SPI_TransmitReceive() */
@@ -741,13 +741,13 @@ HW_SPI_XferError:
  * Note:
  * ----------------------------------------------------------------------------
  */
-static void HW_SPI_Read(HW_SPI_OBJECT* pSpiObj, UINT8 *pBuf, UINT16 Addr, UINT16 ByteLen)
+static void HW_SPI_Read(HW_SPI_OBJECT* pSpiObj, UINT8 *pBuf, UINT32 Addr, UINT16 ByteLen)
 {
 	UINT16				XferLen, AddrTmp, i;
 	UINT8				*ptr, DataOffset = 0;
 	INT32				ret;
-	
-	/* Re-entry transfer detection */	
+
+	/* Re-entry transfer detection */
 	if (pSpiObj->Lock)
 	{
 		if (pSpiObj->ReentryCnt)
@@ -758,11 +758,11 @@ static void HW_SPI_Read(HW_SPI_OBJECT* pSpiObj, UINT8 *pBuf, UINT16 Addr, UINT16
 	}
 	/* Lock SPI transfer section */
 	pSpiObj->Lock = 1;
-	
+
 	while (ByteLen)
 	{
 		AddrTmp = Addr;
-		
+
 		/* Fragmented to specified data length per-section */
 		if (ByteLen > HW_SPI_MAX_DATA_FRAGMENT_SIZE)
 		{
@@ -790,28 +790,28 @@ static void HW_SPI_Read(HW_SPI_OBJECT* pSpiObj, UINT8 *pBuf, UINT16 Addr, UINT16
 			pSpiObj->TxBuf[1] = ptr[0] | HW_SPI_READ_WITH_WAIT_CMD;
 			DataOffset = 2;
 		}
-		
+
 		/* Set dummy byte */
 		pSpiObj->TxBuf[DataOffset] = 0xff;
-			
+
 		/* Set read terminal byte */
 		memset(&pSpiObj->TxBuf[DataOffset+1], 0, XferLen);
 		pSpiObj->TxBuf[DataOffset + XferLen] = 0xff;
 		DataOffset++;
 
 		ret = HW_SPI_TransmitReceive(pSpiObj, pSpiObj->TxBuf, pSpiObj->RxBuf, DataOffset + XferLen, HW_SPI_XFER_TIMEOUT);
-		/* Start read */		
-		if (ret != 0)		
+		/* Start read */
+		if (ret != 0)
 		{
 			break;
 		}
-		
+
 		/* Store received data */
 		for (i=0; i<XferLen; i++)
 		{
 			pBuf[i] = pSpiObj->RxBuf[DataOffset + i];
 		}
-		
+
 		/* Next section */
 		Addr += XferLen;
 		pBuf += XferLen;
@@ -819,9 +819,9 @@ static void HW_SPI_Read(HW_SPI_OBJECT* pSpiObj, UINT8 *pBuf, UINT16 Addr, UINT16
 	}
 
 	/* Unlock SPI transfer section */
-	pSpiObj->Lock = 0;	
+	pSpiObj->Lock = 0;
 	return;
-	
+
 } /* End of HW_SPI_Read() */
 
 /*
@@ -838,12 +838,12 @@ static void HW_SPI_Write(HW_SPI_OBJECT* pSpiObj, UINT8 *pData, UINT16 Addr, UINT
 	UINT16 XferLen, AddrTmp;
 	UINT8 *ptr, DataOffset;
 	INT32 ret;
-	
-	/* Re-entry transfer detection */	
+
+	/* Re-entry transfer detection */
 	if (pSpiObj->Lock)
 	{
 		if (pSpiObj->ReentryCnt)
-		{		
+		{
 			pSpiObj->ReentryCnt++;
 		}
 		return;
@@ -864,49 +864,49 @@ static void HW_SPI_Write(HW_SPI_OBJECT* pSpiObj, UINT8 *pData, UINT16 Addr, UINT
 		{
 			XferLen = ByteLen;
 		}
-		
+
 		/* Set address , command */
 		ptr = (UINT8*)&AddrTmp;
 		if (pSpiObj->ThreeByteAddrMode)
-		{		
-			pSpiObj->TxBuf[2] = (ptr[1] & 0xe0) | (HW_SPI_WRITE_CMD << 2);		
+		{
+			pSpiObj->TxBuf[2] = (ptr[1] & 0xe0) | (HW_SPI_WRITE_CMD << 2);
 			AddrTmp = AddrTmp << 3;
 			pSpiObj->TxBuf[0] = ptr[1];
-			pSpiObj->TxBuf[1] = ptr[0] | HW_SPI_ADDR_EXT_CMD;			
+			pSpiObj->TxBuf[1] = ptr[0] | HW_SPI_ADDR_EXT_CMD;
 			DataOffset = 3;
 		}
 		else
 		{
 			AddrTmp = AddrTmp << 3;
 			pSpiObj->TxBuf[0] = ptr[1];
-			pSpiObj->TxBuf[1] = ptr[0] | HW_SPI_WRITE_CMD;			
-			DataOffset = 2;			
+			pSpiObj->TxBuf[1] = ptr[0] | HW_SPI_WRITE_CMD;
+			DataOffset = 2;
 		}
-		
+
 		/* Set transmit data bytes */
 		memcpy(&(pSpiObj->TxBuf[DataOffset]), pData, XferLen);
 		DataOffset++;
-		
+
 		/* Start write */
 		ret = HW_SPI_TransmitReceive(pSpiObj, pSpiObj->TxBuf, pSpiObj->RxBuf, (DataOffset - 1) + XferLen, HW_SPI_XFER_TIMEOUT);
 		if (ret != 0)
 		{
 			break;
 		}
-		
+
 		Addr += XferLen;
-		pData += XferLen;	
+		pData += XferLen;
 		ByteLen -= XferLen;
 	}
-	
+
 	/* Unlock SPI transfer section */
-	pSpiObj->Lock = 0;	
+	pSpiObj->Lock = 0;
 	return;
-	
+
 } /* End of HW_SPI_Write() */
 
 /**
-  * @brief  The function operates a SPI access without addressing. 
+  * @brief  The function operates a SPI access without addressing.
   * @note   The first two bytes of an access to the EtherCAT ASIC always deliver the AL_Event register (0x220).
   *         It will be saved in the global "EscALEvent"
   * @param  None
@@ -919,7 +919,7 @@ static void GetInterruptRegister(void)
 //#endif //#if (AL_EVENT_ENABLED)
 
 	HW_EscRead((MEM_ADDR*)EscALEvent.Byte, ESC_AL_EVENT_OFFSET, 2);
-	
+
 //#if (AL_EVENT_ENABLED)
 //	ENABLE_AL_EVENT_INT;
 //#endif ////#if (AL_EVENT_ENABLED)
@@ -937,7 +937,7 @@ static void GetInterruptRegister(void)
 static void ISR_GetInterruptRegister(void)
 {
 	HW_EscReadIsr((MEM_ADDR*)EscALEvent.Byte, ESC_AL_EVENT_OFFSET, 2);
-	
+
 } /* End of ISR_GetInterruptRegister() */
 #else // !(INTERRUPTS_SUPPORTED)
 #define ISR_GetInterruptRegister GetInterruptRegister
@@ -953,7 +953,7 @@ static void ISR_GetInterruptRegister(void)
 void HW_MiiPdiAccess(BOOL enable)
 {
 	UINT8	tmp8;
-	
+
 	if (enable) {
 		tmp8 = 0x01;
 	} else {
@@ -970,7 +970,7 @@ void HW_MiiPdiAccess(BOOL enable)
 void HW_MiiWaitReady(void)
 {
 	UINT8	tmp8;
-	
+
 	/* Confirm the last command was successful and current MII interface is idle. */
 	do {
 		HW_EscReadByte(tmp8, 0x0511);
@@ -993,14 +993,14 @@ UINT16 HW_MiiPhyRead(UINT8 phyAddr, UINT8 page, UINT8 regAddr)
 	UINT8	opRead = 0x01;
 	UINT8	opWrite = 0x02;
 	UINT16	tmp16;
-	
+
 	/* Select page */
 	HW_EscWriteByte(phyAddr, 0x0512);
 	HW_EscWriteByte(pageRegAddr, 0x0513);
 	HW_EscWriteWord(page, 0x0514);
 	HW_EscWriteByte(opWrite, 0x0511);
 	HW_MiiWaitReady();
-	
+
 	/* Read data from PHY register */
 	HW_EscWriteByte(phyAddr, 0x0512);
 	HW_EscWriteByte(regAddr, 0x0513);
@@ -1022,14 +1022,14 @@ void HW_MiiPhyWrite(UINT8 phyAddr, UINT8 page, UINT8 regAddr, UINT16 regValue)
 {
 	UINT8	pageRegAddr = 0x1F;
 	UINT8	opWrite = 0x02;
-	
+
 	/* Select page */
 	HW_EscWriteByte(phyAddr, 0x0512);
 	HW_EscWriteByte(pageRegAddr, 0x0513);
 	HW_EscWriteWord(page, 0x0514);
 	HW_EscWriteByte(opWrite, 0x0511);
 	HW_MiiWaitReady();
-	
+
 	/* Write data to PHY register */
 	HW_EscWriteWord(regValue, 0x0514);
 	HW_EscWriteByte(phyAddr, 0x0512);
@@ -1050,8 +1050,8 @@ UINT8 HW_Init(void)
 	UINT16	tmp16;
 
 	/* Intialize HW debug data structure */
-	memset(&HW_Debug, 0, sizeof(HW_Debug));	
-	
+	memset(&HW_Debug, 0, sizeof(HW_Debug));
+
 #if (AX58200_DEBUG_ENABLE)
 	/* ALEVENT ISR debug pin */
 	HW_MultiFuncPins(DBG_ALEVENT_ISR_PORT, DBG_ALEVENT_ISR_PIN, 0);
@@ -1059,46 +1059,46 @@ UINT8 HW_Init(void)
 	GPIO_SetSlewCtl(DBG_ALEVENT_ISR_PORT, DBG_ALEVENT_ISR_PIN, GPIO_SLEWCTL_HIGH);
 	GPIO_SetPullCtl(DBG_ALEVENT_ISR_PORT, DBG_ALEVENT_ISR_PIN, GPIO_PUSEL_PULL_UP);
 	HW_GPIO_WritePin(DBG_ALEVENT_ISR_PORT, DBG_ALEVENT_ISR_PIN, 0);
-	
+
 	/* SYNC0 ISR debug pin */
 	HW_MultiFuncPins(DBG_SYNC0ISR_PORT, DBG_SYNC0ISR_PIN, 0);
 	GPIO_SetMode(DBG_SYNC0ISR_PORT, DBG_SYNC0ISR_PIN, GPIO_MODE_OUTPUT);
 	GPIO_SetSlewCtl(DBG_SYNC0ISR_PORT, DBG_SYNC0ISR_PIN, GPIO_SLEWCTL_HIGH);
 	GPIO_SetPullCtl(DBG_SYNC0ISR_PORT, DBG_SYNC0ISR_PIN, GPIO_PUSEL_PULL_UP);
 	HW_GPIO_WritePin(DBG_SYNC0ISR_PORT, DBG_SYNC0ISR_PIN, 0);
-	
+
 	/* SYNC1 ISR debug pin */
 	HW_MultiFuncPins(DBG_SYNC1ISR_PORT, DBG_SYNC1ISR_PIN, 0);
 	GPIO_SetMode(DBG_SYNC1ISR_PORT, DBG_SYNC1ISR_PIN, GPIO_MODE_OUTPUT);
 	GPIO_SetSlewCtl(DBG_SYNC1ISR_PORT, DBG_SYNC1ISR_PIN, GPIO_SLEWCTL_HIGH);
 	GPIO_SetPullCtl(DBG_SYNC1ISR_PORT, DBG_SYNC1ISR_PIN, GPIO_PUSEL_PULL_UP);
 	HW_GPIO_WritePin(DBG_SYNC1ISR_PORT, DBG_SYNC1ISR_PIN, 0);
-	
+
 	/* TIMER TASK ISR debug pin */
 	HW_MultiFuncPins(DBG_TMRTASK_PORT, DBG_TMRTASK_PIN, 0);
 	GPIO_SetMode(DBG_TMRTASK_PORT, DBG_TMRTASK_PIN, GPIO_MODE_OUTPUT);
 	GPIO_SetSlewCtl(DBG_TMRTASK_PORT, DBG_TMRTASK_PIN, GPIO_SLEWCTL_HIGH);
 	GPIO_SetPullCtl(DBG_TMRTASK_PORT, DBG_TMRTASK_PIN, GPIO_PUSEL_PULL_UP);
 	HW_GPIO_WritePin(DBG_TMRTASK_PORT, DBG_TMRTASK_PIN, 0);
-	
+
 	/* SYNC ERR debug pin */
 	HW_MultiFuncPins(DBG_SYNCERR_PORT, DBG_SYNCERR_PIN, 0);
 	GPIO_SetMode(DBG_SYNCERR_PORT, DBG_SYNCERR_PIN, GPIO_MODE_OUTPUT);
 	GPIO_SetSlewCtl(DBG_SYNCERR_PORT, DBG_SYNCERR_PIN, GPIO_SLEWCTL_HIGH);
 	GPIO_SetPullCtl(DBG_SYNCERR_PORT, DBG_SYNCERR_PIN, GPIO_PUSEL_PULL_UP);
 	HW_GPIO_WritePin(DBG_SYNCERR_PORT, DBG_SYNCERR_PIN, 0);
-	
+
 	/* CYCLE TOO SMALL debug pin */
 	HW_MultiFuncPins(DBG_CYCLE_TOO_SMALL_PORT, DBG_CYCLE_TOO_SMALL_PIN, 0);
 	GPIO_SetMode(DBG_CYCLE_TOO_SMALL_PORT, DBG_CYCLE_TOO_SMALL_PIN, GPIO_MODE_OUTPUT);
 	GPIO_SetSlewCtl(DBG_CYCLE_TOO_SMALL_PORT, DBG_CYCLE_TOO_SMALL_PIN, GPIO_SLEWCTL_HIGH);
 	GPIO_SetPullCtl(DBG_CYCLE_TOO_SMALL_PORT, DBG_CYCLE_TOO_SMALL_PIN, GPIO_PUSEL_PULL_UP);
 	HW_GPIO_WritePin(DBG_CYCLE_TOO_SMALL_PORT, DBG_CYCLE_TOO_SMALL_PIN, 0);
-	
+
 #endif //#if (AX58200_DEBUG_ENABLE)
 
 	/* Initialize PDIs */
-	HW_SPI_Init();	
+	HW_SPI_Init();
 	memset(&HW_SpiObj, 0, sizeof(HW_SPI_OBJECT));
 	HW_SpiObj.pInst = HW_SPI_ESC_INSTANCE;
 	HW_SpiObj.pCsPort = HW_SPI_ESC_CS_PORT;
@@ -1110,7 +1110,7 @@ UINT8 HW_Init(void)
 	TIMER_Open(HW_TIMETICK_INSTANCE, TIMER_CONTINUOUS_MODE, 1000);
 	TIMER_SET_PRESCALE_VALUE(HW_TIMETICK_INSTANCE, HW_TIMETICK_PRESCALER);
 	HW_TIMETICK_INSTANCE->CMP = HW_TIMETICK_MASK;
-	
+
 	/* Start time tick */
 	TIMER_Start(HW_TIMETICK_INSTANCE);
 
@@ -1159,7 +1159,7 @@ UINT8 HW_Init(void)
 	tmp16 = HW_MiiPhyRead(0, 0x00, 0x1E);
 	HW_MiiPhyWrite(0, 0x00, 0x1E, (tmp16 | 0x4000));
 	tmp16 = HW_MiiPhyRead(0, 0x00, 0x1E);
-	
+
     /* Port1 */
 	tmp16 = HW_MiiPhyRead(1, 0x00, 0x1E);
 	HW_MiiPhyWrite(1, 0x00, 0x1E, (tmp16 | 0x4000));
@@ -1180,25 +1180,25 @@ UINT8 HW_Init(void)
 	GPIO_SetMode(HW_ALEVENT_PORT, HW_ALEVENT_PIN, GPIO_MODE_INPUT);
 	GPIO_SetSlewCtl(HW_ALEVENT_PORT, HW_ALEVENT_PIN, GPIO_SLEWCTL_HIGH);
 	GPIO_SetPullCtl(HW_ALEVENT_PORT, HW_ALEVENT_PIN, GPIO_PUSEL_PULL_UP);
-	GPIO_EnableInt(HW_ALEVENT_PORT, HW_GPIO_PinToIntrNum(HW_ALEVENT_PIN), GPIO_INT_FALLING);	
+	GPIO_EnableInt(HW_ALEVENT_PORT, HW_GPIO_PinToIntrNum(HW_ALEVENT_PIN), GPIO_INT_FALLING);
 
 	/* Enable SPI interrupt source at NVIC */
 	NVIC_SetPriority(HW_ALEVENT_IRQ, NVIC_EncodePriority(HW_INT_PRIORITY_GROUP, HW_ALEVENT_INT_PREEMPTION_PRIORITY, HW_ALEVENT_INT_SUB_PRIORITY));
 	NVIC_EnableIRQ(HW_ALEVENT_IRQ);
-	
-	/* Enable ESC interrupt */	
+
+	/* Enable ESC interrupt */
 	ENABLE_ESC_INT();
 #endif //#if (AL_EVENT_ENABLED)
 
 #if (DC_SUPPORTED)
 	/* Enable SYNC0 GPIO */
-	HW_MultiFuncPins(HW_SYNC0_PORT, HW_SYNC0_PIN, 0);	
+	HW_MultiFuncPins(HW_SYNC0_PORT, HW_SYNC0_PIN, 0);
 	GPIO_SetMode(HW_SYNC0_PORT, HW_SYNC0_PIN, GPIO_MODE_INPUT);
 	GPIO_SetSlewCtl(HW_SYNC0_PORT, HW_SYNC0_PIN, GPIO_SLEWCTL_HIGH);
 	GPIO_SetPullCtl(HW_SYNC0_PORT, HW_SYNC0_PIN, GPIO_PUSEL_PULL_UP);
 	GPIO_EnableInt(HW_SYNC0_PORT, HW_GPIO_PinToIntrNum(HW_SYNC0_PIN), GPIO_INT_FALLING);
 
-	/* Enable SYNC0 interrupt source at NVIC */	
+	/* Enable SYNC0 interrupt source at NVIC */
 	NVIC_SetPriority(HW_SYNC0_IRQ, NVIC_EncodePriority(HW_INT_PRIORITY_GROUP, HW_SYNCx_INT_PREEMPTION_PRIORITY, HW_SYNCx_INT_SUB_PRIORITY));
 	NVIC_EnableIRQ(HW_SYNC0_IRQ);
 
@@ -1210,7 +1210,7 @@ UINT8 HW_Init(void)
 	GPIO_EnableInt(HW_SYNC1_PORT, HW_GPIO_PinToIntrNum(HW_SYNC1_PIN), GPIO_INT_FALLING);
 
 	/* Enable SYNC1 interrupt source at NVIC */
-	NVIC_SetPriority(HW_SYNC1_IRQ, NVIC_EncodePriority(HW_INT_PRIORITY_GROUP, HW_SYNCx_INT_PREEMPTION_PRIORITY, HW_SYNCx_INT_SUB_PRIORITY));		
+	NVIC_SetPriority(HW_SYNC1_IRQ, NVIC_EncodePriority(HW_INT_PRIORITY_GROUP, HW_SYNCx_INT_PREEMPTION_PRIORITY, HW_SYNCx_INT_SUB_PRIORITY));
 	NVIC_EnableIRQ(HW_SYNC1_IRQ);
 
 	/* Enable SYNC0/SYNC1 interrupt */
@@ -1238,7 +1238,7 @@ UINT8 HW_Init(void)
 #endif //#if (INTERRUPTS_SUPPORTED)
 
 	return 0;
-	
+
 } /* End of HW_Init() */
 
 /**
@@ -1284,7 +1284,7 @@ UINT16 HW_GetALEventRegister_Isr(void)
   * @param  Len       Access size in Bytes.
   * @retval None
   */
-void HW_EscRead(MEM_ADDR *pData, UINT16 Address, UINT16 Len)
+void HW_EscRead(MEM_ADDR *pData, UINT32 Address, UINT16 Len)
 {
 #if (AL_EVENT_ENABLED)
 	DISABLE_AL_EVENT_INT;
@@ -1293,7 +1293,7 @@ void HW_EscRead(MEM_ADDR *pData, UINT16 Address, UINT16 Len)
 	HW_SpiObj.pCsPort = HW_SPI_ESC_CS_PORT;
 	HW_SpiObj.CsPin = HW_SPI_ESC_CS_PIN;
 	HW_SPI_Read(&HW_SpiObj, (UINT8*)pData, Address, Len);
-		
+
 #if (AL_EVENT_ENABLED)
 	ENABLE_AL_EVENT_INT;
 #endif //#if (AL_EVENT_ENABLED)
@@ -1312,7 +1312,7 @@ void HW_EscReadIsr(MEM_ADDR *pData, UINT16 Address, UINT16 Len)
 {
 	/* Change slave select to ESC side */
 	HW_SpiObj.pCsPort = HW_SPI_ESC_CS_PORT;
-	HW_SpiObj.CsPin = HW_SPI_ESC_CS_PIN;	
+	HW_SpiObj.CsPin = HW_SPI_ESC_CS_PIN;
 	HW_SPI_Read(&HW_SpiObj, (UINT8*)pData, Address, Len);
 }
 #endif //#if (INTERRUPTS_SUPPORTED)
@@ -1352,7 +1352,7 @@ void HW_EscWriteIsr(MEM_ADDR *pData, UINT16 Address, UINT16 Len)
 {
 	/* Change slave select to ESC side */
 	HW_SpiObj.pCsPort = HW_SPI_ESC_CS_PORT;
-	HW_SpiObj.CsPin = HW_SPI_ESC_CS_PIN;	
+	HW_SpiObj.CsPin = HW_SPI_ESC_CS_PIN;
 	HW_SPI_Write(&HW_SpiObj, (UINT8*)pData, Address, Len);
 }
 #endif //#if (INTERRUPTS_SUPPORTED)
@@ -1377,7 +1377,7 @@ void HW_RestartTarget(void)
 UINT16 HW_EepromReload(void)
 {
     return 0;
-	
+
 } /* End of HW_EepromReload() */
 #endif //#if (ESC_EEPROM_EMULATION)
 
@@ -1392,33 +1392,33 @@ void HW_ALEVENT_SYNC1_IRQHandler(void)
 	if (GPIO_GET_INT_FLAG(HW_ALEVENT_PORT, HW_ALEVENT_PIN))
 	{
 #if (AX58200_DEBUG_ENABLE)
-	HW_GPIO_WritePin(DBG_ALEVENT_ISR_PORT, DBG_ALEVENT_ISR_PIN, 1);		
-#endif		
+	HW_GPIO_WritePin(DBG_ALEVENT_ISR_PORT, DBG_ALEVENT_ISR_PIN, 1);
+#endif
 		GPIO_CLR_INT_FLAG(HW_ALEVENT_PORT, HW_ALEVENT_PIN);
 		PDI_Isr();
 		HW_Debug.EscIsrCnt++;
 #if (AX58200_DEBUG_ENABLE)
-	HW_GPIO_WritePin(DBG_ALEVENT_ISR_PORT, DBG_ALEVENT_ISR_PIN, 0);		
-#endif		
+	HW_GPIO_WritePin(DBG_ALEVENT_ISR_PORT, DBG_ALEVENT_ISR_PIN, 0);
+#endif
 	}
-#if 0	
+#if 0
 	else
 	{
 		HW_ALEVENT_PORT->INTSRC = HW_ALEVENT_PORT->INTSRC;
 	}
 #endif
-	
+
 	if (GPIO_GET_INT_FLAG(HW_SYNC1_PORT, HW_SYNC1_PIN))
 	{
 #if (AX58200_DEBUG_ENABLE)
-	HW_GPIO_WritePin(DBG_SYNC1ISR_PORT, DBG_SYNC1ISR_PIN, 1);		
-#endif		
+	HW_GPIO_WritePin(DBG_SYNC1ISR_PORT, DBG_SYNC1ISR_PIN, 1);
+#endif
 		GPIO_CLR_INT_FLAG(HW_SYNC1_PORT, HW_SYNC1_PIN);
 		Sync1_Isr();
 		HW_Debug.Sync1IsrCnt++;
 #if (AX58200_DEBUG_ENABLE)
-	HW_GPIO_WritePin(DBG_SYNC1ISR_PORT, DBG_SYNC1ISR_PIN, 0);		
-#endif		
+	HW_GPIO_WritePin(DBG_SYNC1ISR_PORT, DBG_SYNC1ISR_PIN, 0);
+#endif
 	}
 
 } /* End of HW_ALEVENT_SYNC1_IRQHandler() */
@@ -1435,13 +1435,13 @@ void HW_SYNC0_IRQHandler(void)
 	if (GPIO_GET_INT_FLAG(HW_SYNC0_PORT, HW_SYNC0_PIN))
 	{
 #if (AX58200_DEBUG_ENABLE)
-	HW_GPIO_WritePin(DBG_SYNC0ISR_PORT, DBG_SYNC0ISR_PIN, 1);	
-#endif		
+	HW_GPIO_WritePin(DBG_SYNC0ISR_PORT, DBG_SYNC0ISR_PIN, 1);
+#endif
 		GPIO_CLR_INT_FLAG(HW_SYNC0_PORT, HW_SYNC0_PIN);
 		Sync0_Isr();
 		HW_Debug.Sync0IsrCnt++;
 #if (AX58200_DEBUG_ENABLE)
-	HW_GPIO_WritePin(DBG_SYNC0ISR_PORT, DBG_SYNC0ISR_PIN, 0);	
+	HW_GPIO_WritePin(DBG_SYNC0ISR_PORT, DBG_SYNC0ISR_PIN, 0);
 #endif
 	}
 } /* End of HW_SYNC0_IRQHandler() */
@@ -1459,16 +1459,16 @@ void HW_TIMETASK_IRQHandler(void)
 	if (TIMER_GetIntFlag(HW_TIMETASK_INSTANCE)!=0)
 	{
 #if (AX58200_DEBUG_ENABLE)
-	HW_GPIO_WritePin(DBG_TMRTASK_PORT, DBG_TMRTASK_PIN, 1);	
-#endif		
+	HW_GPIO_WritePin(DBG_TMRTASK_PORT, DBG_TMRTASK_PIN, 1);
+#endif
 		TIMER_ClearIntFlag(HW_TIMETASK_INSTANCE);
 		HW_Debug.TmrTskIsrCnt++;
-		ECAT_CheckTimer();		
+		ECAT_CheckTimer();
 		/* Main house keeping of the stack */
 		MainLoop();
 #if (AX58200_DEBUG_ENABLE)
 	HW_GPIO_WritePin(DBG_TMRTASK_PORT, DBG_TMRTASK_PIN, 0);
-#endif		
+#endif
 	}
 } /* End of HW_TIMETASK_IRQHandler() */
 #endif
@@ -1485,18 +1485,18 @@ void HW_TIMETASK_IRQHandler(void)
 UINT8 HW_CheckTimeout(UINT16 StartTime, UINT16 Timeout)
 {
 	UINT16 tmp16 = HW_GetTimer();
-	
+
 	if (tmp16 < StartTime)
 	{
 		tmp16 = (HW_TIMETICK_MAX_VALUE - StartTime) + tmp16;
 	}
 	else
 	{
-		tmp16 = tmp16 - StartTime;		
+		tmp16 = tmp16 - StartTime;
 	}
 
 	return ((tmp16 >= Timeout) ? 1 : 0);
-	
+
 } /* End of HW_CheckTimeout() */
 
 
@@ -1511,7 +1511,7 @@ UINT8 HW_CheckTimeout(UINT16 StartTime, UINT16 Timeout)
  */
 INT32 HW_CheckVendorProductID(void)
 {
-	oIC_VENDOR_ID    vendor_id;	
+	oIC_VENDOR_ID    vendor_id;
 	oIC_PRODUCT_ID   product_id;
 
 	AX_INTF_EscRead(ESC_VENDOR_ID_REG, vendor_id.d32, sizeof(oIC_VENDOR_ID));
@@ -1519,26 +1519,26 @@ INT32 HW_CheckVendorProductID(void)
 	{
 		return -1;
 	}
-	
-	AX_INTF_EscRead(ESC_PRODUCT_ID_REG, product_id.d32, sizeof(oIC_PRODUCT_ID));	
+
+	AX_INTF_EscRead(ESC_PRODUCT_ID_REG, product_id.d32, sizeof(oIC_PRODUCT_ID));
 	if (product_id.b.chip_revision != ESC_CHIP_REVISION)
 	{
 		return -2;
 	}
-	
+
 	if (product_id.b.product_id != ESC_PRODUCT_ID)
 	{
 		return -3;
 	}
 
 	return 0;
-	
+
 } /* End of HW_CheckVendorProductID() */
 
 HW_DEBUG* HW_GetDebugCounter(void)
 {
 	return (&HW_Debug);
-	
+
 } /* End of HW_GetMonitorCounter() */
 
 /* End of AX58200_Hw.c */

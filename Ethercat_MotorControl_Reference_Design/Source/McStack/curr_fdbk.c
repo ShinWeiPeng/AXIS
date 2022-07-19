@@ -30,7 +30,7 @@
 
 /* INCLUDE FILE DECLARATIONS */
 #include "curr_fdbk.h"
-
+#include "svpwm.h"
 /* NAMING CONSTANT DECLARATIONS */
 
 /* TYPE DECLARATIONS */
@@ -56,12 +56,35 @@
  */
 MS_Curr_Handle_t MS_GetCurr_d(MS_Curr_Handle_t *pHandle)
 {
+    static uint16_t i = 0, count_1ms = 0;
+
+    count_1ms++;
+
 	/* Get Current adc value */
 	MH_AdcConv(&pHandle->CurrentRegister, pHandle->ChannelNum);
 
 	adcU = ((pHandle->CurrentRegister.ConvBuffer[0]) + (pHandle->CurrentRegister.ConvBuffer[4])) >> 1;
 	adcV = ((pHandle->CurrentRegister.ConvBuffer[1]) + (pHandle->CurrentRegister.ConvBuffer[3])) >> 1;
 	adcW = pHandle->CurrentRegister.ConvBuffer[2];
+/*
+    if(g_MsSvpwmDbgMessage.record == TRUE)
+
+    {
+        if(count_1ms >= g_MsSvpwmDbgMessage.SamplingTimeMiliSec)
+        {
+            g_MsSvpwmDbgMessage.Buf1[i] = adcU;
+            g_MsSvpwmDbgMessage.Buf2[i] = adcV;
+            g_MsSvpwmDbgMessage.Buf3[i] = adcW;
+            g_MsSvpwmDbgMessage.Buf4[i] = adcIU;
+            i++;
+            count_1ms = 0;
+        }
+
+        if(i >= MS_SVPWM_DBG_BUF_MAX)
+            g_MsSvpwmDbgMessage.record = FALSE;
+    }
+*/
+
 	return (*pHandle);
 } /* End of MS_GetCurr_d() */
 
@@ -83,9 +106,11 @@ MS_Curr_Handle_t MS_GetSignedCurr_d(MS_Curr_Handle_t *pHandle)
 	avg_amp = (adcU + adcV + adcW) / 3;
 
 	/* Get three phase current(unit=mA) */
+
 	adcIU = (adcU - adcSUM) * adcK / 100;
 	adcIV = (adcV - adcSUM) * adcK / 100;
 	adcIW = (adcW - adcSUM) * adcK / 100;
+
 
 	/* Low pass filter(20kHz/32768=0.6Hz) */
 	com_amp = sum_amp >> 15;

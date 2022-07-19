@@ -36,7 +36,7 @@
 /* TYPE DECLARATIONS */
 
 /* GLOBAL VARIABLES DECLARATIONS */
-
+_MsSvpwmDbg g_MsSvpwmDbgMessage;
 /* LOCAL VARIABLES DECLARATIONS */
 
 /* LOCAL SUBPROGRAM DECLARATIONS */
@@ -82,6 +82,10 @@ void MS_MapPwmBlkInit(void)
 void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab)
 {
 	int32_t x, y, z, u, v, w, inv;
+	static uint16_t i = 0, count_1ms = 0;
+	static uint32_t count2_1ms = 0;
+
+	count_1ms++;
 
 	/* Convert DQ vector to UVW vector */ /* 1774=sqrt(3)*1024 */
 	x = Vab.Beta;
@@ -151,10 +155,36 @@ void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab)
 		w = inv;
 	}
 
-	/* PwmU、PwmV、PwmW+/-1000*/
+	/* Buf1、Buf2、Buf3+/-1000*/
 	pwmU = (u * 2) - 1000;
 	pwmV = (v * 2) - 1000;
 	pwmW = (w * 2) - 1000;
+
+
+	if(g_MsSvpwmDbgMessage.record == TRUE)
+	{
+	    count2_1ms++;
+
+	    if(count_1ms >= g_MsSvpwmDbgMessage.SamplingTimeMiliSec  && count2_1ms >= g_MsSvpwmDbgMessage.DelaySecond * 1000)
+	    {
+	        g_MsSvpwmDbgMessage.Buf1[i] = x;
+	        g_MsSvpwmDbgMessage.Buf2[i] = y;
+	        g_MsSvpwmDbgMessage.Buf3[i] = z;
+	        g_MsSvpwmDbgMessage.Buf4[i] = pHandle->Sector;
+	        i++;
+	        count_1ms = 0;
+	        count2_1ms = g_MsSvpwmDbgMessage.DelaySecond * 1000;
+	    }
+
+        if(i >= MS_SVPWM_DBG_BUF_MAX)
+            g_MsSvpwmDbgMessage.record = FALSE;
+	}
+	else
+	{
+	    count_1ms = 0;
+	    count2_1ms = 0;
+	}
+
 
 	/* Set three phase pwm voltage */
 	MH_SET_PWMU_DUTY(pHandle->EpwmRegister.pInst, (pwmMAX - pwmU));

@@ -2,14 +2,14 @@
  ******************************************************************************
  * Software License Agreement
  *     Copyright (c) 2021 ASIX Electronics Corporation   All rights reserved.
- * (1) This software is owned by ASIX Electronics Corporation and is protected
+ * (1) This software is owned by ASIX Electronics Corporation and is protected 
  *     under all applicable laws, including copyright laws.
- * (2) This software is provided by ASIX Electronics Corporation, including
+ * (2) This software is provided by ASIX Electronics Corporation, including 
  *     modifications and/or derivative works of this software, are only authorized
- *     for use on ASIX products.
+ *     for use on ASIX products. 
  * (3) Redistribution and use of this software without specific written permission
- *     is void and will automatically terminate your rights under this license.
- * (4) Redistribution of source code or in binary form must retain/reproduce the
+ *     is void and will automatically terminate your rights under this license. 
+ * (4) Redistribution of source code or in binary form must retain/reproduce the 
  *     copyright notice above and the following disclaimer in the documentation or other
  *     materials provided with the distribution.
  *
@@ -50,7 +50,7 @@
 
 /* NAMING CONSTANT DECLARATIONS */
 	/* Debug or evaluation requirement */
-#define AX58200_DEBUG_ENABLE        1
+#define AX58200_DEBUG_ENABLE        0
 
 #if (AX58200_DEBUG_ENABLE)
 #include "printd.h"
@@ -66,7 +66,7 @@
 
 	/* ESC alias register */
 #define ESC_ALIAS_ADDRESS_OFFSET    0x0012
-
+		
 	/* ESC PID/VID/REV check */
 #define ESC_PRODUCT_ID_REG          0x0E00
 #define ESC_VENDOR_ID_REG           0x0E08
@@ -83,8 +83,8 @@
 		Priority Group=1 -> 1bits: preemption-priority, 3bit: sub-priority
 		Priority Group=2 -> 2bits: preemption-priority, 2bit: sub-priority
 		Priority Group=3 -> 3bits: preemption-priority, 1bit: sub-priority
-		Priority Group=4 -> 4bits: preemption-priority, 0bit: sub-priority
-*/
+		Priority Group=4 -> 4bits: preemption-priority, 0bit: sub-priority		
+*/		
 #define HW_INT_PRIORITY_GROUP               3
 #define HW_SYNCx_INT_PREEMPTION_PRIORITY    6
 #define HW_SYNCx_INT_SUB_PRIORITY           0
@@ -198,10 +198,10 @@ typedef struct{
 	UINT32	FunIsrCnt;
 	UINT32	Sync0IsrCnt;
 	UINT32	Sync1IsrCnt;
-	UINT32	AdcTrgCnt;
+	UINT32	AdcTrgCnt;	
 	UINT32	TIM1IsrCnt;
-	UINT32	EncIsrCnt;
-	UINT32	TmrTskIsrCnt;
+	UINT32	EncIsrCnt;	
+	UINT32	TmrTskIsrCnt;	
 } HW_DEBUG;
 
 typedef struct{
@@ -394,7 +394,7 @@ PROTO UINT16 HW_GetALEventRegister(void);
 PROTO UINT16 HW_GetALEventRegister_Isr(void);
 #endif //#if (INTERRUPTS_SUPPORTED)
 
-PROTO void HW_EscRead( MEM_ADDR * pData, UINT32 Address, UINT16 Len );
+PROTO void HW_EscRead( MEM_ADDR * pData, UINT16 Address, UINT16 Len );
 #if (INTERRUPTS_SUPPORTED)
 PROTO void HW_EscReadIsr( MEM_ADDR *pData, UINT16 Address, UINT16 Len );
 #endif //#if (INTERRUPTS_SUPPORTED)
