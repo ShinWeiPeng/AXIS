@@ -116,9 +116,10 @@ MCMATH_AB_PHASE_T MI_Clake(void)
 {
 	MCMATH_AB_PHASE_T phase_ab;
 	int u, v;
-	static uint16_t i = 0, count_1ms = 0;
+	static uint16_t i = 0, count_100us = 0;
+    static uint32_t count2_100us = 0;
 
-	count_1ms++;
+	count_100us++;
 
 	u = adcIU;
 	v = adcIV;
@@ -133,24 +134,31 @@ MCMATH_AB_PHASE_T MI_Clake(void)
 	/* 591 = (1/sqrt(3))* 1024 */
 	phase_ab.Beta = ((u + v + v) * 591) >> 10;
 
-	/*
-    if(g_MsSvpwmDbgMessage.record == TRUE)
 
+    if(g_MsSvpwmDbgMessage.record == TRUE)
     {
-        if(count_1ms >= g_MsSvpwmDbgMessage.SamplingTimeMiliSec)
+        count2_100us++;
+
+        if((count_100us >= (g_MsSvpwmDbgMessage.SamplingTimeMiliSec * 10)) && (count2_100us >= g_MsSvpwmDbgMessage.DelaySecond * 10000))
         {
-            g_MsSvpwmDbgMessage.Buf1[i] = u;
-            g_MsSvpwmDbgMessage.Buf2[i] = v;
-            g_MsSvpwmDbgMessage.Buf3[i] = phase_ab.Alpha;
-            g_MsSvpwmDbgMessage.Buf4[i] = phase_ab.Beta;
+            g_MsSvpwmDbgMessage.Buf1[i] = uvwDEG;
+            g_MsSvpwmDbgMessage.Buf2[i] = u;
+            g_MsSvpwmDbgMessage.Buf3[i] = v;
+            g_MsSvpwmDbgMessage.Buf4[i] = ampCMD;
             i++;
-            count_1ms = 0;
+            count_100us = 0;
+            count2_100us = g_MsSvpwmDbgMessage.DelaySecond * 10000;
         }
 
         if(i >= MS_SVPWM_DBG_BUF_MAX)
             g_MsSvpwmDbgMessage.record = FALSE;
     }
-    */
+    else
+    {
+        count_100us = 0;
+        count2_100us = 0;
+    }
+
 	return phase_ab;
 } /* End of MI_Clake() */
 
@@ -204,6 +212,11 @@ MCMATH_AB_PHASE_T MI_RevPark(void)
 	static int d_sum = 0, q_sum = 0;
 	int wr, decouple_q, decouple_d;
 
+    static uint16_t i = 0, count_100us = 0;
+    static uint32_t count2_100us = 0;
+
+    count_100us++;
+
 	phase_ab.Alpha = 0;
 	phase_ab.Beta = 0;
 
@@ -239,6 +252,32 @@ MCMATH_AB_PHASE_T MI_RevPark(void)
 	phase_ab.Alpha = ((phase_dq.Direct * uvwCOS) - (phase_dq.Quadrature * uvwSIN)) >> 8;
 	phase_ab.Beta = ((phase_dq.Quadrature * uvwCOS) + (phase_dq.Direct * uvwSIN)) >> 8;
 
+/*
+    if(g_MsSvpwmDbgMessage.record == TRUE)
+    {
+        count2_100us++;
+
+        if((count_100us >= (g_MsSvpwmDbgMessage.SamplingTimeMiliSec * 10)) && (count2_100us >= g_MsSvpwmDbgMessage.DelaySecond * 10000))
+        {
+            g_MsSvpwmDbgMessage.Buf1[i] = phase_dq.Quadrature;
+            g_MsSvpwmDbgMessage.Buf2[i] = phase_dq.Direct;
+            g_MsSvpwmDbgMessage.Buf3[i] = pwmDEG;
+            g_MsSvpwmDbgMessage.Buf4[i] = ampCMD;
+            i++;
+            count_100us = 0;
+            count2_100us = g_MsSvpwmDbgMessage.DelaySecond * 10000;
+        }
+
+        if(i >= MS_SVPWM_DBG_BUF_MAX)
+            g_MsSvpwmDbgMessage.record = FALSE;
+    }
+    else
+    {
+        count_100us = 0;
+        count2_100us = 0;
+    }
+*/
+
 	return phase_ab;
 } /* End of MI_RevPark() */
 
@@ -272,6 +311,10 @@ void MI_MapUvwBlkInit(void)
 void MI_CalcRotorVector(void)
 {
 	int delta_ang;
+    static uint16_t i = 0, count_100us = 0;
+    static uint32_t count2_100us = 0;
+
+    count_100us++;
 
 	/* Calculate feedback delta angle at mechanic domain */
 	delta_ang = iopREL - iopIDX;
@@ -313,6 +356,32 @@ void MI_CalcRotorVector(void)
 	uvwDEG = delta_ang + ((iopSPD * uvwKI) / 4096);
 	uvwSIN = MI_GetSIN(uvwDEG);
 	uvwCOS = MI_GetSIN(uvwDEG + 90);
+
+	/*
+    if(g_MsSvpwmDbgMessage.record == TRUE)
+    {
+        count2_100us++;
+
+        if((count_100us >= (g_MsSvpwmDbgMessage.SamplingTimeMiliSec * 10)) && (count2_100us >= g_MsSvpwmDbgMessage.DelaySecond * 10000))
+        {
+            g_MsSvpwmDbgMessage.Buf1[i] = iopREL;
+            g_MsSvpwmDbgMessage.Buf2[i] = iopIDX;
+            g_MsSvpwmDbgMessage.Buf3[i] = iopANG;
+            g_MsSvpwmDbgMessage.Buf4[i] = uvwDEG;
+            i++;
+            count_100us = 0;
+            count2_100us = g_MsSvpwmDbgMessage.DelaySecond * 10000;
+        }
+
+        if(i >= MS_SVPWM_DBG_BUF_MAX)
+            g_MsSvpwmDbgMessage.record = FALSE;
+    }
+    else
+    {
+        count_100us = 0;
+        count2_100us = 0;
+    }
+    */
 } /* End of MI_CalcRotorVector() */
 
 /*

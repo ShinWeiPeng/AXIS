@@ -82,10 +82,10 @@ void MS_MapPwmBlkInit(void)
 void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab)
 {
 	int32_t x, y, z, u, v, w, inv;
-	static uint16_t i = 0, count_1ms = 0;
-	static uint32_t count2_1ms = 0;
+	static uint16_t i = 0, count_100us = 0;
+	static uint32_t count2_100us = 0;
 
-	count_1ms++;
+	count_100us++;
 
 	/* Convert DQ vector to UVW vector */ /* 1774=sqrt(3)*1024 */
 	x = Vab.Beta;
@@ -160,20 +160,20 @@ void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab)
 	pwmV = (v * 2) - 1000;
 	pwmW = (w * 2) - 1000;
 
-
+	/*
 	if(g_MsSvpwmDbgMessage.record == TRUE)
 	{
-	    count2_1ms++;
+	    count2_100us++;
 
-	    if(count_1ms >= g_MsSvpwmDbgMessage.SamplingTimeMiliSec  && count2_1ms >= g_MsSvpwmDbgMessage.DelaySecond * 1000)
+	    if((count_100us >= (g_MsSvpwmDbgMessage.SamplingTimeMiliSec * 10)) && (count2_100us >= g_MsSvpwmDbgMessage.DelaySecond * 10000))
 	    {
 	        g_MsSvpwmDbgMessage.Buf1[i] = x;
 	        g_MsSvpwmDbgMessage.Buf2[i] = y;
 	        g_MsSvpwmDbgMessage.Buf3[i] = z;
 	        g_MsSvpwmDbgMessage.Buf4[i] = pHandle->Sector;
 	        i++;
-	        count_1ms = 0;
-	        count2_1ms = g_MsSvpwmDbgMessage.DelaySecond * 1000;
+	        count_100us = 0;
+	        count2_100us = g_MsSvpwmDbgMessage.DelaySecond * 10000;
 	    }
 
         if(i >= MS_SVPWM_DBG_BUF_MAX)
@@ -181,10 +181,10 @@ void MS_SetPhaseVoltage(MS_Epwm_Handle_t *pHandle, MCMATH_AB_PHASE_T Vab)
 	}
 	else
 	{
-	    count_1ms = 0;
-	    count2_1ms = 0;
+	    count_100us = 0;
+	    count2_100us = 0;
 	}
-
+	*/
 
 	/* Set three phase pwm voltage */
 	MH_SET_PWMU_DUTY(pHandle->EpwmRegister.pInst, (pwmMAX - pwmU));

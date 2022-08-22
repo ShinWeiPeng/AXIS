@@ -56,9 +56,9 @@
  */
 MS_Curr_Handle_t MS_GetCurr_d(MS_Curr_Handle_t *pHandle)
 {
-    static uint16_t i = 0, count_1ms = 0;
+    static uint16_t i = 0, count_100us = 0;
 
-    count_1ms++;
+    count_100us++;
 
 	/* Get Current adc value */
 	MH_AdcConv(&pHandle->CurrentRegister, pHandle->ChannelNum);
@@ -70,14 +70,14 @@ MS_Curr_Handle_t MS_GetCurr_d(MS_Curr_Handle_t *pHandle)
     if(g_MsSvpwmDbgMessage.record == TRUE)
 
     {
-        if(count_1ms >= g_MsSvpwmDbgMessage.SamplingTimeMiliSec)
+        if(count_100us >= g_MsSvpwmDbgMessage.SamplingTimeMiliSec)
         {
             g_MsSvpwmDbgMessage.Buf1[i] = adcU;
             g_MsSvpwmDbgMessage.Buf2[i] = adcV;
             g_MsSvpwmDbgMessage.Buf3[i] = adcW;
             g_MsSvpwmDbgMessage.Buf4[i] = adcIU;
             i++;
-            count_1ms = 0;
+            count_100us = 0;
         }
 
         if(i >= MS_SVPWM_DBG_BUF_MAX)
